@@ -23,6 +23,9 @@ namespace x_related_posts {
 	 * @package x_related_posts
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
 	 * @since TODO ${VERSION}
+	 *
+	 * @property db_actions                                                         $©db_actions
+	 * @method db_actions                                                           ©db_actions()
 	 * 
 	 * @property db_tables                                                          $©db_tables
 	 * @property db_tables                                                          $©db_table

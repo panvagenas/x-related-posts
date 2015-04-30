@@ -36,7 +36,7 @@ class initializer extends \xd_v141226_dev\initializer {
 		$this->add_filter( 'the_content', '©main.hookTheContent' );
 
 		add_shortcode(
-			$this->©string->with_underscores( $this->instance->plugin_root_ns_stub ),
+			$this->instance->plugin_root_ns,
 			array( $this, '©shortcodes__shortcode.display' )
 		);
 	}

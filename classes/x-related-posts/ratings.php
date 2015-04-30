@@ -13,5 +13,7 @@ namespace x_related_posts;
 
 
 class ratings {
-	public function doRating($pid){}
+	public function doRating($pid){
+		return 0;
+	}
 }

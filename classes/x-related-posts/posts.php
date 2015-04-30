@@ -18,6 +18,9 @@ namespace x_related_posts;
  * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
  * @since TODO ${VERSION}
  *
+ * @property db_actions                                                         $©db_actions
+ * @method db_actions                                                           ©db_actions()
+ *
  * @property db_tables                                                          $©db_tables
  * @property db_tables                                                          $©db_table
  * @method db_tables                                                            ©db_tables()
@@ -76,6 +79,7 @@ class posts extends \xd_v141226_dev\posts{
 	}
 
 	/**
+	 * True iff post id exists in pid1 or pid2 cols
 	 * @param $post
 	 *
 	 * @return bool
@@ -83,6 +87,23 @@ class posts extends \xd_v141226_dev\posts{
 	 * @since TODO ${VERSION}
 	 */
 	public function isCached($post){
+		$pid = (int)$this->getPostId($post);
+		if(!$pid){
+			return false;
+		}
+		$this->©db->get_var('SELECT * FROM ' . $this->©db_table->tableName() . ' WHERE pid1='.$pid.' OR pid2='.$pid);
+		return $this->©db->num_rows > 0;
+	}
+
+	/**
+	 * True iff post id exists in pid1 col
+	 * @param $post
+	 *
+	 * @return bool
+	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
+	 * @since TODO ${VERSION}
+	 */
+	public function isRated($post){
 		$pid = (int)$this->getPostId($post);
 		if(!$pid){
 			return false;
@@ -130,6 +151,7 @@ class posts extends \xd_v141226_dev\posts{
 	 * @param $oldStatus
 	 * @param $post
 	 *
+	 * @return int
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
 	 * @since TODO ${VERSION}
 	 */
@@ -144,32 +166,24 @@ class posts extends \xd_v141226_dev\posts{
 
 		if ( $oldStatus == 'publish' && $newStatus != 'publish' ) {
 			// Post is now unpublished, we should remove cache entries
-			// todo
-			// $this->deletePostInCache( $pid );
-		} elseif ( $newStatus == 'publish' ) {
-			// todo
-//			$this->deletePostInCache( $pid );
-//			$plugin = easyRelatedPostsPRO::get_instance();
-//
-//			if ( $plugin->isInExcludedPostTypes( $pid ) || $plugin->isInExcludedTaxonomies( $pid ) ) {
-//				return;
-//			}
-//			erpPROPaths::requireOnce( erpPROPaths::$erpProRelated );
-//			erpPROPaths::requireOnce( erpPROPaths::$erpPROMainOpts );
-//
-//			$opts = new erpPROMainOpts();
-//
-//			$opts->setOptions( array(
-//				'queryLimit' => 1000
-//			) );
-//			$rel = erpProRelated::get_instance( $opts );
-//
-//			$rel->doRating( $pid );
+			return $this->©db_actions->deleteAll($pid);
 		}
+		if ( $newStatus == 'publish' ) {
+			if(!$this->isExcluded($pid)){
+				return $this->©ratings->doRating($pid);
+			}
+		}
+		return 0;
 	}
 
+	/**
+	 * @param $pid
+	 *
+	 * @return int
+	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
+	 * @since TODO ${VERSION}
+	 */
 	public function hookDeletePost($pid){
-		// todo implement
-		// $db->deleteAllOccurrences( $pid );
+		return $this->©db_actions->deleteAll($pid);
 	}
 }
