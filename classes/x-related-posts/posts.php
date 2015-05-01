@@ -77,6 +77,7 @@ class posts extends \xd_v141226_dev\posts {
 	 * @since 150429
 	 */
 	public function isExcluded( $post ) {
+		return false; // todo change when implemented
 		$postType = get_post_type( $post );
 
 		return $postType && in_array( $postType, $this->©option->get( 'post_types' ) );
@@ -191,6 +192,23 @@ class posts extends \xd_v141226_dev\posts {
 
 	/**
 	 * @param null|int|\WP_Post $post
+	 *
+	 * @return array
+	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
+	 * @since TODO ${VERSION}
+	 */
+	public function getTagsSlugs($post = null){
+		$pid      = $post ? $this->getPostId( $post ) : $this->ID;
+		$tags = $this->getTags($post);
+		$out = array();
+		foreach ( $tags as $tag ) {
+			$out[$tag->term_id] = $tag->slug;
+		}
+		return $out;
+	}
+
+	/**
+	 * @param null|int|\WP_Post $post
 	 * @param bool              $hierarchical
 	 *
 	 * @return array
@@ -247,12 +265,13 @@ class posts extends \xd_v141226_dev\posts {
 		}
 		$related = array();
 		$postCats = $this->getCategories($post);
-		$postTags = $this->getTags($post);
+		$postTags = $this->getTagsSlugs($post);
 		if(!empty($postCats)){
 			$this->©query
 				->resetQuery()
 				->categoriesIn(array_keys($postCats))
-				->limit(500);
+				->limit(500)
+				->postNotIn(array($pid));
 			$q = $this->©query->getWpQuery();
 			if(!empty($q->posts)){
 				foreach ( $q->posts as $k => $p ) {
@@ -269,10 +288,11 @@ class posts extends \xd_v141226_dev\posts {
 		if(!empty($postTags)){
 			$this->©query
 				->resetQuery()
-				->tagsIn(array_keys($postTags))
-				->limit(500);
-			$q = $this->©query->getWpQuery();
+				->tagsIn($postTags)
+				->limit(500)
+				->postNotIn(array($pid));
 
+			$q = $this->©query->getWpQuery();
 			if(!empty($q->posts)){
 				foreach ( $q->posts as $k => $p ) {
 					if(isset($related[$p->ID]) && is_array($related[$p->ID])){

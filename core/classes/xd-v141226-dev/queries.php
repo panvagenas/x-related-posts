@@ -349,7 +349,7 @@ namespace xd_v141226_dev {
 
 		protected function setDefaults(){
 			foreach ( get_object_vars( $this ) as $k => $v ) {
-				if(property_exists(parent, $k) || $k == 'arguments' || $k == 'instance' || preg_match('/^_/', $k)) continue;
+				if(property_exists(get_parent_class($this), $k) || $k == 'arguments' || $k == 'instance' || preg_match('/^_/', $k)) continue;
 				$this->_defaults[$k] = $v;
 			}
 		}

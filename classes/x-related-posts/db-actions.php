@@ -280,7 +280,6 @@ class db_actions extends framework {
 							( isset( $data['clicks'] ) ? $data['clicks'] : 0 ),
 							( isset( $data['update_time'] ) ? $data['update_time'] : date( 'Y-m-d H:i:s' ) )
 						);
-						$values .= ',';
 					}
 				}
 			}

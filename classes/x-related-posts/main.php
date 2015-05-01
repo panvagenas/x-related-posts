@@ -15,7 +15,10 @@ namespace x_related_posts {
 	class main extends framework {
 		public function hookTheContent( $content ) {
 			global $post;
-			var_dump($this->©post()->getRelated($post));
+			if($this->isShowTime()){
+				var_dump($this->©post()->getRelated($post));
+			}
+
 			return $content;
 		}
 

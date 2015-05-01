@@ -22,7 +22,7 @@ class menu_pages extends \xd_v141226_dev\menu_pages{
 	 * @return null Nothing.
 	 */
 	public function admin_menu() {
-		$this->add_options_page( '©menu_pages__settings' );
+		//$this->add_options_page( '©menu_pages__settings' );
 	}
 
 	/**

@@ -59,5 +59,5 @@ namespace randomizer {
 		exit( 'Do NOT access this file directly: ' . basename( __FILE__ ) );
 	}
 
-	require_once dirname( __FILE__ ) . '/classes/randomizer/framework.php';
+	require_once dirname( __FILE__ ) . '/classes/x-related-posts/framework.php';
 }

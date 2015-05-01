@@ -46,6 +46,6 @@ class initializer extends \xd_v141226_dev\initializer {
 	 * @since 150429
 	 */
 	public function register_widgets() {
-		register_widget( __NAMESPACE__ . '\widget' );
+		//register_widget( __NAMESPACE__ . '\widget' );
 	}
 }
