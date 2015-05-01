@@ -5,7 +5,7 @@
  * User: Panagiotis Vagenas <pan.vagenas@gmail.com>
  * Date: 29/4/2015
  * Time: 9:09 μμ
- * Since: TODO ${VERSION}
+ * Since: 150429
  * Copyright: 2015 Panagiotis Vagenas
  */
 
@@ -50,7 +50,7 @@ class db_tables extends \xd_v141226_dev\db_tables{
 	 * @return string
 	 * @throws \xd_v141226_dev\exception
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	public function tableName(){
 		return $this->get('related');

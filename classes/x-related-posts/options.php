@@ -5,7 +5,7 @@
  * User: Panagiotis Vagenas <pan.vagenas@gmail.com>
  * Date: 29/4/2015
  * Time: 8:15 μμ
- * Since: TODO ${VERSION}
+ * Since: 150429
  * Copyright: 2015 Panagiotis Vagenas
  */
 
@@ -16,7 +16,7 @@ namespace x_related_posts;
  *
  * @package x_related_posts
  * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
- * @since TODO ${VERSION}
+ * @since 150429
  * @extends \wpdb
  */
 class options extends \xd_v141226_dev\options {
@@ -27,7 +27,7 @@ class options extends \xd_v141226_dev\options {
 	 * @return array
 	 * @throws \xd_v141226_dev\exception
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	public function setup( $defaults, $validators ) {
 		$pluginDefaults = array(

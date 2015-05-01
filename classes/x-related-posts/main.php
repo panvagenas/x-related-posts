@@ -5,7 +5,7 @@
  * User: Panagiotis Vagenas <pan.vagenas@gmail.com>
  * Date: 29/4/2015
  * Time: 9:27 μμ
- * Since: TODO ${VERSION}
+ * Since: 150429
  * Copyright: 2015 Panagiotis Vagenas
  */
 
@@ -22,7 +22,7 @@ namespace x_related_posts {
 		 *
 		 * @return bool True if global $post is set and is single post and in main query and in the loop
 		 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-		 * @since TODO ${VERSION}
+		 * @since 150429
 		 */
 		public function isShowTime() {
 			global $post;

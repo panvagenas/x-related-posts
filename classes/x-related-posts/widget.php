@@ -5,7 +5,7 @@
  * User: Panagiotis Vagenas <pan.vagenas@gmail.com>
  * Date: 29/4/2015
  * Time: 8:22 μμ
- * Since: TODO ${VERSION}
+ * Since: 150429
  * Copyright: 2015 Panagiotis Vagenas
  */
 
@@ -17,7 +17,7 @@ namespace x_related_posts;
  *
  * @package x_related_posts
  * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
- * @since TODO ${VERSION}
+ * @since 150429
  *
  * @property framework $framework
  */

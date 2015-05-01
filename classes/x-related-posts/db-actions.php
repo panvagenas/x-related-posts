@@ -5,7 +5,7 @@
  * User: Panagiotis Vagenas <pan.vagenas@gmail.com>
  * Date: 30/4/2015
  * Time: 12:07 πμ
- * Since: TODO ${VERSION}
+ * Since: 150429
  * Copyright: 2015 Panagiotis Vagenas
  */
 
@@ -37,7 +37,7 @@ class db_actions extends framework {
 	 *
 	 * @return int
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	public function deleteAll( $pid ) {
 		$res = (int) $this->©db->delete( $this->©db_table->tableName(), array( 'pid1' => $pid ) );
@@ -54,7 +54,7 @@ class db_actions extends framework {
 	 *
 	 * @return bool|mixed
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	public function getAll( $pid ) {
 		$pid = (int) $pid;
@@ -70,7 +70,7 @@ class db_actions extends framework {
 	 *
 	 * @return bool|mixed
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	public function getDistinctPostIds() {
 		return $this->©db->get_results( 'SELECT DISTINCT(pid1) AS pid FROM ' . $this->©db_table->tableName() );
@@ -80,7 +80,7 @@ class db_actions extends framework {
 	 * Flushes all records from rel table in DB
 	 *
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	public function truncateTable() {
 		return $this->©db->query( 'DELETE FROM ' . $this->©db_table->tableName() );
@@ -94,7 +94,7 @@ class db_actions extends framework {
 	 *
 	 * @return bool|mixed
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	public function getRow( $pid1, $pid2 ) {
 		$sql = $this->©db->prepare(
@@ -113,7 +113,7 @@ class db_actions extends framework {
 	 * @param array $data
 	 *
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	public function insert( $pid1, $pid2, Array $data ) {
 		$pid1 = (int) $pid1;
@@ -135,7 +135,7 @@ class db_actions extends framework {
 	 *
 	 * @return bool
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	public function exists( $pid1, $pid2 ) {
 		$res = $this->getRow( $pid1, $pid2 );
@@ -152,7 +152,7 @@ class db_actions extends framework {
 	 * @param array $data
 	 *
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	public function update( $pid1, $pid2, Array $data ) {
 		$pid1 = (int) $pid1;
@@ -174,7 +174,7 @@ class db_actions extends framework {
 	 * @param $pid2
 	 *
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	public function delete( $pid1, $pid2 ) {
 		$pid1 = (int) $pid1;
@@ -192,7 +192,7 @@ class db_actions extends framework {
 	 *
 	 * @return int
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	public function incrementClick( $pid1, $pid2 ) {
 		$record = $this->getRow( $pid1, $pid2 );
@@ -212,7 +212,7 @@ class db_actions extends framework {
 	 * @param int|array $pid2
 	 *
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	public function incrementDisplayed( $pid1, $pid2 ) {
 		if ( is_array( $pid2 ) ) {
@@ -236,7 +236,7 @@ class db_actions extends framework {
 	 *
 	 * @return false|int
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	protected function performDeleteQuery() {
 		$deleted = 0;
@@ -258,7 +258,7 @@ class db_actions extends framework {
 	 * Inserts records cached in $this->insert array
 	 * @return false|int
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	protected function performInsertQuery() {
 		$inserted = 0;
@@ -303,7 +303,7 @@ class db_actions extends framework {
 	 *
 	 * @return int
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	protected function performDisplayedQuery() {
 		$incremented = 0;
@@ -323,7 +323,7 @@ class db_actions extends framework {
 	 *
 	 * @return false|int
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	protected function performUpdateQuery() {
 		$updated = 0;
@@ -380,7 +380,7 @@ class db_actions extends framework {
 	 * Performs cached queries if any
 	 *
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	protected function performCachedQueries() {
 		$this->performDeleteQuery();

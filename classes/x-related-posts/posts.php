@@ -5,7 +5,7 @@
  * User: Panagiotis Vagenas <pan.vagenas@gmail.com>
  * Date: 29/4/2015
  * Time: 9:30 μμ
- * Since: TODO ${VERSION}
+ * Since: 150429
  * Copyright: 2015 Panagiotis Vagenas
  */
 
@@ -16,7 +16,7 @@ namespace x_related_posts;
  *
  * @package x_related_posts
  * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
- * @since TODO ${VERSION}
+ * @since 150429
  *
  * @property db_actions                                                         $©db_actions
  * @method db_actions                                                           ©db_actions()
@@ -67,32 +67,31 @@ namespace x_related_posts;
  */
 class posts extends \xd_v141226_dev\posts{
 	/**
+	 * @var null|int
+	 */
+	public $ID = null;
+
+	/**
+	 * @param array|\xd_v141226_dev\framework $instance
+	 * @param int|\WP_Post                             $ID
+	 */
+	public function __construct( $instance, $ID = null ) {
+		parent::__construct( $instance );
+		if ( $ID ) {
+			$this->ID = $this->getPostId($ID);
+		}
+	}
+
+	/**
 	 * @param int|\WP_Post $post
 	 *
 	 * @return bool
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	public function isExcluded($post){
 		$postType = get_post_type($post);
 		return $postType && in_array($postType, $this->©option->get('post_types'));
-	}
-
-	/**
-	 * True iff post id exists in pid1 or pid2 cols
-	 * @param $post
-	 *
-	 * @return bool
-	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
-	 */
-	public function isCached($post){
-		$pid = (int)$this->getPostId($post);
-		if(!$pid){
-			return false;
-		}
-		$this->©db->get_var('SELECT * FROM ' . $this->©db_table->tableName() . ' WHERE pid1='.$pid.' OR pid2='.$pid);
-		return $this->©db->num_rows > 0;
 	}
 
 	/**
@@ -101,7 +100,7 @@ class posts extends \xd_v141226_dev\posts{
 	 *
 	 * @return bool
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	public function isRated($post){
 		$pid = (int)$this->getPostId($post);
@@ -119,7 +118,7 @@ class posts extends \xd_v141226_dev\posts{
 	 *
 	 * @return array
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	public function getRelated($post){
 		// TODO implement
@@ -132,9 +131,9 @@ class posts extends \xd_v141226_dev\posts{
 	 *
 	 * @param int|\WP_Post $post
 	 *
-	 * @return int
+	 * @return int|null
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	public function getPostId($post){
 		if($post instanceof \WP_Post){
@@ -143,7 +142,107 @@ class posts extends \xd_v141226_dev\posts{
 		if(is_numeric($post) && get_post_status($post)){
 			return (int) $post;
 		}
-		return 0;
+		return null;
+	}
+
+	/**
+	 * @param null|int|\WP_Post $post
+	 *
+	 * @return array
+	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
+	 * @since 150429
+	 */
+	public function getCategories( $post = null ) {
+		$pid        = $post ? $this->getPostId( $post ) : $this->ID;
+		$taxNames   = (array) $this->getTaxonomiesNames( $post, true );
+		$categories = array();
+		foreach ( $taxNames as $taxName ) {
+			$cats = get_the_terms( $pid, $taxName );
+			if ( ! empty( $cats ) && ! is_wp_error( $cats ) ) {
+				foreach ( $cats as $cat ) {
+					$categories[ $cat->term_id ] = $cat;
+				}
+			}
+		}
+
+		return $categories;
+	}
+
+	/**
+	 * @param null|int|\WP_Post $post
+	 *
+	 * @return array
+	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
+	 * @since 150429
+	 */
+	public function getTags($post = null){
+		$pid        = $post ? $this->getPostId( $post ) : $this->ID;
+		$taxNames   = (array) $this->getTaxonomiesNames( $post, false );
+		$tags = array();
+		foreach ( $taxNames as $taxName ) {
+			$tgs = get_the_terms( $pid, $taxName );
+			if ( ! empty( $tgs ) && ! is_wp_error( $tgs ) ) {
+				foreach ( $tgs as $tg ) {
+					$tags[ $tg->term_id ] = $tg;
+				}
+			}
+		}
+
+		return $tags;
+	}
+
+	/**
+	 * @param null|int|\WP_Post $post
+	 * @param bool              $hierarchical
+	 *
+	 * @return array
+	 * @internal param string $output
+	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
+	 * @since 150429
+	 */
+	public function getTaxonomiesNames( $post = null, $hierarchical = true ) {
+		$pid      = $post ? $this->getPostId( $post ) : $this->ID;
+		$postType = get_post_type( $pid );
+		if ( ! $postType ) {
+			return array();
+		}
+
+		$taxonomies = get_object_taxonomies( $postType, 'objects' );
+		$taxNames   = array();
+		foreach ( $taxonomies as $k => $v ) {
+			if ( $hierarchical && $v->hierarchical ) {
+				$taxNames[] = $v->name;
+			} elseif (!$hierarchical && !$v->hierarchical){
+				$taxNames[] = $v->name;
+			}
+		}
+		return $taxNames;
+	}
+
+	/**
+	 * @param null|int|\WP_Post $post
+	 *
+	 * @return string
+	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
+	 * @since 150429
+	 */
+	public function getPostDate($post = null){
+		$pid = $post ? $this->getPostId($post) : $this->ID;
+		return get_the_time('Y-m-d', $pid);
+	}
+
+	/**
+	 * Does a new rating on a post
+	 *
+	 * @param null $post
+	 *
+	 * @return array
+	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
+	 * @since TODO ${VERSION}
+	 */
+	public function doRating($post = null){
+		// todo implement
+		return array();
 	}
 
 	/**
@@ -153,7 +252,7 @@ class posts extends \xd_v141226_dev\posts{
 	 *
 	 * @return int
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	public function hookTransitionPostStatus($newStatus, $oldStatus, $post){
 		// If a revision get the pid from parent
@@ -170,7 +269,7 @@ class posts extends \xd_v141226_dev\posts{
 		}
 		if ( $newStatus == 'publish' ) {
 			if(!$this->isExcluded($pid)){
-				return $this->©ratings->doRating($pid);
+				return $this->doRating($pid);
 			}
 		}
 		return 0;
@@ -181,7 +280,7 @@ class posts extends \xd_v141226_dev\posts{
 	 *
 	 * @return int
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	public function hookDeletePost($pid){
 		return $this->©db_actions->deleteAll($pid);
