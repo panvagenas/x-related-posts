@@ -576,6 +576,12 @@ namespace xd_v141226_dev {
 			return $this;
 		}
 
+		public function limit( $limit = null ) {
+			$this->limit = $limit === null ? $limit : (int) $limit;
+
+			return $this;
+		}
+
 		public function paged($paged){
 			$this->query_check_arg_types('integer', func_get_args());
 			$this->paged = (int)$paged;

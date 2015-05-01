@@ -111,8 +111,15 @@ class posts extends \xd_v141226_dev\posts {
 	 * @since 150429
 	 */
 	public function getRelated( $post ) {
-		// TODO implement
-		return array();
+		$p = $this->©post($this->getPostId($post));
+		if($p->isRated($post)){
+			$relTable = $this->©db_actions->getAll($p->ID);
+		} else {
+			// do new rating
+			$relTable = $p->doRating();
+		}
+		// relTable apply weights
+		return $relTable;
 	}
 
 	/**
@@ -227,15 +234,62 @@ class posts extends \xd_v141226_dev\posts {
 	/**
 	 * Does a new rating on a post
 	 *
-	 * @param null $post
+	 * @param null|int|\WP_Post $post
 	 *
 	 * @return array
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
 	 * @since TODO ${VERSION}
 	 */
 	public function doRating( $post = null ) {
-		// todo implement
-		return array();
+		$pid = $post ? $this->getPostId( $post ) : $this->ID;
+		if(!$pid){
+			return array();
+		}
+		$related = array();
+		$postCats = $this->getCategories($post);
+		$postTags = $this->getTags($post);
+		if(!empty($postCats)){
+			$this->©query
+				->resetQuery()
+				->categoriesIn(array_keys($postCats))
+				->limit(500);
+			$q = $this->©query->getWpQuery();
+			if(!empty($q->posts)){
+				foreach ( $q->posts as $k => $p ) {
+					$related[$p->ID] = $this->©ratings->getRatings($this->©post($pid), $this->©post($p->ID));
+					$related[$p->ID]['post_date'] = get_the_time('Y-m-d', $p->ID);
+
+					$this->©db_actions->insert($pid, $p->ID, $related[$p->ID]);
+
+					$related[$p->ID]['pid1'] = $pid;
+					$related[$p->ID]['pid2'] = $p->ID;
+				}
+			}
+		}
+		if(!empty($postTags)){
+			$this->©query
+				->resetQuery()
+				->tagsIn(array_keys($postTags))
+				->limit(500);
+			$q = $this->©query->getWpQuery();
+
+			if(!empty($q->posts)){
+				foreach ( $q->posts as $k => $p ) {
+					if(isset($related[$p->ID]) && is_array($related[$p->ID])){
+						continue;
+					}
+					$related[$p->ID] = $this->©ratings->getRatings($this->©post($pid), $this->©post($p->ID));
+					$related[$p->ID]['post_date'] = get_the_time('Y-m-d', $p->ID);
+
+					$this->©db_actions->insert($pid, $p->ID, $related[$p->ID]);
+
+					$related[$p->ID]['pid1'] = $pid;
+					$related[$p->ID]['pid2'] = $p->ID;
+				}
+			}
+		}
+
+		return $related;
 	}
 
 	/**

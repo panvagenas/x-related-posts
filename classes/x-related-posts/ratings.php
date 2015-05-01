@@ -12,7 +12,7 @@
 namespace x_related_posts;
 
 
-class ratings {
+class ratings extends framework {
 	/**
 	 * Categories weight
 	 *
@@ -39,13 +39,98 @@ class ratings {
 	 */
 	public $entropy = 0;
 
-	public function totalRating(posts $hostPost, posts $visPost, $catWeight = false, $tagWeight = false, $clickWeight = false ) {
+	public function totalRating( posts $hostPost, posts $visPost, $catWeight = false, $tagWeight = false, $clickWeight = false ) {
 		$catWeight   = (float) ( $catWeight ? $catWeight : $this->catWeight );
 		$tagWeight   = (float) ( $tagWeight ? $tagWeight : $this->tagWeight );
 		$clickWeight = (float) ( $clickWeight ? $clickWeight : $this->clickWeight );
 	}
 
-	protected function rateOnCats(posts $post){}
-	protected function rateOnTags(posts $post){}
-	protected function rateOnClicks(posts $post){}
+	/**
+	 * @param posts $hostPost
+	 * @param posts $visPost
+	 * @param bool  $lookInCache
+	 *
+	 * @return array|bool|mixed
+	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
+	 * @since TODO ${VERSION}
+	 */
+	public function getRatings( posts $hostPost, posts $visPost, $lookInCache = false ) {
+		$ratings = array(
+			'score_cats' => 0.0,
+			'score_tags' => 0.0,
+		);
+
+		if ( $lookInCache ) {
+			$row = $this->©db_actions->getRow( $hostPost->ID, $visPost->ID );
+			if ( $row ) {
+				return $row;
+			}
+		}
+
+		$ratings['score_cats'] = $this->rateOnCats( $hostPost, $visPost );
+		$ratings['score_tags'] = $this->rateOnTags( $hostPost, $visPost );
+
+		return $ratings;
+	}
+
+	/**
+	 * @param posts $hostPost
+	 * @param posts $visPost
+	 *
+	 * @return float
+	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
+	 * @since TODO ${VERSION}
+	 */
+	protected function rateOnCats( posts $hostPost, posts $visPost ) {
+		$hostCatIds   = array_keys( $hostPost->getCategories() );
+		$guestCatsIds = array_keys( $visPost->getCategories() );
+
+		if ( empty( $hostCatIds ) || empty( $guestCatsIds ) ) {
+			return 0.0;
+		}
+
+		$commonCount = count( array_intersect( $hostCatIds, $guestCatsIds ) );
+
+		return ( float ) ( $commonCount / count( $hostCatIds ) );
+	}
+
+	/**
+	 * @param posts $hostPost
+	 * @param posts $visPost
+	 *
+	 * @return float
+	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
+	 * @since TODO ${VERSION}
+	 */
+	protected function rateOnTags( posts $hostPost, posts $visPost ) {
+		$hostTagsIds  = array_keys( $hostPost->getTags() );
+		$guestTagsIds = array_keys( $visPost->getTags() );
+
+		if ( empty( $hostTagsIds ) || empty( $guestTagsIds ) ) {
+			return 0.0;
+		}
+
+		$commonCount = count( array_intersect( $hostTagsIds, $guestTagsIds ) );
+
+		return ( float ) ( $commonCount / count( $hostTagsIds ) );
+	}
+
+	/**
+	 * @param posts $hostPost
+	 * @param posts $visPost
+	 *
+	 * @return float
+	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
+	 * @since TODO ${VERSION}
+	 */
+	protected function rateOnClicks( posts $hostPost, posts $visPost ) {
+		$row = $this->©db_actions->getRow( $hostPost->ID, $visPost->ID );
+		if ( $row && isset( $row->clicks ) && isset( $row->displayed ) ) {
+			if ( $row->displayed != 0 ) {
+				return (float) $row->clicks / $row->displayed;
+			}
+		}
+
+		return 0.0;
+	}
 }

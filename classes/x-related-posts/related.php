@@ -11,14 +11,15 @@
 
 namespace x_related_posts;
 
-
+// todo maybe remove
 class related extends framework{
 	public function getRelated($post){
 		if($this->©post->isRated($post)){
-			// get ratings from db
+			$relTable = $this->©db_actions->getAll($post->ID);
 		} else {
 			// do new rating
 			$relTable = $this->©post->doRating($post);
 		}
+		return $relTable;
 	}
 }
