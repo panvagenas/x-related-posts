@@ -30,7 +30,7 @@ class initializer extends \xd_v141226_dev\initializer {
 
 		$this->add_action( 'widgets_init', '©initializer.register_widgets' );
 
-		$this->add_action( 'transition_post_status', '©posts.hookTransitionPostStatus' );
+		$this->add_action( 'transition_post_status', '©posts.hookTransitionPostStatus', 10, 3 );
 		$this->add_action( 'delete_post', '©posts.hookDeletePost' );
 
 		$this->add_filter( 'the_content', '©main.hookTheContent' );

@@ -16,7 +16,7 @@ namespace x_related_posts {
 		public function hookTheContent( $content ) {
 			global $post;
 			if($this->isShowTime()){
-				var_dump($this->©post()->getRelated($post));
+				//var_dump($this->©post()->getRelated($post));
 			}
 
 			return $content;

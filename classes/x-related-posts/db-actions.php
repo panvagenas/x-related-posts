@@ -30,6 +30,13 @@ class db_actions extends framework {
 	 */
 	protected $displayed = array();
 
+	public function __construct($instance){
+		parent::__construct($instance);
+		// todo calling these to instatiate the classes
+		$this->©db->prefix;
+		$this->©db_table->tableName();
+	}
+
 	/**
 	 * Deletes all occurrences of a post in DB
 	 *
