@@ -28,7 +28,7 @@ class settings extends menu_page{
 		$s = $this->©menu_page->is_plugin_page('x_related_posts--settings');
 
 		$this->heading_title           = $this->__( 'Main settings' );
-		$this->sub_heading_description = sprintf( $this->__( '%1$s main settings ' ), esc_html( $this->instance->plugin_name ) );
+		$this->sub_heading_description = sprintf( $this->__( '%1$s settings ' ), esc_html( $this->instance->plugin_name ) );
 	}
 
 	/**
