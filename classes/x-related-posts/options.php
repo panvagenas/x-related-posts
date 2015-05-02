@@ -52,7 +52,6 @@ class options extends \xd_v141226_dev\options {
 			'track_visited'                              => 0,
 			'main_title'                                 => 'Related Posts',
 			'main_rate_by'                               => 'categories',
-			'post_types'                                 => array( 'post', 'page' ),
 			/***********************************************
 			 * Content Options
 			 ***********************************************/
@@ -70,14 +69,15 @@ class options extends \xd_v141226_dev\options {
 			'main_thumb_width'                           => 300,
 			'default_thumb'                              => '',
 			'main_post_ttl_size'                         => 0,
-			'main_post_ttl_color'                        => '',
+			'main_post_ttl_color'                        => '#ffffff',
 			'main_post_exc_size'                         => 0,
-			'main_post_exc_color'                        => '',
+			'main_post_exc_color'                        => '#ffffff',
 			'read_more'                                  => '...read more',
 			'main_theme'                                 => 'grid',
 			/***********************************************
-			 * TODO Excluded
+			 * TODO Included
 			 ***********************************************/
+			'post_types'                                 => array( 'post', 'page' ),
 		);
 
 		$pluginValidators = array(
@@ -88,7 +88,6 @@ class options extends \xd_v141226_dev\options {
 			'track_visited'         => array( 'string:numeric >=' => 0, 'string:numeric <=' => 1 ),
 			'main_title'            => array( 'string' ),
 			'main_rate_by'          => array( 'string:!empty' ),
-			'post_types'            => array( 'array:!empty' ),
 			/***********************************************
 			 * Content Options
 			 ***********************************************/
@@ -111,9 +110,24 @@ class options extends \xd_v141226_dev\options {
 			'main_post_exc_color'   => array( 'string' ),
 			'read_more'             => array( 'string' ),
 			'main_theme'            => array( 'string:!empty' ),
+			/***********************************************
+			 * TODO Included
+			 ***********************************************/
+			'post_types'            => array( 'array:!empty' ),
 
 		);
 
 		return parent::setup( array_merge( $defaults, $pluginDefaults ), array_merge( $validators, $pluginValidators ) );
+	}
+
+	public function ®update( $new_options = array() ) {
+		$bools = array( 'main_activate', 'track_visited', 'main_crop_thumb' );
+		foreach ( $bools as $v ) {
+			if ( ! isset( $new_options[ $v ] ) ) {
+				$new_options[ $v ] = 0;
+			}
+		}
+
+		parent::®update( $new_options );
 	}
 }

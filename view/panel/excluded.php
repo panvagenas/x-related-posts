@@ -8,4 +8,12 @@
  * Since: TODO ${VERSION}
  * Copyright: 2015 Panagiotis Vagenas
  */
+
+if ( ! defined( 'WPINC' ) ) {
+	exit( 'Do NOT access this file directly: ' . basename( __FILE__ ) );
+}
+
+/* @var \x_related_posts\menu_pages\panels\excluded $callee */
+/* @var \xd_v141226_dev\views $this */
+
 echo 'excluded panel';
