@@ -51,12 +51,14 @@ namespace x_related_posts;
  * @method widget                                                               ©widget()
  * @property shortcodes\shortcode                                               $©shortcodes__shortcode
  * @method shortcodes\shortcode                                                 ©shortcodes__shortcode()
+ *
+ * @augments \WP_Post
  */
 class posts extends \xd_v141226_dev\posts {
 	/**
-	 * @var null|int
+	 * @var \WP_Post
 	 */
-	public $ID = null;
+	protected $post;
 
 	/**
 	 * @param array|\xd_v141226_dev\framework $instance
@@ -65,7 +67,7 @@ class posts extends \xd_v141226_dev\posts {
 	public function __construct( $instance, $ID = null ) {
 		parent::__construct( $instance );
 		if ( $ID ) {
-			$this->ID = $this->getPostId( $ID );
+			$this->post = get_post( $ID );
 		}
 	}
 
@@ -76,9 +78,9 @@ class posts extends \xd_v141226_dev\posts {
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
 	 * @since 150429
 	 */
-	public function isExcluded( $post ) {
+	public function isExcluded( $post = null ) {
 		return false; // todo change when implemented
-		$postType = get_post_type( $post );
+		$postType = get_post_type( $post ? $post : $this->post );
 
 		return $postType && in_array( $postType, $this->©option->get( 'post_types' ) );
 	}
@@ -86,18 +88,18 @@ class posts extends \xd_v141226_dev\posts {
 	/**
 	 * True iff post id exists in pid1 col
 	 *
-	 * @param $post
+	 * @param int|\WP_Post $post
 	 *
 	 * @return bool
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
 	 * @since 150429
 	 */
-	public function isRated( $post ) {
-		$pid = (int) $this->getPostId( $post );
-		if ( ! $pid ) {
+	public function isRated( $post = null ) {
+		if ( !$post && ! $this->isLoaded() ) {
 			return false;
 		}
-		$this->©db->get_var( 'SELECT * FROM ' . $this->©db_table->tableName() . ' WHERE pid1=' . $pid );
+		$pid = $post ? $post->ID : $this->ID;
+		$this->©db->get_var( 'SELECT * FROM ' . $this->©db_table->tableName() . ' WHERE pid1=' . (int)$pid );
 
 		return $this->©db->num_rows > 0;
 	}
@@ -105,21 +107,24 @@ class posts extends \xd_v141226_dev\posts {
 	/**
 	 * Get related posts for the given post
 	 *
-	 * @param int|\WP_Post $post
+	 * @param array $relOptions
 	 *
 	 * @return array
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
 	 * @since 150429
 	 */
-	public function getRelated( $post ) {
-		$p = $this->©post($this->getPostId($post));
-		if($p->isRated($post)){
-			$relTable = $this->©db_actions->getAll($p->ID);
-		} else {
-			// do new rating
-			$relTable = $p->doRating();
+	public function getRelated( $relOptions ) {
+		if(!$this->isLoaded() || empty($relOptions)){
+			return array();
 		}
-		// relTable apply weights
+
+		if($this->isRated()){
+			$relTable = $this->©related->getRelated($this->ID, $relOptions);
+		} else {
+			$relTable = $this->doRating();
+			$relTable = $this->©related->processRelTable($relTable, $relOptions);
+		}
+
 		return $relTable;
 	}
 
@@ -313,7 +318,99 @@ class posts extends \xd_v141226_dev\posts {
 	}
 
 	/**
-	 * fixme this isn't working as it should.. posts dont't get cached
+	 * @param        $excLength
+	 * @param string $moreText
+	 *
+	 * @return string
+	 * @throws \xd_v141226_dev\exception
+	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
+	 * @since TODO ${VERSION}
+	 */
+	public function getExcerpt($excLength, $moreText = ''){
+		$this->isLoaded(true);
+
+		if (!empty($this->post_excerpt)) {
+			$exc = $this->post_excerpt;
+		} else {
+			$exc = $this->post_content;
+		}
+
+		$exc = strip_shortcodes($exc);
+		$exc = str_replace(']]>', ']]&gt;', $exc);
+		$exc = wp_strip_all_tags($exc);
+
+		$tokens = explode(' ', $exc, $excLength + 1);
+
+		if (count($tokens) > $excLength) {
+			array_pop($tokens);
+		}
+		$moreText && array_push($tokens, ' ' . $moreText);
+		return implode(' ', $tokens);
+	}
+
+	/**
+	 * @param string $timeFormat
+	 *
+	 * @return false|string
+	 * @throws \xd_v141226_dev\exception
+	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
+	 * @since TODO ${VERSION}
+	 */
+	public function getTheTime($timeFormat = 'Y-m-d H:i:s') {
+		$this->isLoaded(true);
+
+		return get_the_time($timeFormat, $this->ID);
+	}
+
+	/**
+	 * @param        $defaultThumbnail
+	 * @param string $size
+	 *
+	 * @return array|bool|string
+	 * @throws \xd_v141226_dev\exception
+	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
+	 * @since TODO ${VERSION}
+	 */
+	public function getThumbnail($defaultThumbnail, $size = 'single-post-thumbnail'){
+		$this->isLoaded(true);
+
+		$image_url = '';
+		if($this->hasThumbnail()){
+			$image_url = wp_get_attachment_image_src(get_post_thumbnail_id($this->ID), $size);
+			$image_url = $image_url[0];
+		} else {
+			// todo maybe set from options if it should search in posts
+			// todo maybe handle externals
+			preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $this->post->post_content, $matches);
+			if(empty($matches [1] [0])){
+				$image_url = $defaultThumbnail;
+			} else {
+				$image_url = $matches [1] [0];
+			}
+		}
+		return $image_url;
+	}
+
+	/**
+	 * @return bool
+	 * @throws \xd_v141226_dev\exception
+	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
+	 * @since TODO ${VERSION}
+	 */
+	public function hasThumbnail(){
+		if(isset($this->static[__FUNCTION__])){
+			return $this->static[__FUNCTION__];
+		}
+
+		$this->isLoaded(true);
+
+		$this->static[__FUNCTION__] = has_post_thumbnail($this->ID);
+
+		return $this->static[__FUNCTION__];
+	}
+
+	/**
+	 * fixme this isn't working as it should.. posts don't get cached
 	 * @param $newStatus
 	 * @param $oldStatus
 	 * @param $post
@@ -353,5 +450,46 @@ class posts extends \xd_v141226_dev\posts {
 	 */
 	public function hookDeletePost( $pid ) {
 		return $this->©db_actions->deleteAll( $pid );
+	}
+
+	public function __isset($property)
+	{
+		$property = (string)$property;
+
+		if(property_exists($this->post, $property))
+			return isset($this->post->$property);
+
+		return parent::__isset($property); // Default return value.
+	}
+
+	public function __get($property)
+	{
+		$property = (string)$property; // Typecasting this to a string value.
+
+		if(property_exists($this->post, $property))
+			return $this->post->$property;
+
+		return parent::__get($property); // Default return value.
+	}
+
+	public function __call($method, $args)
+	{
+		$method = (string)$method;
+		$args   = (array)$args;
+
+		if(method_exists($this->post, $method)){
+			return call_user_func_array(array($this->post, $method), $args);
+		}
+		return parent::__call($method, $args); // Default return value.
+	}
+
+	private function isLoaded($raiseException = false){
+		$is = $this->post instanceof \WP_Post;
+		if ( $raiseException && ! $is ) {
+			throw $this->©exception(
+				$this->method( __FUNCTION__ ) . '#post_obj_not_set', null,
+				$this->__( 'Doing it wrong. Use $this->©posts($postId) before calling post functions.' ) );
+		}
+		return $is;
 	}
 }

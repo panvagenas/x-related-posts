@@ -12,9 +12,9 @@
 namespace x_related_posts\themes;
 
 
-use x_related_posts\themes;
+use randomizer\framework;
 
-class theme extends themes {
+class theme extends framework {
 	/**
 	 * @var string Theme's name
 	 */
@@ -36,13 +36,18 @@ class theme extends themes {
 	 */
 	public $defaults = array();
 	/**
-	 * @var array Theme options validators
-	 */
-	public $validators = array();
-	/**
 	 * @var bool Holds theme state
 	 */
 	protected $loaded = false;
+	/**
+	 * @var string Dynamically set. Do not overwrite
+	 */
+	protected $slug = '';
+
+	public function __construct($instance){
+		parent::__construct($instance);
+		$this->slug = $this->©string->with_underscores(get_class($this));
+	}
 
 	/**
 	 * @param array $related
@@ -141,7 +146,9 @@ class theme extends themes {
 	 */
 	public function getOptions(){
 		$options = $this->©option->get("{$this->domain}_theme");
-		return isset($options[$this->name]) ? $options[$this->name] : $this->defaults;
+		return $this->©vars->are_set($options[$this->slug], $options[$this->slug]['options'])
+			? $options[$this->slug]['options']
+			: $this->defaults;
 	}
 
 	/**
@@ -185,5 +192,9 @@ class theme extends themes {
 	 */
 	public function setUp( $defaults, $validators ) {
 		return parent::setUp( $defaults, $validators );
+	}
+
+	public function getSlug(){
+		return $this->slug;
 	}
 }

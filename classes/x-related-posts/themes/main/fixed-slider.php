@@ -32,10 +32,6 @@ class fixed_slider extends theme{
 	 * @var array Theme default options
 	 */
 	public $defaults = array();
-	/**
-	 * @var array Theme options validators
-	 */
-	public $validators = array();
 
 	public function display( Array $related, $echo = true ) {
 		$content = $this->view('fixed-slider.php');

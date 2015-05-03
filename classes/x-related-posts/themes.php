@@ -15,15 +15,10 @@ namespace x_related_posts;
 use x_related_posts\themes\theme;
 
 class themes extends framework{
-	/**
-	 * @var array Default options
-	 */
-	public $defaults = array();
-	/**
-	 * @var array Default validators
-	 */
-	public $validators = array();
-
+	public function __construct($instance){
+		parent::__construct($instance);
+		$this->init();
+	}
 	/**
 	 * Get theme names for a specific theme domain (widget, main, shortcode)
 	 *
@@ -46,48 +41,44 @@ class themes extends framework{
 			   && $this->©dir_file->has_extension($it->getPathname(), '', array('php'))
 			   && class_exists($class)
 			){
-				$c = "©themes__main__{$name}";
-				if($this->$c instanceof theme){
-					$names[] = $this->$c->name;
+				$c = $this->getThemeClass($domain, $name);
+				if($this->©var->are_set($this->$c) && $this->$c instanceof theme){
+					$names[$this->$c->getSlug()] = $this->$c->name;
 				}
 			}
 		}
-		sort($names, SORT_STRING);
+		asort($names, SORT_STRING);
 		return $names;
 	}
 
 	/**
-	 * @param $defaults
-	 * @param $validators
+	 * @param $domain
+	 * @param $name
 	 *
-	 * @return array
-	 *
-	 * @extend
-	 *
-	 * @throws \xd_v141226_dev\exception
+	 * @return string
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
 	 * @since TODO ${VERSION}
 	 */
-	public function setUp($defaults, $validators){
-		return $this->_setUp($defaults, $validators);
+	public function getThemeClass($domain, $name){
+		$name = $this->©string->with_underscores($this->©dir_file->abs_basename($name));
+		$domain = $this->©string->with_dashes($this->©dir_file->abs_basename($domain));
+		return "©themes__{$domain}__{$name}";
 	}
 
 	/**
-	 * @param $defaults
-	 * @param $validators
-	 *
-	 * @return array
 	 * @throws \xd_v141226_dev\exception
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
 	 * @since TODO ${VERSION}
 	 */
-	protected function _setUp($defaults, $validators){
-		$options = array();
-		if(!is_array($options)){
-			throw $this->©exception(
-				$this->method(__FUNCTION__).'#invalid_options', $options,
-				$this->__('Options must be an array'));
+	private function init(){
+		$themeOptionsMain = $this->©option->get('main_theme');
+		foreach ( $this->getThemeNames('main') as $slug => $name ) {
+			if(!isset($themeOptionsMain[$slug]) || !isset($themeOptionsMain[$slug]['options']) || !isset($themeOptionsMain[$slug]['active'])){
+				$themeClass = $this->getThemeClass('main', $name);
+				$themeOptionsMain[$slug] = array('active' => 0);
+				$themeOptionsMain[$slug]['options'] = $this->$themeClass->defaults;
+			}
 		}
-		return $options;
+		$this->©option->®update(array('main_theme' => $themeOptionsMain));
 	}
 }

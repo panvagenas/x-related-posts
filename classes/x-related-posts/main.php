@@ -17,7 +17,7 @@ namespace x_related_posts {
 			global $post;
 			if($this->isShowTime()){
 				//var_dump($this->©post()->getRelated($post));
-				$this->©themes__main__grid->display(array());
+				$this->©themes__main__grid->display($this->©post($post->ID)->getRelated($this->©option->options));
 			}
 
 			return $content;

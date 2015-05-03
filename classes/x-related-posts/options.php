@@ -73,9 +73,7 @@ class options extends \xd_v141226_dev\options {
 			'main_post_exc_size'                         => 0,
 			'main_post_exc_color'                        => '#ffffff',
 			'read_more'                                  => '...read more',
-			'main_theme'                                 => array(
-				'Grid' => array(),
-			),
+			'main_theme'                                 => array(),
 			/***********************************************
 			 * TODO Included
 			 ***********************************************/

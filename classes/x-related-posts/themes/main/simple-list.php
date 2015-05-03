@@ -32,10 +32,6 @@ class simple_list extends theme{
 	 * @var array Theme default options
 	 */
 	public $defaults = array();
-	/**
-	 * @var array Theme options validators
-	 */
-	public $validators = array();
 
 	public function display( Array $related, $echo = true ) {
 		$content = $this->view('simple-list.php');

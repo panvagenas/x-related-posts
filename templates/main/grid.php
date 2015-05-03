@@ -14,3 +14,16 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 /* @var \x_related_posts\themes\theme $this */
+
+foreach ( array_slice($related, 0, 10) as $relPost ) {
+	/* @var \x_related_posts\posts $post */
+	$post = $this->©post($relPost->pid2);
+	?>
+	<div>
+		<h3><?php echo $post->post_title; ?></h3>
+		<p>
+			<?php echo $post->getExcerpt(10, ' ...more'); ?>
+		</p>
+	</div>
+	<?php
+}
