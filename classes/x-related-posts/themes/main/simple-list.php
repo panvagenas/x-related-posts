@@ -1,7 +1,7 @@
 <?php
 /**
  * Project: x-related-posts
- * File: grid.php
+ * File: simple-list.php
  * User: Panagiotis Vagenas <pan.vagenas@gmail.com>
  * Date: 3/5/2015
  * Time: 8:07 πμ
@@ -14,16 +14,16 @@ namespace x_related_posts\themes\main;
 
 use x_related_posts\themes\theme;
 
-class grid extends theme{
+class simple_list extends theme{
 	/**
 	 * @var string Theme's name
 	 */
-	public $name = 'Grid';
+	public $name = 'Simple list';
 	public $domain = 'main';
 	/**
 	 * @var string Theme's description
 	 */
-	public $description = 'Grid theme description'; // todo
+	public $description = 'Simple list theme description'; // todo
 	/**
 	 * @var string A url to an img
 	 */
@@ -38,7 +38,7 @@ class grid extends theme{
 	public $validators = array();
 
 	public function display( Array $related, $echo = true ) {
-		$content = $this->view('grid.php');
+		$content = $this->view('simple-list.php');
 		if ( $echo ) {
 			echo $content;
 		}

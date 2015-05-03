@@ -73,7 +73,9 @@ class options extends \xd_v141226_dev\options {
 			'main_post_exc_size'                         => 0,
 			'main_post_exc_color'                        => '#ffffff',
 			'read_more'                                  => '...read more',
-			'main_theme'                                 => 'grid',
+			'main_theme'                                 => array(
+				'Grid' => array(),
+			),
 			/***********************************************
 			 * TODO Included
 			 ***********************************************/
@@ -109,7 +111,7 @@ class options extends \xd_v141226_dev\options {
 			'main_post_exc_size'    => array( 'string:numeric >=' => 1 ),
 			'main_post_exc_color'   => array( 'string' ),
 			'read_more'             => array( 'string' ),
-			'main_theme'            => array( 'string:!empty' ),
+			'main_theme'            => array( 'array:!empty' ),
 			/***********************************************
 			 * TODO Included
 			 ***********************************************/

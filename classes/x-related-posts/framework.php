@@ -70,6 +70,21 @@ namespace x_related_posts {
 	 * 
 	 * @property shortcodes\shortcode                                               $©shortcodes__shortcode
 	 * @method shortcodes\shortcode                                                 ©shortcodes__shortcode()
+	 *
+	 * @property themes                                                             $©themes
+	 * @method themes                                                               ©themes()
+	 *
+	 * @property themes\theme                                                       $©themes__theme
+	 * @method themes\theme                                                         ©themes__theme()
+	 *
+	 * @property themes\main\carousel                                               $©themes__main__carousel
+	 * @method themes\main\carousel                                                 ©themes__main__carousel()
+	 * @property themes\main\fixed_slider                                           $©themes__main__fixed_slider
+	 * @method themes\main\fixed_slider                                             ©themes__main__fixed_slider()
+	 * @property themes\main\grid                                                   $©themes__main__grid
+	 * @method themes\main\grid                                                     ©themes__main__grid()
+	 * @property themes\main\simple_list                                            $©themes__main__simple_list
+	 * @method themes\main\simple_list                                              ©themes__main__simple_list()
 	 */
 	class framework extends \xd__framework {
 	}
