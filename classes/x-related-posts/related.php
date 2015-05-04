@@ -20,14 +20,14 @@ class related extends framework{
 
 	public $defaults;
 
-	public static $__dt_asc_rt_desc__ = 'date_ascending_then_rating_descending';
+	public static $dt_asc_rt_desc = 'date_ascending_then_rating_descending';
 
 	public function __construct($instance, $posts_to_display = 6, $offset = 0, $sort_by = 'date_ascending_then_rating_descending', $entropy = 0.0){
 		parent::__construct($instance);
 		$this->defaults = array(
 			'posts_to_display' => 6,
 			'offset' => 0,
-			'sort_by' => self::$__dt_asc_rt_desc__,
+			'sort_by' => self::$dt_asc_rt_desc,
 			'entropy' => 0.0,
 		);
 		$this->posts_to_display = $posts_to_display;

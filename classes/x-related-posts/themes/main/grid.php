@@ -14,7 +14,7 @@ namespace x_related_posts\themes\main;
 
 use x_related_posts\themes\theme;
 
-class grid extends theme{
+class grid extends theme {
 	/**
 	 * @var string Theme's name
 	 */
@@ -33,11 +33,11 @@ class grid extends theme{
 	 */
 	public $defaults = array(
 		'numOfPostsPerRow' => 3,
-		'thumbCaption' => false,
-		'backgroundColor' => '#ffffff',
-		'borderColor' => '#ffffff',
-		'borderRadius' => 0,
-		'borderWeight' => 0,
+		'thumbCaption'     => false,
+		'backgroundColor'  => '#ffffff',
+		'borderColor'      => '#ffffff',
+		'borderRadius'     => 0,
+		'borderWeight'     => 0,
 	);
 
 	/**
@@ -49,7 +49,23 @@ class grid extends theme{
 	 * @since TODO ${VERSION}
 	 */
 	public function display( Array $related, $echo = true ) {
-		$content = $this->view('grid.php', compact('related'));
+		$content = $this->view( 'grid.php', compact( 'related' ) );
+		if ( $echo ) {
+			echo $content;
+		}
+
+		return $content;
+	}
+
+	/**
+	 * @param bool $echo
+	 *
+	 * @return string
+	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
+	 * @since TODO ${VERSION}
+	 */
+	public function settings( $echo = true ) {
+		$content = $this->©view->view($this, 'themes/grid-settings.php', array('options' => $this->getOptions()));
 		if ( $echo ) {
 			echo $content;
 		}
@@ -57,32 +73,32 @@ class grid extends theme{
 	}
 
 	/**
-	 * @param array $oldOptions
 	 * @param array $newOptions
 	 *
 	 * @return array
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
 	 * @since TODO ${VERSION}
 	 */
-	public function validateOptions( Array $oldOptions, Array $newOptions ) {
+	public function validateOptions( Array $newOptions ) {
 		$validated = array(
-			'numOfPostsPerRow' => isset($newOptions ['numOfPostsPerRow'])
+			'numOfPostsPerRow' => isset( $newOptions ['numOfPostsPerRow'] )
 				? (int) $newOptions ['numOfPostsPerRow']
-				: $oldOptions['numOfPostsPerRow'],
-			'thumbCaption' => isset($newOptions ['thumbCaption']),
-			'backgroundColor' => isset($newOptions['backgroundColor']) ?
-				wp_strip_all_tags($newOptions['backgroundColor'])
-				: $oldOptions['backgroundColor'],
-			'borderColor' => isset($newOptions['borderColor'])
-				? wp_strip_all_tags($newOptions['borderColor'])
-				: $oldOptions['borderColor'],
-			'borderRadius' => isset($newOptions ['borderRadius']) && (int)$newOptions['borderRadius'] >= 0
+				: $this->defaults['numOfPostsPerRow'],
+			'thumbCaption'     => isset( $newOptions ['thumbCaption'] ),
+			'backgroundColor'  => isset( $newOptions['backgroundColor'] ) ?
+				wp_strip_all_tags( $newOptions['backgroundColor'] )
+				: $this->defaults['backgroundColor'],
+			'borderColor'      => isset( $newOptions['borderColor'] )
+				? wp_strip_all_tags( $newOptions['borderColor'] )
+				: $this->defaults['borderColor'],
+			'borderRadius'     => isset( $newOptions ['borderRadius'] ) && (int) $newOptions['borderRadius'] >= 0
 				? (int) $newOptions ['borderRadius']
-				: $oldOptions['borderRadius'],
-			'borderWeight' => isset($newOptions ['borderWeight']) && (int)$newOptions['borderWeight'] >= 0
+				: $this->defaults['borderRadius'],
+			'borderWeight'     => isset( $newOptions ['borderWeight'] ) && (int) $newOptions['borderWeight'] >= 0
 				? (int) $newOptions ['borderWeight']
-				: $oldOptions['borderWeight'],
+				: $this->defaults['borderWeight'],
 		);
+
 		return $validated;
 	}
 }

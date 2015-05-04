@@ -20,6 +20,51 @@ namespace x_related_posts;
  * @extends \wpdb
  */
 class options extends \xd_v141226_dev\options {
+	public static $fetchByOptions = array(
+		'c'  => 'Categories',
+		't'  => 'Tags',
+		'ct' => 'Categories first, then tags',
+		'tc' => 'Tags first, then categories'
+	);
+	public static $fetchByOptionsWeights = array(
+		'c'  => array( 'clicks' => 0.15, 'categories' => 0.85, 'tags' => 0.0 ),
+		't'  => array( 'clicks' => 0.15, 'categories' => 0.0, 'tags' => 0.85 ),
+		'ct' => array( 'clicks' => 0.15, 'categories' => 0.60, 'tags' => 0.25 ),
+		'tc' => array( 'clicks' => 0.15, 'categories' => 0.25, 'tags' => 0.60 )
+	);
+	public static $contentPositioningOptions = array(
+		't'   => 'Title',
+		'p'   => 'Thumbnail',
+		'e'   => 'Excerpt',
+		'te'  => 'Title, excerpt',
+		'tp'  => 'Title, thumbnail',
+		'pt'  => 'Thumbnail, title',
+		'pte' => 'Thumbnail, title, excerpt',
+		'tpe' => 'Title, thumbnail, excerpt',
+		'tep' => 'Title, excerpt, thumbnail'
+	);
+	public static $sortOptions = array(
+		'dd'   => 'Date descending',
+		'da'   => 'Date ascending',
+		'rd'   => 'Rating descending',
+		'ra'   => 'Rating ascending',
+		'ddrd' => 'Date descending then Rating descending',
+		'dard' => 'Date ascending then Rating descending',
+		'ddra' => 'Date descending then Rating ascending',
+		'dara' => 'Date ascending then Rating ascending',
+		'rddd' => 'Rating descending then Date descending',
+		'radd' => 'Rating ascending then Date descending',
+		'rdda' => 'Rating descending then Date ascending',
+		'rada' => 'Rating ascending then Date ascending',
+	);
+	public static $entropy = array(
+		'0.0' => 'None',
+		'0.0001' => 'Just a little',
+		'0.002' => 'Mix result',
+		'0.3' => 'Almost random',
+		'1.0' => 'Random',
+	);
+
 	/**
 	 * @param array $defaults
 	 * @param array $validators
@@ -51,19 +96,19 @@ class options extends \xd_v141226_dev\options {
 			'main_activate'                              => 1,
 			'track_visited'                              => 0,
 			'main_title'                                 => 'Related Posts',
-			'main_rate_by'                               => 'categories',
+			'main_rate_by'                               => 'c',
 			/***********************************************
 			 * Content Options
 			 ***********************************************/
 			'main_posts_to_display'                      => 6,
 			'main_offset'                                => 0,
-			'main_sort_by'                               => 'date_ascending_then_rating_descending',
+			'main_sort_by'                               => 'dard',
 			'main_entropy'                               => 0.0,
 			/***********************************************
 			 * Layout Options
 			 ***********************************************/
 			'main_position'                              => 'bottom',
-			'main_content'                               => 'thumbnail-title',
+			'main_content'                               => 'tt',
 			'main_crop_thumb'                            => 1,
 			'main_thumb_height'                          => 200,
 			'main_thumb_width'                           => 300,
@@ -127,6 +172,27 @@ class options extends \xd_v141226_dev\options {
 				$new_options[ $v ] = 0;
 			}
 		}
+
+		// fixme this destroys all themes options if a theme without options is selected
+		if(isset($new_options['main_theme']['selected'])
+			&& ($theme = $this->©themes->getThemeClassFromSlug($new_options['main_theme']['selected']))
+		){
+			$domainOptionKey = $this->$theme->domain.'_theme';
+			$slug = $new_options[$domainOptionKey]['selected'];
+
+			$themeSettings = $this->©var->_POST($slug);
+			if($themeSettings){
+				$new_options[$domainOptionKey][$slug]['options'] = $this->$theme->validateOptions($themeSettings);
+			}
+
+			$new_options[$domainOptionKey][$slug]['active'] = 1;
+
+			unset($new_options['main_theme']['selected']);
+		} else {
+			unset($new_options['main_theme']);
+		}
+
+
 
 		parent::®update( $new_options );
 	}

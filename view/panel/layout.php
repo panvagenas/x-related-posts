@@ -24,16 +24,20 @@ if ( ! defined( 'WPINC' ) ) {
 		$inputOptions = array(
 			'type'        => 'select',
 			'name'        => '[main_position]',
-			'title'       => $this->__( 'Entropy' ),
-			'placeholder' => $this->__( 'Entropy' ),
+			'title'       => $this->__( 'Position' ),
+			'placeholder' => $this->__( 'Position' ),
 			'required'    => true,
 			'id'          => 'main-position',
 			'attrs'       => '',
 			'classes'     => 'form-control col-md-10',
 			'options'     => array(
-				array( // TODO
-					'label' => $this->__( 'TODO' ),
-					'value' => '0'
+				array(
+					'label' => $this->__( 'Top' ),
+					'value' => 'top'
+				),
+				array(
+					'label' => $this->__( 'Bottom' ),
+					'value' => 'bottom'
 				)
 			)
 		);
@@ -51,23 +55,22 @@ if ( ! defined( 'WPINC' ) ) {
 
 	<div class="form-group row">
 		<?php
+		$options = array();
+		foreach ( \x_related_posts\options::$contentPositioningOptions as $k => $v ) {
+			$options[] = array(
+				'label' => $v,
+				'value' => $k,
+			);
+		}
+
 		$inputOptions = array(
-			'type'        => 'checkboxes',
+			'type'        => 'select',
 			'name'        => '[main_content]',
 			'title'       => $this->__( 'Content' ),
 			'id'          => 'main-content',
 			'attrs'       => '',
 			'classes'     => 'form-control col-md-10',
-			'options'     => array(
-				array( // TODO
-					'label' => $this->__( 'TODO' ),
-					'value' => '0',
-				),
-				array( // TODO
-					'label' => $this->__( 'TODO 1' ),
-					'value' => '1',
-				)
-			)
+			'options'     => $options
 		);
 		?>
 		<label for="<?php echo $inputOptions['id']; ?>" class="col-md-3 control-label">

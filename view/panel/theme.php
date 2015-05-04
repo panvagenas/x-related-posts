@@ -21,21 +21,30 @@ if ( ! defined( 'WPINC' ) ) {
 
 	<div class="form-group row">
 		<?php
+		$options = array();
+		$active = 'x_related_posts__themes__main__grid';
+		$o = $this->©option->get('main_theme');
+
+		foreach ( $this->©themes->getThemeNames('main') as $k => $v ) {
+			$options[] = array(
+				'label' => $v,
+				'value' => $k
+			);
+			if(isset($o[$k]) && $o[$k]['active']){
+				$active = $k;
+			}
+		}
+
 		$inputOptions = array(
 			'type'        => 'select',
-			'name'        => '[main_theme]',
+			'name'        => '[main_theme][selected]',
 			'title'       => $this->__( 'Theme' ),
 			'placeholder' => $this->__( 'Theme' ),
 			'required'    => true,
 			'id'          => 'main-theme',
 			'attrs'       => '',
 			'classes'     => 'form-control col-md-10',
-			'options'     => array(
-				array( // TODO
-					'label' => $this->__( 'TODO' ),
-					'value' => '0'
-				)
-			)
+			'options'     => $options
 		);
 		?>
 		<label for="<?php echo $inputOptions['id']; ?>" class="col-md-3 control-label">
@@ -44,9 +53,17 @@ if ( ! defined( 'WPINC' ) ) {
 
 		<div class="col-sm-7">
 			<?php
-			echo $callee->menu_page->option_form_fields->markup( $this->©option->get( 'main_theme' ), $inputOptions );
+			echo $callee->menu_page->option_form_fields->markup( $active, $inputOptions );
 			?>
 		</div>
 	</div>
+
+	<?php
+	foreach ( $this->©themes->getThemeNames('main') as $slug => $name ) {
+		$class = $this->©themes->getThemeClassFromSlug($slug);
+		$this->$class->settings();
+	}
+
+	?>
 
 </div>

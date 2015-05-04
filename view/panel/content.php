@@ -85,6 +85,13 @@ if ( ! defined( 'WPINC' ) ) {
 
 	<div class="form-group row">
 		<?php
+		$options = array();
+		foreach ( \x_related_posts\options::$sortOptions as $k => $v ) {
+			$options[] = array(
+				'label' => $v,
+				'value' => $k,
+			);
+		}
 		$inputOptions = array(
 			'type'        => 'select',
 			'name'        => '[main_sort_by]',
@@ -94,12 +101,7 @@ if ( ! defined( 'WPINC' ) ) {
 			'id'          => 'main-sort-by',
 			'attrs'       => '',
 			'classes'     => 'form-control col-md-10',
-			'options'     => array(
-				array( // TODO
-					'label' => $this->__( 'TODO' ),
-					'value' => '0'
-				)
-			)
+			'options'     => $options
 		);
 		?>
 		<label for="<?php echo $inputOptions['id']; ?>" class="col-md-3 control-label">
@@ -115,6 +117,13 @@ if ( ! defined( 'WPINC' ) ) {
 
 	<div class="form-group row">
 		<?php
+		$options = array();
+		foreach ( \x_related_posts\options::$entropy as $k => $v ) {
+			$options[] = array(
+				'label' => $v,
+				'value' => $k,
+			);
+		}
 		$inputOptions = array(
 			'type'        => 'select',
 			'name'        => '[main_entropy]',
@@ -124,12 +133,7 @@ if ( ! defined( 'WPINC' ) ) {
 			'id'          => 'main-entropy',
 			'attrs'       => '',
 			'classes'     => 'form-control col-md-10',
-			'options'     => array(
-				array( // TODO
-					'label' => $this->__( 'TODO' ),
-					'value' => '0'
-				)
-			)
+			'options'     => $options
 		);
 		?>
 		<label for="<?php echo $inputOptions['id']; ?>" class="col-md-3 control-label">

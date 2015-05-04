@@ -17,7 +17,8 @@ use x_related_posts\themes\theme;
 class themes extends framework{
 	public function __construct($instance){
 		parent::__construct($instance);
-		$this->init();
+		// todo remove
+		//$this->init();
 	}
 	/**
 	 * Get theme names for a specific theme domain (widget, main, shortcode)
@@ -66,6 +67,43 @@ class themes extends framework{
 	}
 
 	/**
+	 * @param $slug
+	 *
+	 * @return string
+	 * @throws \xd_v141226_dev\exception
+	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
+	 * @since TODO ${VERSION}
+	 */
+	public function getThemeClassFromSlug($slug){
+		$this->check_arg_types('string:!empty', func_get_args());
+		$parts = explode('__', $slug);
+		if($this->©string->are_set($parts[2], $parts[3]) && $this->©strings->are_not_empty($parts[2], $parts[3])){
+			return $this->getThemeClass($parts[2], $parts[3]);
+		}
+		return '';
+	}
+
+	/**
+	 * @param string $domain
+	 *
+	 * @return int|string
+	 * @throws \xd_v141226_dev\exception
+	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
+	 * @since TODO ${VERSION}
+	 */
+	public function getActiveThemeSlug($domain = 'main'){
+		$this->check_arg_types('string:!empty', func_get_args());
+		$options = $this->©option->get("{$domain}_theme");
+		foreach ( (array)$options as $slug => $t ) {
+			if(isset($t['active']) && $t['active']){
+				return $slug;
+			}
+		}
+		return '';
+	}
+
+	/**
+	 * // todo move this to plugin activate hooks
 	 * @throws \xd_v141226_dev\exception
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
 	 * @since TODO ${VERSION}
@@ -78,6 +116,12 @@ class themes extends framework{
 				$themeOptionsMain[$slug] = array('active' => 0);
 				$themeOptionsMain[$slug]['options'] = $this->$themeClass->defaults;
 			}
+		}
+		$activeTheme = $this->getActiveThemeSlug('main');
+		if(empty($activeTheme)){
+			$themeOptionsMain['selected'] = 'x_related_posts__themes__main__grid';
+		} else {
+			$themeOptionsMain['selected'] = $activeTheme;
 		}
 		$this->©option->®update(array('main_theme' => $themeOptionsMain));
 	}

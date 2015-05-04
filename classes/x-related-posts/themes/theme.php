@@ -12,7 +12,7 @@
 namespace x_related_posts\themes;
 
 
-use randomizer\framework;
+use x_related_posts\framework;
 
 class theme extends framework {
 	/**
@@ -152,16 +152,14 @@ class theme extends framework {
 	}
 
 	/**
-	 * @param array $oldOptions
 	 * @param array $newOptions
 	 *
 	 * @return array
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
 	 * @since TODO ${VERSION}
 	 */
-	public function validateOptions( Array $oldOptions, Array $newOptions ) {
-		$validated = array();
-		return $validated;
+	public function validateOptions( Array $newOptions ) {
+		return $newOptions;
 	}
 
 	/**
@@ -183,6 +181,19 @@ class theme extends framework {
 	}
 
 	/**
+	 * @param $field_value
+	 * @param $field
+	 *
+	 * @return string
+	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
+	 * @since TODO ${VERSION}
+	 */
+	public function fieldMarkup($field_value, $field){
+		$field['name_prefix'] = $this->slug;
+		return $this->©form_fields->markup($field_value, $field);
+	}
+
+	/**
 	 * @param $defaults
 	 * @param $validators
 	 *
@@ -194,6 +205,11 @@ class theme extends framework {
 		return parent::setUp( $defaults, $validators );
 	}
 
+	/**
+	 * @return array|string
+	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
+	 * @since TODO ${VERSION}
+	 */
 	public function getSlug(){
 		return $this->slug;
 	}

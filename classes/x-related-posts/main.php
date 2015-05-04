@@ -16,8 +16,15 @@ namespace x_related_posts {
 		public function hookTheContent( $content ) {
 			global $post;
 			if($this->isShowTime()){
-				//var_dump($this->©post()->getRelated($post));
-				$this->©themes__main__grid->display($this->©post($post->ID)->getRelated($this->©option->options));
+				$themeSlug = $this->©themes->getActiveThemeSlug('main');
+				if(!empty($themeSlug)){
+					$themeClass = $this->©themes->getThemeClassFromSlug($themeSlug);
+					if(!empty($themeClass)){
+						$this->$themeClass->display(
+							$this->©posts($post->ID)->getRelated($this->©options->options)
+						);
+					}
+				}
 			}
 
 			return $content;
