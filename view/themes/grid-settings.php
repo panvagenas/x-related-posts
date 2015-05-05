@@ -51,4 +51,136 @@ if ( ! defined( 'WPINC' ) ) {
 		</div>
 	</div>
 
+	<div class="form-group row">
+		<?php
+		$inputOptions = array(
+			'type'        => 'checkbox',
+			'name'        => '[thumbCaption]',
+			'title'       => $this->__( 'thumbCaption' ),
+			'id'          => 'thumbCaption',
+			'attrs'       => '',
+			'classes'     => 'form-control col-md-10'
+		);
+		?>
+		<label for="<?php echo $inputOptions['id']; ?>" class="col-md-3 control-label">
+			<?php echo $inputOptions['title']; ?>
+		</label>
+
+		<div class="col-sm-7">
+			<?php
+			echo $callee->fieldMarkup( $options['thumbCaption'], $inputOptions );
+			?>
+		</div>
+	</div>
+
+	<div class="form-group row">
+		<?php
+		$inputOptions = array(
+			'type'        => 'color',
+			'name'        => '[backgroundColor]',
+			'title'       => $this->__( 'backgroundColor' ),
+			'placeholder' => $this->__( 'backgroundColor' ),
+			'id'          => 'backgroundColor',
+			'attrs'       => '',
+			'classes'     => 'form-control col-md-10'
+		);
+		?>
+		<label for="<?php echo $inputOptions['id']; ?>" class="col-md-3 control-label">
+			<?php echo $inputOptions['title']; ?>
+		</label>
+
+		<div class="col-sm-2">
+			<?php
+			echo $callee->fieldMarkup( $options['backgroundColor'], $inputOptions );
+			?>
+		</div>
+	</div>
+
+	<div class="form-group row">
+		<?php
+		$inputOptions = array(
+			'type'        => 'color',
+			'name'        => '[borderColor]',
+			'title'       => $this->__( 'borderColor' ),
+			'placeholder' => $this->__( 'borderColor' ),
+			'id'          => 'borderColor',
+			'attrs'       => '',
+			'classes'     => 'form-control col-md-10'
+		);
+		?>
+		<label for="<?php echo $inputOptions['id']; ?>" class="col-md-3 control-label">
+			<?php echo $inputOptions['title']; ?>
+		</label>
+
+		<div class="col-sm-2">
+			<?php
+			echo $callee->fieldMarkup( $options['borderColor'], $inputOptions );
+			?>
+		</div>
+	</div>
+
+	<div class="form-group row">
+		<?php
+		$inputOptions = array(
+			'type'        => 'number',
+			'name'        => '[borderRadius]',
+			'title'       => $this->__( 'borderRadius' ),
+			'placeholder' => $this->__( 'borderRadius' ),
+			'required'    => true,
+			'id'          => 'borderRadius',
+			'attrs'       => '',
+			'classes'     => 'form-control col-md-10',
+			'validation_patterns' => array(
+				array(
+					'name'        => 'borderRadiusMin',
+					'description' => $this->__( 'Value for this field must be a positive integer' ),
+					'regex'       => '/^[0-9]+$/',
+					'minimum' => 0,
+				)
+			),
+		);
+		?>
+		<label for="<?php echo $inputOptions['id']; ?>" class="col-md-3 control-label">
+			<?php echo $inputOptions['title']; ?>
+		</label>
+
+		<div class="col-sm-7">
+			<?php
+			echo $callee->fieldMarkup( $options['borderRadius'], $inputOptions );
+			?>
+		</div>
+	</div>
+
+	<div class="form-group row">
+		<?php
+		$inputOptions = array(
+			'type'        => 'number',
+			'name'        => '[borderWeight]',
+			'title'       => $this->__( 'borderWeight' ),
+			'placeholder' => $this->__( 'borderWeight' ),
+			'required'    => true,
+			'id'          => 'borderWeight',
+			'attrs'       => '',
+			'classes'     => 'form-control col-md-10',
+			'validation_patterns' => array(
+				array(
+					'name'        => 'borderWeightMin',
+					'description' => $this->__( 'Value for this field must be a positive integer' ),
+					'regex'       => '/^[0-9]+$/',
+					'minimum' => 1,
+				)
+			),
+		);
+		?>
+		<label for="<?php echo $inputOptions['id']; ?>" class="col-md-3 control-label">
+			<?php echo $inputOptions['title']; ?>
+		</label>
+
+		<div class="col-sm-7">
+			<?php
+			echo $callee->fieldMarkup( $options['borderWeight'], $inputOptions );
+			?>
+		</div>
+	</div>
+
 </div>

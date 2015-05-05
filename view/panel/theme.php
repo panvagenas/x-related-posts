@@ -37,7 +37,7 @@ if ( ! defined( 'WPINC' ) ) {
 
 		$inputOptions = array(
 			'type'        => 'select',
-			'name'        => '[main_theme][selected]',
+			'name'        => '[main_theme]',
 			'title'       => $this->__( 'Theme' ),
 			'placeholder' => $this->__( 'Theme' ),
 			'required'    => true,

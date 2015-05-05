@@ -42,7 +42,7 @@ class theme extends framework {
 	/**
 	 * @var string Dynamically set. Do not overwrite
 	 */
-	protected $slug = '';
+	public $slug = '';
 
 	public function __construct($instance){
 		parent::__construct($instance);
@@ -145,9 +145,9 @@ class theme extends framework {
 	 * @since TODO ${VERSION}
 	 */
 	public function getOptions(){
-		$options = $this->©option->get("{$this->domain}_theme");
-		return $this->©vars->are_set($options[$this->slug], $options[$this->slug]['options'])
-			? $options[$this->slug]['options']
+		$options = $this->©option->get("{$this->domain}_theme_options");
+		return $this->©vars->are_set($options[$this->slug], $options[$this->slug])
+			? $options[$this->slug]
 			: $this->defaults;
 	}
 
@@ -189,8 +189,8 @@ class theme extends framework {
 	 * @since TODO ${VERSION}
 	 */
 	public function fieldMarkup($field_value, $field){
-		$field['name_prefix'] = $this->slug;
-		return $this->©form_fields->markup($field_value, $field);
+		$field['name'] = "[{$this->domain}_theme_options][{$this->slug}]{$field['name']}";
+		return $this->©menu_pages__settings->option_form_fields->markup($field_value, $field);
 	}
 
 	/**

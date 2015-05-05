@@ -17,7 +17,8 @@ namespace x_related_posts;
  * @package x_related_posts
  * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
  * @since 150429
- * @extends \wpdb
+ *
+ * @property themes $©themes
  */
 class options extends \xd_v141226_dev\options {
 	public static $fetchByOptions = array(
@@ -119,6 +120,7 @@ class options extends \xd_v141226_dev\options {
 			'main_post_exc_color'                        => '#ffffff',
 			'read_more'                                  => '...read more',
 			'main_theme'                                 => array(),
+			'main_theme_options'                        => array(),
 			/***********************************************
 			 * TODO Included
 			 ***********************************************/
@@ -154,7 +156,8 @@ class options extends \xd_v141226_dev\options {
 			'main_post_exc_size'    => array( 'string:numeric >=' => 1 ),
 			'main_post_exc_color'   => array( 'string' ),
 			'read_more'             => array( 'string' ),
-			'main_theme'            => array( 'array:!empty' ),
+			'main_theme'            => array( 'string:!empty' ),
+			'main_theme_options'    => array( 'array:!empty' ),
 			/***********************************************
 			 * TODO Included
 			 ***********************************************/
@@ -165,7 +168,7 @@ class options extends \xd_v141226_dev\options {
 		return parent::setup( array_merge( $defaults, $pluginDefaults ), array_merge( $validators, $pluginValidators ) );
 	}
 
-	public function ®update( $new_options = array() ) {
+	public function update( $new_options = array() ) {
 		$bools = array( 'main_activate', 'track_visited', 'main_crop_thumb' );
 		foreach ( $bools as $v ) {
 			if ( ! isset( $new_options[ $v ] ) ) {
@@ -173,27 +176,23 @@ class options extends \xd_v141226_dev\options {
 			}
 		}
 
-		// fixme this destroys all themes options if a theme without options is selected
-		if(isset($new_options['main_theme']['selected'])
-			&& ($theme = $this->©themes->getThemeClassFromSlug($new_options['main_theme']['selected']))
-		){
-			$domainOptionKey = $this->$theme->domain.'_theme';
-			$slug = $new_options[$domainOptionKey]['selected'];
+		// prevent early execution
+		if(property_exists($this, '©themes')){
+			foreach ( $this->©themes->domains as $domain ) {
+				$domainKey = "{$domain}_theme";
+				$themeOptionsKey = "{$domainKey}_options";
+				if($this->©vars->are_set($new_options[$domainKey], $new_options[$themeOptionsKey])){
+					$themeClass = $this->©themes->getThemeClassFromSlug($new_options[$domainKey]);
+					if(!empty($themeClass)){
+						$themeOptions = $this->$themeClass->validateOptions($new_options[$themeOptionsKey][$this->$themeClass->slug]);
+						$new_options[$themeOptionsKey][$this->$themeClass->slug] = $themeOptions;
+					}
 
-			$themeSettings = $this->©var->_POST($slug);
-			if($themeSettings){
-				$new_options[$domainOptionKey][$slug]['options'] = $this->$theme->validateOptions($themeSettings);
+					$new_options[$themeOptionsKey] = array_merge($this->options[$themeOptionsKey], $new_options[$themeOptionsKey]);
+				}
 			}
-
-			$new_options[$domainOptionKey][$slug]['active'] = 1;
-
-			unset($new_options['main_theme']['selected']);
-		} else {
-			unset($new_options['main_theme']);
 		}
 
-
-
-		parent::®update( $new_options );
+		parent::update( $new_options );
 	}
 }

@@ -15,10 +15,12 @@ namespace x_related_posts;
 use x_related_posts\themes\theme;
 
 class themes extends framework{
+	public $domains = array('main', 'widget', 'shortcode');
+
 	public function __construct($instance){
 		parent::__construct($instance);
 		// todo remove
-		//$this->init();
+		$this->init();
 	}
 	/**
 	 * Get theme names for a specific theme domain (widget, main, shortcode)
@@ -93,13 +95,8 @@ class themes extends framework{
 	 */
 	public function getActiveThemeSlug($domain = 'main'){
 		$this->check_arg_types('string:!empty', func_get_args());
-		$options = $this->©option->get("{$domain}_theme");
-		foreach ( (array)$options as $slug => $t ) {
-			if(isset($t['active']) && $t['active']){
-				return $slug;
-			}
-		}
-		return '';
+		$activeThemeSlug = $this->©option->get("{$domain}_theme");
+		return empty($activeThemeSlug) ? 'x_related_posts__themes__main__grid' : $activeThemeSlug;
 	}
 
 	/**
@@ -109,20 +106,14 @@ class themes extends framework{
 	 * @since TODO ${VERSION}
 	 */
 	private function init(){
-		$themeOptionsMain = $this->©option->get('main_theme');
+		$themeOptionsMain = $this->©option->get('main_theme_options');
 		foreach ( $this->getThemeNames('main') as $slug => $name ) {
-			if(!isset($themeOptionsMain[$slug]) || !isset($themeOptionsMain[$slug]['options']) || !isset($themeOptionsMain[$slug]['active'])){
+			if(!isset($themeOptionsMain[$slug])){
 				$themeClass = $this->getThemeClass('main', $name);
-				$themeOptionsMain[$slug] = array('active' => 0);
-				$themeOptionsMain[$slug]['options'] = $this->$themeClass->defaults;
+				$themeOptionsMain[$slug] = $this->$themeClass->defaults;
 			}
 		}
-		$activeTheme = $this->getActiveThemeSlug('main');
-		if(empty($activeTheme)){
-			$themeOptionsMain['selected'] = 'x_related_posts__themes__main__grid';
-		} else {
-			$themeOptionsMain['selected'] = $activeTheme;
-		}
-		$this->©option->®update(array('main_theme' => $themeOptionsMain));
+
+		$this->©option->®update(array('main_theme_options' => $themeOptionsMain));
 	}
 }
