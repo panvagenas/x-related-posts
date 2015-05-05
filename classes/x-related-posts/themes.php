@@ -20,7 +20,7 @@ class themes extends framework{
 	public function __construct($instance){
 		parent::__construct($instance);
 		// todo remove
-		$this->init();
+		//$this->init();
 	}
 	/**
 	 * Get theme names for a specific theme domain (widget, main, shortcode)

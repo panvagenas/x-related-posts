@@ -17,7 +17,6 @@ namespace x_related_posts;
  * @package x_related_posts
  * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
  * @since 150429
- *
  * @property themes $©themes
  */
 class options extends \xd_v141226_dev\options {
@@ -59,11 +58,11 @@ class options extends \xd_v141226_dev\options {
 		'rada' => 'Rating ascending then Date ascending',
 	);
 	public static $entropy = array(
-		'0.0' => 'None',
+		'0.0'    => 'None',
 		'0.0001' => 'Just a little',
-		'0.002' => 'Mix result',
-		'0.3' => 'Almost random',
-		'1.0' => 'Random',
+		'0.002'  => 'Mix result',
+		'0.3'    => 'Almost random',
+		'1.0'    => 'Random',
 	);
 
 	/**
@@ -114,13 +113,16 @@ class options extends \xd_v141226_dev\options {
 			'main_thumb_height'                          => 200,
 			'main_thumb_width'                           => 300,
 			'default_thumb'                              => '',
-			'main_post_ttl_size'                         => 0,
-			'main_post_ttl_color'                        => '#ffffff',
-			'main_post_exc_size'                         => 0,
-			'main_post_exc_color'                        => '#ffffff',
 			'read_more'                                  => '...read more',
-			'main_theme'                                 => array(),
-			'main_theme_options'                        => array(),
+			/***********************************************
+			 * themes
+			 ***********************************************/
+			'post_ttl_size'                              => 0,
+			'post_ttl_color'                             => '#ffffff',
+			'post_exc_size'                              => 0,
+			'post_exc_color'                             => '#ffffff',
+			'main_theme'                                 => 'x_related_posts__themes__main__grid',
+			'main_theme_options'                         => array(),
 			/***********************************************
 			 * TODO Included
 			 ***********************************************/
@@ -151,11 +153,14 @@ class options extends \xd_v141226_dev\options {
 			'main_thumb_height'     => array( 'string:numeric >=' => 0 ),
 			'main_thumb_width'      => array( 'string:numeric >=' => 0 ),
 			'default_thumb'         => array( 'string' ),
-			'main_post_ttl_size'    => array( 'string:numeric >=' => 1 ),
-			'main_post_ttl_color'   => array( 'string' ),
-			'main_post_exc_size'    => array( 'string:numeric >=' => 1 ),
-			'main_post_exc_color'   => array( 'string' ),
 			'read_more'             => array( 'string' ),
+			/***********************************************
+			 * Themes
+			 ***********************************************/
+			'post_ttl_size'         => array( 'string:numeric >=' => 1 ),
+			'post_ttl_color'        => array( 'string' ),
+			'post_exc_size'         => array( 'string:numeric >=' => 1 ),
+			'post_exc_color'        => array( 'string' ),
 			'main_theme'            => array( 'string:!empty' ),
 			'main_theme_options'    => array( 'array:!empty' ),
 			/***********************************************
@@ -177,18 +182,19 @@ class options extends \xd_v141226_dev\options {
 		}
 
 		// prevent early execution
-		if(property_exists($this, '©themes')){
+		if ( $this->©var->are_set( $this->©themes ) ) {
 			foreach ( $this->©themes->domains as $domain ) {
-				$domainKey = "{$domain}_theme";
+				$domainKey       = "{$domain}_theme";
 				$themeOptionsKey = "{$domainKey}_options";
-				if($this->©vars->are_set($new_options[$domainKey], $new_options[$themeOptionsKey])){
-					$themeClass = $this->©themes->getThemeClassFromSlug($new_options[$domainKey]);
-					if(!empty($themeClass)){
-						$themeOptions = $this->$themeClass->validateOptions($new_options[$themeOptionsKey][$this->$themeClass->slug]);
-						$new_options[$themeOptionsKey][$this->$themeClass->slug] = $themeOptions;
+				if ( $this->©vars->are_set( $new_options[ $domainKey ], $new_options[ $themeOptionsKey ] ) ) {
+					$themeClass = $this->©themes->getThemeClassFromSlug( $new_options[ $domainKey ] );
+					if ( ! empty( $themeClass ) ) {
+						$themeOptions = $this->$themeClass->validateOptions( $new_options[ $themeOptionsKey ][ $this->$themeClass->slug ] );
+
+						$new_options[ $themeOptionsKey ][ $this->$themeClass->slug ] = $themeOptions;
 					}
 
-					$new_options[$themeOptionsKey] = array_merge($this->options[$themeOptionsKey], $new_options[$themeOptionsKey]);
+					$new_options[ $themeOptionsKey ] = array_merge( $this->options[ $themeOptionsKey ], $new_options[ $themeOptionsKey ] );
 				}
 			}
 		}

@@ -22,17 +22,12 @@ if ( ! defined( 'WPINC' ) ) {
 	<div class="form-group row">
 		<?php
 		$options = array();
-		$active = 'x_related_posts__themes__main__grid';
-		$o = $this->©option->get('main_theme');
 
 		foreach ( $this->©themes->getThemeNames('main') as $k => $v ) {
 			$options[] = array(
 				'label' => $v,
 				'value' => $k
 			);
-			if(isset($o[$k]) && $o[$k]['active']){
-				$active = $k;
-			}
 		}
 
 		$inputOptions = array(
@@ -53,7 +48,7 @@ if ( ! defined( 'WPINC' ) ) {
 
 		<div class="col-sm-7">
 			<?php
-			echo $callee->menu_page->option_form_fields->markup( $active, $inputOptions );
+			echo $callee->menu_page->option_form_fields->markup( $this->©option->get('main_theme'), $inputOptions );
 			?>
 		</div>
 	</div>

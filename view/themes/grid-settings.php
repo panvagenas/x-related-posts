@@ -81,6 +81,7 @@ if ( ! defined( 'WPINC' ) ) {
 			'placeholder' => $this->__( 'backgroundColor' ),
 			'id'          => 'backgroundColor',
 			'attrs'       => '',
+			'default_value' => '#ffffff',
 			'classes'     => 'form-control col-md-10'
 		);
 		?>
@@ -104,6 +105,7 @@ if ( ! defined( 'WPINC' ) ) {
 			'placeholder' => $this->__( 'borderColor' ),
 			'id'          => 'borderColor',
 			'attrs'       => '',
+			'default_value' => '#ffffff',
 			'classes'     => 'form-control col-md-10'
 		);
 		?>

@@ -31,7 +31,13 @@ class simple_list extends theme{
 	/**
 	 * @var array Theme default options
 	 */
-	public $defaults = array();
+	public $defaults = array(
+		'orderedList' => true,
+		'borderColor'      => '#ffffff',
+		'borderRadius'     => 0,
+		'borderWeight'     => 0,
+	);
+	public $useCommonOptions = true;
 
 	public function display( Array $related, $echo = true ) {
 		$content = $this->view('simple-list.php');
@@ -39,5 +45,46 @@ class simple_list extends theme{
 			echo $content;
 		}
 		return $content;
+	}
+
+	/**
+	 * @param bool $echo
+	 *
+	 * @return string
+	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
+	 * @since TODO ${VERSION}
+	 */
+	public function settings( $echo = true ) {
+		$content = $this->©view->view( $this, 'themes/themes-common.php', array( 'options' => $this->getOptions() ) );
+		$content .= $this->©view->view( $this, 'themes/simple-list-settings.php', array( 'options' => $this->getOptions() ) );
+		if ( $echo ) {
+			echo $content;
+		}
+
+		return $content;
+	}
+
+	/**
+	 * @param array $newOptions
+	 *
+	 * @return array
+	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
+	 * @since TODO ${VERSION}
+	 */
+	public function validateOptions( Array $newOptions ) {
+		$validated = array(
+			'orderedList'     => isset( $newOptions ['orderedList'] ),
+			'borderColor'      => isset( $newOptions['borderColor'] )
+				? esc_sql( $newOptions['borderColor'] )
+				: $this->defaults['borderColor'],
+			'borderRadius'     => isset( $newOptions ['borderRadius'] ) && (int) $newOptions['borderRadius'] >= 0
+				? (int) $newOptions ['borderRadius']
+				: $this->defaults['borderRadius'],
+			'borderWeight'     => isset( $newOptions ['borderWeight'] ) && (int) $newOptions['borderWeight'] >= 0
+				? (int) $newOptions ['borderWeight']
+				: $this->defaults['borderWeight'],
+		);
+
+		return array_merge( $this->validateCommonOptions( $newOptions ), $validated );
 	}
 }

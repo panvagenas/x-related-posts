@@ -43,10 +43,18 @@ class theme extends framework {
 	 * @var string Dynamically set. Do not overwrite
 	 */
 	public $slug = '';
+	public $useCommonOptions = false;
+	public $commonOptions = array();
 
-	public function __construct($instance){
-		parent::__construct($instance);
-		$this->slug = $this->©string->with_underscores(get_class($this));
+	public function __construct( $instance ) {
+		parent::__construct( $instance );
+		$this->slug = $this->©string->with_underscores( get_class( $this ) );
+		$this->commonOptions = array(
+			'post_ttl_size'  => $this->©option->get( 'post_ttl_size' ),
+			'post_exc_size'  => $this->©option->get( 'post_exc_size' ),
+			'post_ttl_color' => $this->©option->get( 'post_ttl_color' ),
+			'post_exc_color' => $this->©option->get( 'post_exc_color' ),
+		);
 	}
 
 	/**
@@ -92,12 +100,13 @@ class theme extends framework {
 		( $viewData ) ? extract( $viewData ) : null;
 
 		ob_start();
-		require $this->viewPath($file);
+		require $this->viewPath( $file );
 		$content = ob_get_clean();
 		if ( ! $echo ) {
 			return $content;
 		}
 		echo $content;
+
 		return true;
 	}
 
@@ -106,14 +115,14 @@ class theme extends framework {
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
 	 * @since TODO ${VERSION}
 	 */
-	protected function whereViewsMayReside(  ) {
+	protected function whereViewsMayReside() {
 		$dirs = $this->©dirs->where_templates_may_reside();
 
 		foreach ( $dirs as &$dir ) {
-			$dir = rtrim($dir, '/') . "/{$this->domain}";
+			$dir = rtrim( $dir, '/' ) . "/{$this->domain}";
 		}
 
-		return $this->apply_filters(__FUNCTION__, $dirs);
+		return $this->apply_filters( __FUNCTION__, $dirs );
 	}
 
 	/**
@@ -124,7 +133,7 @@ class theme extends framework {
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
 	 * @since TODO ${VERSION}
 	 */
-	protected function viewPath($file){
+	protected function viewPath( $file ) {
 		$this->check_arg_types( 'string:!empty', 'string:!empty', func_get_args() );
 
 		$dir_file = ltrim( $this->©dir_file->n_seps( $file ), '/' );
@@ -144,11 +153,14 @@ class theme extends framework {
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
 	 * @since TODO ${VERSION}
 	 */
-	public function getOptions(){
-		$options = $this->©option->get("{$this->domain}_theme_options");
-		return $this->©vars->are_set($options[$this->slug], $options[$this->slug])
-			? $options[$this->slug]
+	public function getOptions() {
+		$options = $this->©option->get( "{$this->domain}_theme_options" );
+
+		$opts = $this->©vars->are_set( $options[ $this->slug ], $options[ $this->slug ] )
+			? $options[ $this->slug ]
 			: $this->defaults;
+
+		return $this->useCommonOptions ? array_merge($this->commonOptions, $opts) : $opts;
 	}
 
 	/**
@@ -160,6 +172,33 @@ class theme extends framework {
 	 */
 	public function validateOptions( Array $newOptions ) {
 		return $newOptions;
+	}
+
+	/**
+	 * @param $newOptions
+	 *
+	 * @return array
+	 * @throws \xd_v141226_dev\exception
+	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
+	 * @since TODO ${VERSION}
+	 */
+	public function validateCommonOptions( $newOptions ) {
+		$validated = array(
+			'post_ttl_size'  => isset( $newOptions ['post_ttl_size'] ) && $newOptions ['post_ttl_size'] >= 0
+				? (int) $newOptions ['post_ttl_size']
+				: $this->©option->get( 'post_ttl_size' ),
+			'post_exc_size'  => isset( $newOptions ['post_exc_size'] ) && $newOptions ['post_exc_size'] >= 0
+				? (int) esc_sql( $newOptions ['post_exc_size'] )
+				: $this->©option->get( 'post_exc_size' ),
+			'post_ttl_color' => isset( $newOptions['post_ttl_color'] ) && ! empty( $newOptions['post_ttl_color'] )
+				? esc_sql( $newOptions['post_ttl_color'] )
+				: $this->©option->get( 'post_ttl_color' ),
+			'post_exc_color' => isset( $newOptions['post_exc_color'] ) && ! empty( $newOptions['post_exc_color'] )
+				? esc_sql( $newOptions['post_exc_color'] )
+				: $this->©option->get( 'post_exc_color' ),
+		);
+
+		return $validated;
 	}
 
 	/**
@@ -188,9 +227,10 @@ class theme extends framework {
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
 	 * @since TODO ${VERSION}
 	 */
-	public function fieldMarkup($field_value, $field){
+	public function fieldMarkup( $field_value, $field ) {
 		$field['name'] = "[{$this->domain}_theme_options][{$this->slug}]{$field['name']}";
-		return $this->©menu_pages__settings->option_form_fields->markup($field_value, $field);
+
+		return $this->©menu_pages__settings->option_form_fields->markup( $field_value, $field );
 	}
 
 	/**
@@ -210,7 +250,7 @@ class theme extends framework {
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
 	 * @since TODO ${VERSION}
 	 */
-	public function getSlug(){
+	public function getSlug() {
 		return $this->slug;
 	}
 }

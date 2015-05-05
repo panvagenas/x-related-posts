@@ -39,6 +39,7 @@ class grid extends theme {
 		'borderRadius'     => 0,
 		'borderWeight'     => 0,
 	);
+	public $useCommonOptions = true;
 
 	/**
 	 * @param array $related
@@ -65,10 +66,12 @@ class grid extends theme {
 	 * @since TODO ${VERSION}
 	 */
 	public function settings( $echo = true ) {
-		$content = $this->©view->view($this, 'themes/grid-settings.php', array('options' => $this->getOptions()));
+		$content = $this->©view->view( $this, 'themes/themes-common.php', array( 'options' => $this->getOptions() ) );
+		$content .= $this->©view->view( $this, 'themes/grid-settings.php', array( 'options' => $this->getOptions() ) );
 		if ( $echo ) {
 			echo $content;
 		}
+
 		return $content;
 	}
 
@@ -86,10 +89,10 @@ class grid extends theme {
 				: $this->defaults['numOfPostsPerRow'],
 			'thumbCaption'     => isset( $newOptions ['thumbCaption'] ),
 			'backgroundColor'  => isset( $newOptions['backgroundColor'] ) ?
-				wp_strip_all_tags( $newOptions['backgroundColor'] )
+				esc_sql( $newOptions['backgroundColor'] )
 				: $this->defaults['backgroundColor'],
 			'borderColor'      => isset( $newOptions['borderColor'] )
-				? wp_strip_all_tags( $newOptions['borderColor'] )
+				? esc_sql( $newOptions['borderColor'] )
 				: $this->defaults['borderColor'],
 			'borderRadius'     => isset( $newOptions ['borderRadius'] ) && (int) $newOptions['borderRadius'] >= 0
 				? (int) $newOptions ['borderRadius']
@@ -99,6 +102,6 @@ class grid extends theme {
 				: $this->defaults['borderWeight'],
 		);
 
-		return $validated;
+		return array_merge( $this->validateCommonOptions( $newOptions ), $validated );
 	}
 }
