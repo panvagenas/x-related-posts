@@ -58,12 +58,6 @@ if ( ! defined( 'WPINC' ) ) {
 		</div>
 	</div>
 
-	<?php
-	foreach ( $this->©themes->getThemeNames('main') as $slug => $name ) {
-		$class = $this->©themes->getThemeClassFromSlug($slug);
-		$this->$class->settings();
-	}
-
-	?>
-
 </div>
+
+<div id="main-theme-options-wrapper" class="form-horizontal" role="form"></div>

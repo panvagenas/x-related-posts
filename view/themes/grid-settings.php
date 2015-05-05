@@ -17,7 +17,6 @@ if ( ! defined( 'WPINC' ) ) {
 /* @var array $options */
 
 ?>
-<div class="form-horizontal" role="form">
 
 	<div class="form-group row">
 		<?php
@@ -182,5 +181,3 @@ if ( ! defined( 'WPINC' ) ) {
 			?>
 		</div>
 	</div>
-
-</div>
