@@ -113,16 +113,16 @@ class posts extends \xd_v141226_dev\posts {
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
 	 * @since 150429
 	 */
-	public function getRelated( $relOptions ) {
-		if(!$this->isLoaded() || empty($relOptions)){
+	public function getRelated( $posts_to_display = 6, $offset = 0, $rate_by = 'c', $sort_by = 'ddrd', $entropy = 0.0 ) {
+		if(!$this->isLoaded()){
 			return array();
 		}
 
 		if($this->isRated()){
-			$relTable = $this->©related->getRelated($this->ID, $relOptions);
+			$relTable = $this->©related($posts_to_display, $offset, $rate_by, $sort_by, $entropy)->getRelated($this->ID);
 		} else {
 			$relTable = $this->doRating();
-			$relTable = $this->©related->processRelTable($relTable, $relOptions);
+			$relTable = $this->©related($posts_to_display, $offset, $rate_by, $sort_by, $entropy)->processRelTable($relTable);
 		}
 
 		return $relTable;

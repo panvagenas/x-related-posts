@@ -21,7 +21,13 @@ namespace x_related_posts {
 					$themeClass = $this->©themes->getThemeClassFromSlug($themeSlug);
 					if(!empty($themeClass)){
 						$this->$themeClass->display(
-							$this->©posts($post->ID)->getRelated($this->©options->options)
+							$this->©posts($post->ID)->getRelated(
+								$this->©options->get('main_posts_to_display'),
+								$this->©options->get('main_offset'),
+								$this->©options->get('main_rate_by'),
+								$this->©options->get('main_sort_by'),
+								$this->©options->get('main_entropy')
+							)
 						);
 					}
 				}

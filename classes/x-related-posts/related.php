@@ -17,35 +17,93 @@ class related extends framework{
 	public $offset;
 	public $sort_by;
 	public $entropy;
+	public $rate_by;
 
 	public $defaults;
 
-	public static $dt_asc_rt_desc = 'date_ascending_then_rating_descending';
-
-	public function __construct($instance, $posts_to_display = 6, $offset = 0, $sort_by = 'date_ascending_then_rating_descending', $entropy = 0.0){
+	public function __construct($instance, $posts_to_display = 6, $offset = 0, $rate_by = 'c', $sort_by = 'ddrd', $entropy = 0.0){
 		parent::__construct($instance);
 		$this->defaults = array(
 			'posts_to_display' => 6,
 			'offset' => 0,
-			'sort_by' => self::$dt_asc_rt_desc,
+			'sort_by' => 'ddrd',
 			'entropy' => 0.0,
+			'rate_by' => 'c',
 		);
-		$this->posts_to_display = $posts_to_display;
-		$this->offset = $offset;
-		$this->sort_by = $sort_by;
-		$this->entropy = $entropy;
+		$this->posts_to_display = (int)$posts_to_display;
+		$this->offset = (int)$offset;
+		$this->sort_by = esc_sql($sort_by);
+		$this->entropy = (float)$entropy;
+		$this->rate_by = esc_sql($rate_by);
 	}
-	public function processRelTable($relTable = array(), $relOptions = array()){
+	public function processRelTable($relTable = array()){
 		return $relTable;
 	}
 
-	public function getRelated($pid, $relOptions = array()){
-		$relTable = $this->©db_actions->getAll($pid);
+	public function getRelated($pid){
+		$sql = $this->formSqlQuery($pid);
+		$relTable = $this->©db->get_results($sql);
 		return $relTable;
 	}
 
-	public function formSqlQuery($relOptions){
-		$sql = '';
-		return $sql;
+	public function formSqlQuery($pid){
+		$weights = $this->getWeight($this->rate_by);
+// todo applying entropy to sql dont always get the same result
+		$sql = "SELECT pid1, pid2, post_date,
+						(score_cats * {$weights['categories']}) AS score_cats,
+						(score_tags * {$weights['tags']}) AS score_tags,
+						((clicks/displayed) * {$weights['clicks']}) AS clicks,
+						((((score_cats * {$weights['categories']}) + (score_tags * {$weights['tags']}) + IFNULL(((clicks/displayed) * {$weights['clicks']}), 0))) * FLOOR((RAND() * (1000-((1.0-{$this->entropy})*1000)+1))+((1.0-{$this->entropy})*1000))/1000) AS rating
+				FROM {$this->©db_table->tableName()} AS rel
+				WHERE ";
+
+		$where = ' pid1='.(int)$pid;
+
+		if(in_array($this->rate_by, array('c', 'ct', 'tc'))){
+			$where .= ' AND score_cats > 0 ';
+		}
+
+		if(in_array($this->rate_by, array('t', 'ct', 'tc'))){
+			$where .= ' AND score_tags > 0 ';
+		}
+
+		$sortParts = str_split($this->sort_by);
+		$orderBy = '';
+
+		for($i = 0; $i < 4; $i+=2){
+			if(isset($sortParts[$i])){
+				if($i > 1){
+					$orderBy .= ',';
+				}
+				if($sortParts[$i+1] === 'd'){
+					$order = ' DESC ';
+				} else {
+					$order = ' ASC ';
+				}
+				if($sortParts[$i] === 'd'){
+					$orderBy .= ' post_date ';
+				} else {
+					$orderBy .= ' rating ';
+				}
+				$orderBy .= $order;
+			}
+		}
+		if($orderBy){
+			$orderBy = ' ORDER BY '.$orderBy;
+		}
+
+		$limit = $this->offset > 0
+			? (" LIMIT {$this->offset},{$this->posts_to_display} ")
+			: (" LIMIT {$this->posts_to_display} ");
+
+		return $sql.$where.$orderBy.$limit;
+	}
+
+	public function getWeight($spec = 'c', $key = ''){
+		$weights = options::$fetchByOptionsWeights[$spec];
+		if($key && isset($weights[$key])){
+			return $weights[$key];
+		}
+		return $weights;
 	}
 }

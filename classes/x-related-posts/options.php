@@ -102,13 +102,13 @@ class options extends \xd_v141226_dev\options {
 			 ***********************************************/
 			'main_posts_to_display'                      => 6,
 			'main_offset'                                => 0,
-			'main_sort_by'                               => 'dard',
+			'main_sort_by'                               => 'ddrd',
 			'main_entropy'                               => 0.0,
 			/***********************************************
 			 * Layout Options
 			 ***********************************************/
 			'main_position'                              => 'bottom',
-			'main_content'                               => 'tt',
+			'main_content'                               => 'pt',
 			'main_crop_thumb'                            => 1,
 			'main_thumb_height'                          => 200,
 			'main_thumb_width'                           => 300,
