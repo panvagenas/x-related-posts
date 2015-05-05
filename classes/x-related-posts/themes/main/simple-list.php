@@ -40,7 +40,7 @@ class simple_list extends theme{
 	public $useCommonOptions = true;
 
 	public function display( Array $related, $echo = true ) {
-		$content = $this->view('simple-list.php');
+		$content = $this->view('simple-list.php', compact( 'related' ));
 		if ( $echo ) {
 			echo $content;
 		}

@@ -14,6 +14,7 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 /* @var \x_related_posts\themes\theme $this */
+/* @var array $related */
 
 foreach ( array_slice($related, 0, 10) as $relPost ) {
 	/* @var \x_related_posts\posts $post */

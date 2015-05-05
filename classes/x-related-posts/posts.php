@@ -363,6 +363,17 @@ class posts extends \xd_v141226_dev\posts {
 	}
 
 	/**
+	 * @return bool|string
+	 * @throws \xd_v141226_dev\exception
+	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
+	 * @since TODO ${VERSION}
+	 */
+	public function getThePermalink(){
+		$this->isLoaded(true);
+		return get_the_permalink($this->ID);
+	}
+
+	/**
 	 * @param        $defaultThumbnail
 	 * @param string $size
 	 *
