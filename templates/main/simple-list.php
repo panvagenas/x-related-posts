@@ -41,6 +41,7 @@ if ( ! empty( $related ) ) {
 		}
 		foreach ( $related as $rel ) {
 			/* @var \x_related_posts\posts $post */
+			$rel = (object)$rel;
 			$post = $this->©post( $rel->pid2 );
 			?>
 			<li>
