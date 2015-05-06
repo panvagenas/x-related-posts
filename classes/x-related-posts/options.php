@@ -181,21 +181,18 @@ class options extends \xd_v141226_dev\options {
 			}
 		}
 
-		// prevent early execution
-		if ( $this->©var->are_set( $this->©themes ) ) {
-			foreach ( $this->©themes->domains as $domain ) {
-				$domainKey       = "{$domain}_theme";
-				$themeOptionsKey = "{$domainKey}_options";
-				if ( $this->©vars->are_set( $new_options[ $domainKey ], $new_options[ $themeOptionsKey ] ) ) {
-					$themeClass = $this->©themes->getThemeClassFromSlug( $new_options[ $domainKey ] );
-					if ( ! empty( $themeClass ) ) {
-						$themeOptions = $this->$themeClass->validateOptions( $new_options[ $themeOptionsKey ][ $this->$themeClass->slug ] );
+		foreach ( $this->©themes->domains as $domain ) {
+			$domainKey       = "{$domain}_theme";
+			$themeOptionsKey = "{$domainKey}_options";
+			if ( isset( $new_options[ $domainKey ], $new_options[ $themeOptionsKey ] ) ) {
+				$themeClass = $this->©themes->getThemeClassFromSlug( $new_options[ $domainKey ] );
+				if ( ! empty( $themeClass ) ) {
+					$themeOptions = $this->$themeClass->validateOptions( $new_options[ $themeOptionsKey ][ $this->$themeClass->slug ] );
 
-						$new_options[ $themeOptionsKey ][ $this->$themeClass->slug ] = $themeOptions;
-					}
-
-					$new_options[ $themeOptionsKey ] = array_merge( $this->options[ $themeOptionsKey ], $new_options[ $themeOptionsKey ] );
+					$new_options[ $themeOptionsKey ][ $this->$themeClass->slug ] = $themeOptions;
 				}
+
+				$new_options[ $themeOptionsKey ] = array_merge( $this->options[ $themeOptionsKey ], $new_options[ $themeOptionsKey ] );
 			}
 		}
 
