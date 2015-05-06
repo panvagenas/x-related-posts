@@ -99,7 +99,7 @@ class posts extends \xd_v141226_dev\posts {
 			return false;
 		}
 		$pid = $post ? $post->ID : $this->ID;
-		$this->©db->get_var( 'SELECT * FROM ' . $this->©db_table->tableName() . ' WHERE pid1=' . (int)$pid );
+		$this->©db->get_var( 'SELECT * FROM ' . $this->©db_table->tableName() . ' WHERE pid1=' . (int)$pid . ' LIMIT 1' );
 
 		return $this->©db->num_rows > 0;
 	}
