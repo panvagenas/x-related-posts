@@ -48,17 +48,6 @@ class related extends framework{
 	}
 
 	/**
-	 * @param array $relTable
-	 *
-	 * @return array
-	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
-	 */
-	public function processRelTable($relTable = array()){
-		return $relTable;
-	}
-
-	/**
 	 * @param $pid
 	 *
 	 * @return mixed

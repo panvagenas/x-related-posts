@@ -388,7 +388,7 @@ class db_actions extends framework {
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
 	 * @since 150429
 	 */
-	protected function performCachedQueries() {
+	public function performCachedQueries() {
 		$this->performDeleteQuery();
 		$this->performInsertQuery();
 		$this->performDisplayedQuery();

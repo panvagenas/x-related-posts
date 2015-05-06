@@ -121,8 +121,9 @@ class posts extends \xd_v141226_dev\posts {
 		if($this->isRated()){
 			$relTable = $this->©related($posts_to_display, $offset, $rate_by, $sort_by, $entropy)->getRelated($this->ID);
 		} else {
-			$relTable = $this->doRating();
-			$relTable = $this->©related($posts_to_display, $offset, $rate_by, $sort_by, $entropy)->processRelTable($relTable);
+			$this->doRating();
+			$this->©db_actions->performCachedQueries();
+			$relTable = $this->©related($posts_to_display, $offset, $rate_by, $sort_by, $entropy)->getRelated($this->ID);
 		}
 
 		return $relTable;
