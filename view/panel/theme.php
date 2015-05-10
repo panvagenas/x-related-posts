@@ -38,7 +38,7 @@ if ( ! defined( 'WPINC' ) ) {
 			'required'    => true,
 			'id'          => 'main-theme',
 			'attrs'       => '',
-			'classes'     => 'form-control col-md-10',
+			'classes'     => '',
 			'options'     => $options
 		);
 		?>

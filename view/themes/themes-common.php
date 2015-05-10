@@ -77,7 +77,7 @@
 		'placeholder'         => $this->__( 'Post excerpt size' ),
 		'id'                  => 'post-exc-size',
 		'attrs'               => '',
-		'classes'             => 'form-control col-md-10',
+		'classes'             => '',
 		'validation_patterns' => array(
 			array(
 				'name'        => 'post_exc_size',
@@ -109,7 +109,7 @@
 		'id'            => 'post-exc-color',
 		'attrs'         => '',
 		'default_value' => '#ffffff',
-		'classes'       => 'form-control col-md-10'
+		'classes'       => ''
 	);
 	?>
 	<label for="<?php echo $inputOptions['id']; ?>" class="col-md-3 control-label">

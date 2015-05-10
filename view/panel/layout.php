@@ -29,7 +29,7 @@ if ( ! defined( 'WPINC' ) ) {
 			'required'    => true,
 			'id'          => 'main-position',
 			'attrs'       => '',
-			'classes'     => 'form-control col-md-10',
+			'classes'     => '',
 			'options'     => array(
 				array(
 					'label' => $this->__( 'Top' ),
@@ -69,7 +69,7 @@ if ( ! defined( 'WPINC' ) ) {
 			'title'       => $this->__( 'Content' ),
 			'id'          => 'main-content',
 			'attrs'       => '',
-			'classes'     => 'form-control col-md-10',
+			'classes'     => '',
 			'options'     => $options
 		);
 		?>
@@ -92,7 +92,7 @@ if ( ! defined( 'WPINC' ) ) {
 			'title'       => $this->__( 'Crop thumbnail' ),
 			'id'          => 'main-crop-thumb',
 			'attrs'       => '',
-			'classes'     => 'form-control col-md-10'
+			'classes'     => ''
 		);
 		?>
 		<label for="<?php echo $inputOptions['id']; ?>" class="col-md-3 control-label">
@@ -115,7 +115,7 @@ if ( ! defined( 'WPINC' ) ) {
 			'placeholder' => $this->__( 'Thumbnail width' ),
 			'id'          => 'main-thumb-width',
 			'attrs'       => '',
-			'classes'     => 'form-control col-md-10',
+			'classes'     => '',
 			'validation_patterns' => array(
 				array(
 					'name'        => 'main_thumb_width',
@@ -146,7 +146,7 @@ if ( ! defined( 'WPINC' ) ) {
 			'placeholder' => $this->__( 'Thumbnail height' ),
 			'id'          => 'main-thumb-height',
 			'attrs'       => '',
-			'classes'     => 'form-control col-md-10',
+			'classes'     => '',
 			'validation_patterns' => array(
 				array(
 					'name'        => 'main_thumb_height',
@@ -182,7 +182,7 @@ if ( ! defined( 'WPINC' ) ) {
 			'required'       => true,
 			'id'             => 'default-thumb',
 			'attrs'          => '',
-			'classes'        => 'form-control col-md-9'
+			'classes'        => ''
 		);
 		?>
 		<label for="<?php echo $inputOptions['id']; ?>" class="col-md-3 control-label">
@@ -205,7 +205,7 @@ if ( ! defined( 'WPINC' ) ) {
 			'placeholder' => $this->__( 'Read more text' ),
 			'id'          => 'read-more',
 			'attrs'       => '',
-			'classes'     => 'form-control col-md-10'
+			'classes'     => ''
 		);
 		?>
 		<label for="<?php echo $inputOptions['id']; ?>" class="col-md-3 control-label">

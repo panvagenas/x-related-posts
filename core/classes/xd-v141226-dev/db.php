@@ -31,7 +31,7 @@ namespace xd_v141226_dev
 		 *
 		 * @var \wpdb WordPress® database object instance.
 		 */
-		protected $wpdb; // Set by constructor.
+		private $wpdb; // Set by constructor.
 
 		/**
 		 * @var boolean TRUE if modifying plugin tables.

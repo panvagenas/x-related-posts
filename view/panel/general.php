@@ -27,7 +27,7 @@ if ( ! defined( 'WPINC' ) ) {
 			'title'       => $this->__( 'Activate Output in Post Content Area' ),
 			'id'          => 'main-activate',
 			'attrs'       => '',
-			'classes'     => 'form-control col-md-10'
+			'classes'     => ''
 		);
 		?>
 		<label for="<?php echo $inputOptions['id']; ?>" class="col-md-3 control-label">
@@ -49,7 +49,7 @@ if ( ! defined( 'WPINC' ) ) {
 			'title'       => $this->__( 'Enable Tracking System' ),
 			'id'          => 'track-visited',
 			'attrs'       => '',
-			'classes'     => 'form-control col-md-10'
+			'classes'     => ''
 		);
 		?>
 		<label for="<?php echo $inputOptions['id']; ?>" class="col-md-3 control-label">
@@ -73,7 +73,7 @@ if ( ! defined( 'WPINC' ) ) {
 			//'required'    => true,
 			'id'          => 'main-title',
 			'attrs'       => '',
-			'classes'     => 'form-control col-md-10'
+			'classes'     => ''
 		);
 		?>
 		<label for="<?php echo $inputOptions['id']; ?>" class="col-md-3 control-label">

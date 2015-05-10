@@ -72,7 +72,7 @@ if ( ! defined( 'WPINC' ) ) {
 		'required'            => true,
 		'id'                  => 'carouselAutoTime',
 		'attrs'               => '',
-		'classes'             => 'form-control col-md-10',
+		'classes'             => '',
 		'validation_patterns' => array(
 			array(
 				'name'        => 'carouselAutoTimeMin',
@@ -104,7 +104,7 @@ if ( ! defined( 'WPINC' ) ) {
 		'required'            => true,
 		'id'                  => 'carouselMaxVisible',
 		'attrs'               => '',
-		'classes'             => 'form-control col-md-10',
+		'classes'             => '',
 		'validation_patterns' => array(
 			array(
 				'name'        => 'carouselMaxVisibleMin',
@@ -136,7 +136,7 @@ if ( ! defined( 'WPINC' ) ) {
 		'required'            => true,
 		'id'                  => 'carouselMinVisible',
 		'attrs'               => '',
-		'classes'             => 'form-control col-md-10',
+		'classes'             => '',
 		'validation_patterns' => array(
 			array(
 				'name'        => 'carouselMinVisibleMin',

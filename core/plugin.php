@@ -26,7 +26,6 @@ www        w        ww eeeeeeeee  bbbbbbbb      sssssssssss   hhhh        hhhh  
  * @since 130310
  */
 
-
 if(!defined('WPINC'))
 	exit('Do NOT access this file directly: '.basename(__FILE__));
 

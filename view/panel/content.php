@@ -29,7 +29,7 @@ if ( ! defined( 'WPINC' ) ) {
 			'required'    => true,
 			'id'          => 'main-posts-to-display',
 			'attrs'       => '',
-			'classes'     => 'form-control col-md-10',
+			'classes'     => '',
 			'validation_patterns' => array(
 				array(
 					'name'        => 'main_posts_to_display_min',
@@ -61,7 +61,7 @@ if ( ! defined( 'WPINC' ) ) {
 			'required'    => true,
 			'id'          => 'main-offset',
 			'attrs'       => '',
-			'classes'     => 'form-control col-md-10',
+			'classes'     => '',
 			'validation_patterns' => array(
 				array(
 					'name'        => 'main_offset',
@@ -100,7 +100,7 @@ if ( ! defined( 'WPINC' ) ) {
 			'required'    => true,
 			'id'          => 'main-sort-by',
 			'attrs'       => '',
-			'classes'     => 'form-control col-md-10',
+			'classes'     => '',
 			'options'     => $options
 		);
 		?>
@@ -132,7 +132,7 @@ if ( ! defined( 'WPINC' ) ) {
 			'required'    => true,
 			'id'          => 'main-entropy',
 			'attrs'       => '',
-			'classes'     => 'form-control col-md-10',
+			'classes'     => '',
 			'options'     => $options
 		);
 		?>

@@ -15,7 +15,7 @@ namespace x_related_posts {
 	class main extends framework {
 		public function hookTheContent( $content ) {
 			global $post;
-			if($this->isShowTime()){
+			if($this->©option->get('main_activate') && $this->isShowTime()){
 				$themeSlug = $this->©themes->getActiveThemeSlug('main');
 				if(!empty($themeSlug)){
 					$themeClass = $this->©themes->getThemeClassFromSlug($themeSlug);

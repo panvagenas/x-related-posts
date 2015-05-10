@@ -95,7 +95,7 @@ class options extends \xd_v141226_dev\options {
 			 ***********************************************/
 			'main_activate'                              => 1,
 			'track_visited'                              => 0,
-			'main_title'                                 => 'Related Posts',
+			'main_title'                                 => 'X Related Posts',
 			'main_rate_by'                               => 'c',
 			/***********************************************
 			 * Content Options

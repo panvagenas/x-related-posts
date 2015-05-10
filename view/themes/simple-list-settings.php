@@ -26,7 +26,7 @@ if ( ! defined( 'WPINC' ) ) {
 		'title'   => $this->__( 'orderedList' ),
 		'id'      => 'orderedList',
 		'attrs'   => '',
-		'classes' => 'form-control col-md-10'
+		'classes' => ''
 	);
 	?>
 	<label for="<?php echo $inputOptions['id']; ?>" class="col-md-3 control-label">
@@ -50,7 +50,7 @@ if ( ! defined( 'WPINC' ) ) {
 		'id'            => 'borderColor',
 		'attrs'         => '',
 		'default_value' => '#ffffff',
-		'classes'       => 'form-control col-md-10'
+		'classes'       => ''
 	);
 	?>
 	<label for="<?php echo $inputOptions['id']; ?>" class="col-md-3 control-label">
@@ -74,7 +74,7 @@ if ( ! defined( 'WPINC' ) ) {
 		'required'            => true,
 		'id'                  => 'borderRadius',
 		'attrs'               => '',
-		'classes'             => 'form-control col-md-10',
+		'classes'             => '',
 		'validation_patterns' => array(
 			array(
 				'name'        => 'borderRadiusMin',
@@ -106,7 +106,7 @@ if ( ! defined( 'WPINC' ) ) {
 		'required'            => true,
 		'id'                  => 'borderWeight',
 		'attrs'               => '',
-		'classes'             => 'form-control col-md-10',
+		'classes'             => '',
 		'validation_patterns' => array(
 			array(
 				'name'        => 'borderWeightMin',

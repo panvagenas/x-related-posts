@@ -229,20 +229,20 @@ namespace xd_v141226_dev
 
         /**
          *
-         * example (
+         * @param string $page_title Optional if only one page is added
+         * @param string $menu_title Optional if only one page is added
+         * @param string $capability Optional if only one page is added
+         * @param string $menu_page
+         *
+         * @return bool|string See WP add_options_page()
+         * @see add_options_page()
+         *
+         * @example (
          *      $this->instance->plugin_name . ' Settings',
          *      $this->instance->plugin_name,
          *      $this->instance->plugin_cap,
          *      'my_menu_page'
          * )
-         *
-         * @param string $menu_page
-         * @param string $page_title Optional if only one page is added
-         * @param string $menu_title Optional if only one page is added
-         * @param string $capability Optional if only one page is added
-         *
-         * @return bool|string See WP add_options_page()
-         * @see add_options_page()
          *
          * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
          * @since TODO ${VERSION}
