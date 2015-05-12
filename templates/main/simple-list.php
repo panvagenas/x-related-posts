@@ -31,6 +31,7 @@ if ( ! empty( $related ) ) {
 	}
 	?>
 	<div class="x-related-wrapper"  style="<?php echo $style; ?>">
+		<h2><?php echo $this->©option->get('main_title'); ?></h2>
 		<?php
 		if ($options['orderedList']){
 			?>
@@ -46,7 +47,7 @@ if ( ! empty( $related ) ) {
 			?>
 			<li>
 				<a href="<?php echo $post->getThePermalink(); ?>" target="_self">
-					<?php echo $post->post_title; ?>
+					<?php echo $this->getPostTitleFormatted($post); ?>
 				</a>
 			</li>
 		<?php
