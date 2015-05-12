@@ -50,12 +50,76 @@ class grid extends theme {
 	 * @since TODO ${VERSION}
 	 */
 	public function display( Array $related, $echo = true ) {
-		$content = $this->view( 'grid.php', compact( 'related' ) );
+		$this->enqueueScripts();
+		$options = $this->getOptions();
+		switch ( $options['numOfPostsPerRow'] ) {
+			default:
+			case '1':
+			case '2':
+			case '3':
+			case '4':
+			case '6':
+				$colSpan = 12 / (int) $options['numOfPostsPerRow'];
+				break;
+			case '5':
+			case '10':
+				$colSpan = 10 / (int) $options['numOfPostsPerRow'];
+				break;
+			case '7':
+				$colSpan = 14 / (int) $options['numOfPostsPerRow'];
+				break;
+			case '8':
+				$colSpan = 16 / (int) $options['numOfPostsPerRow'];
+				break;
+			case '9':
+				$colSpan = 18 / (int) $options['numOfPostsPerRow'];
+				break;
+		}
+		$content = $this->view( 'grid.php', array(
+			'related'      => $related,
+			'relPostClass' => 'xrp-col-' . $colSpan,
+			'options'      => $options
+		) );
 		if ( $echo ) {
 			echo $content;
 		}
 
 		return $content;
+	}
+
+	protected function enqueueScripts() {
+		$options = $this->getOptions();
+		switch ( $options['numOfPostsPerRow'] ) {
+			default:
+			case '1':
+			case '2':
+			case '3':
+			case '4':
+			case '6':
+				$cssFile = 'grid-12.min.css';
+				break;
+			case '5':
+			case '10':
+				$cssFile = 'grid-10.min.css';
+				break;
+			case '7':
+				$cssFile = 'grid-14.min.css';
+				break;
+			case '8':
+				$cssFile = 'grid-16.min.css';
+				break;
+			case '9':
+				$cssFile = 'grid-18.min.css';
+				break;
+		}
+		$styles = array(
+			$this->instance->ns_with_dashes . '--grid-theme' => array(
+				'url' => $this->©url->to_plugin_dir_file( '/templates/assets/css/' . $cssFile ),
+				'ver' => $this->instance->plugin_version_with_dashes,
+			)
+		);
+		$this->©styles->register( $styles );
+		$this->©styles->enqueue( array_keys( $styles ) );
 	}
 
 	/**

@@ -15,16 +15,51 @@ if ( ! defined( 'WPINC' ) ) {
 
 /* @var \x_related_posts\themes\theme $this */
 /* @var array $related */
+/* @var array $options */
+/* @var string $relPostClass */
 
-foreach ( array_slice($related, 0, 10) as $relPost ) {
-	/* @var \x_related_posts\posts $post */
-	$post = $this->©post($relPost->pid2);
-	?>
-	<div>
-		<h3><?php echo $post->post_title; ?></h3>
-		<p>
-			<?php echo $post->getExcerpt(10, ' ...more'); ?>
-		</p>
-	</div>
+$numOfPostsPerRow = (int) $options['numOfPostsPerRow'];
+$contentPositions = str_split( $this->©option->get( 'main_content' ) );
+?>
+<div class="xrp">
+	<h2><?php echo $this->©option->get( 'main_title' ); ?></h2>
 	<?php
-}
+	$i            = 0;
+	$numOfRelLeft = count( $related );
+	while ( $numOfRelLeft > 0 ) {
+		$relRow = array_slice( $related, $i ++ * $numOfPostsPerRow, $numOfPostsPerRow );
+		$numOfRelLeft -= count( $relRow );
+		?>
+		<div class="row">
+			<?php
+			foreach ( $relRow as $key => $rel ) {
+				/* @var \x_related_posts\posts $post */
+				$rel  = (object) $rel;
+				$post = $this->©post( $rel->pid2 );
+				?>
+				<div class="<?php echo $relPostClass; ?> col">
+					<a href="<?php echo $post->getThePermalink(); ?>">
+						<?php
+						foreach ( $contentPositions as $c ) {
+							if ( $c === 't' ) {
+								// title
+								echo $this->getPostTitleFormatted($post);
+							} elseif ( $c === 'p' ) {
+								// thumbnail
+								echo '<img src="' . $post->getThumbnail() . '">';
+							} else {
+								// exc
+								echo $this->getPostExcFormatted($post);
+							}
+						}
+						?>
+					</a>
+				</div>
+			<?php
+			}
+			?>
+		</div>
+	<?php
+	}
+	?>
+</div>

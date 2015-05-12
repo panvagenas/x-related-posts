@@ -47,6 +47,8 @@ Span 10:    100%
       padding: 0 0.2%; }
     .xrp .row .col:first-child {
       margin-left: 0; }
+    .xrp .row {
+      clear: both; }
     .xrp .xrp-col-1 {
       width: 9.55%;
       border-left-width: 0;
@@ -96,4 +98,4 @@ Span 10:    100%
       margin-left: 0;
       width: 100%; } }
 
-/*# sourceMappingURL=gridpak-10.css.map */
+/*# sourceMappingURL=grid-10.css.map */

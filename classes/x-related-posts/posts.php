@@ -375,7 +375,7 @@ class posts extends \xd_v141226_dev\posts {
 	}
 
 	/**
-	 * @param        $defaultThumbnail
+	 * @param string $defaultThumbnail
 	 * @param string $size
 	 *
 	 * @return array|bool|string
@@ -383,8 +383,12 @@ class posts extends \xd_v141226_dev\posts {
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
 	 * @since TODO ${VERSION}
 	 */
-	public function getThumbnail($defaultThumbnail, $size = 'single-post-thumbnail'){
+	public function getThumbnail($defaultThumbnail = '', $size = 'single-post-thumbnail'){
 		$this->isLoaded(true);
+
+		if(empty($defaultThumbnail)){
+			$defaultThumbnail = $this->©option->get('default_thumb');
+		}
 
 		$image_url = '';
 		if($this->hasThumbnail()){

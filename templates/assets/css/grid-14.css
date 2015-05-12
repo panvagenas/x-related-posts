@@ -51,6 +51,8 @@ Span 14:    100%
       padding: 0 0.2%; }
     .xrp .row .col:first-child {
       margin-left: 0; }
+    .xrp .row {
+      clear: both; }
     .xrp .xrp-col-1 {
       width: 6.67857%;
       border-left-width: 0;
@@ -120,4 +122,4 @@ Span 14:    100%
       margin-left: 0;
       width: 100%; } }
 
-/*# sourceMappingURL=gridpak-14.css.map */
+/*# sourceMappingURL=grid-14.css.map */

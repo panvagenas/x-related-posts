@@ -16,8 +16,6 @@ if ( ! defined( 'WPINC' ) ) {
 /* @var \x_related_posts\themes\theme $this */
 /* @var array $related */
 
-$options = $this->getOptions();
-
 if ( ! empty( $related ) ) {
 	$style = '';
 	if ( isset( $options['borderWeight'] ) && $options['borderWeight'] > 0 ) {

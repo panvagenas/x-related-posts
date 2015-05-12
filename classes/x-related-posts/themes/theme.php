@@ -104,7 +104,7 @@ class theme extends framework {
 	 */
 	protected function view( $file, Array $viewData = array(), $echo = false ) {
 		( $viewData ) ? extract( $viewData ) : null;
-
+		$options = $this->getOptions();
 		ob_start();
 		require $this->viewPath( $file );
 		$content = ob_get_clean();
