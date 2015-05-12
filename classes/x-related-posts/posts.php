@@ -319,7 +319,7 @@ class posts extends \xd_v141226_dev\posts {
 	}
 
 	/**
-	 * @param        $excLength
+	 * @param int    $excLength In words
 	 * @param string $moreText
 	 *
 	 * @return string

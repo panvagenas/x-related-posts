@@ -38,6 +38,10 @@ class simple_list extends theme{
 		'borderWeight'     => 0,
 	);
 	public $useCommonOptions = true;
+	public $commonOptions = array(
+		'post_ttl_size'  => 0,
+		'post_ttl_color' => '#ffffff',
+	);
 
 	public function display( Array $related, $echo = true ) {
 		$content = $this->view('simple-list.php', compact( 'related' ));

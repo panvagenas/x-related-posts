@@ -12,113 +12,160 @@
 /* @var \x_related_posts\themes\theme $callee */
 /* @var \xd_v141226_dev\views $this */
 /* @var array $options */
-?>
-<div class="form-group row">
-	<?php
-	$inputOptions = array(
-		'type'                => 'number',
-		'name'                => '[post_ttl_size]',
-		'title'               => $this->__( 'Post title size' ),
-		'placeholder'         => $this->__( 'Post title size' ),
-		'id'                  => 'post-ttl-size',
-		'attrs'               => '',
-		'classes'             => 'form-control col-md-10',
-		'validation_patterns' => array(
-			array(
-				'name'        => 'post_ttl_size',
-				'description' => $this->__( 'Value for this field must be zero or a positive integer' ),
-				'regex'       => '/^[0-9]+$/',
-				'minimum'     => 0,
-			)
-		),
-	);
+
+if(isset($options['post_ttl_size'])) {
 	?>
-	<label for="<?php echo $inputOptions['id']; ?>" class="col-md-3 control-label">
-		<?php echo $inputOptions['title']; ?>
-	</label>
-
-	<div class="col-sm-7">
+	<div class="form-group row">
 		<?php
-		echo $callee->fieldMarkup( $options['post_ttl_size'], $inputOptions );
+		$inputOptions = array(
+			'type'                => 'number',
+			'name'                => '[post_ttl_size]',
+			'title'               => $this->__( 'Post title size' ),
+			'placeholder'         => $this->__( 'Post title size' ),
+			'id'                  => 'post-ttl-size',
+			'attrs'               => '',
+			'classes'             => 'form-control col-md-10',
+			'validation_patterns' => array(
+				array(
+					'name'        => 'post_ttl_size',
+					'description' => $this->__( 'Value for this field must be zero or a positive integer' ),
+					'regex'       => '/^[0-9]+$/',
+					'minimum'     => 0,
+				)
+			),
+		);
 		?>
-	</div>
-</div>
+		<label for="<?php echo $inputOptions['id']; ?>" class="col-md-3 control-label">
+			<?php echo $inputOptions['title']; ?>
+		</label>
 
-<div class="form-group row">
-	<?php
-	$inputOptions = array(
-		'type'          => 'color',
-		'name'          => '[post_ttl_color]',
-		'title'         => $this->__( 'Post title color' ),
-		'placeholder'   => $this->__( 'Post title color' ),
-		'id'            => 'post-ttl-color',
-		'attrs'         => '',
-		'default_value' => '#ffffff',
-		'classes'       => 'form-control col-md-10'
-	);
+		<div class="col-sm-7">
+			<?php
+			echo $callee->fieldMarkup( $options['post_ttl_size'], $inputOptions );
+			?>
+		</div>
+	</div>
+<?php
+}
+if(isset($options['post_ttl_color'])) {
 	?>
-	<label for="<?php echo $inputOptions['id']; ?>" class="col-md-3 control-label">
-		<?php echo $inputOptions['title']; ?>
-	</label>
-
-	<div class="col-sm-2">
+	<div class="form-group row">
 		<?php
-		echo $callee->fieldMarkup( $options['post_ttl_color'], $inputOptions );
+		$inputOptions = array(
+			'type'          => 'color',
+			'name'          => '[post_ttl_color]',
+			'title'         => $this->__( 'Post title color' ),
+			'placeholder'   => $this->__( 'Post title color' ),
+			'id'            => 'post-ttl-color',
+			'attrs'         => '',
+			'default_value' => '#ffffff',
+			'classes'       => 'form-control col-md-10'
+		);
 		?>
-	</div>
-</div>
+		<label for="<?php echo $inputOptions['id']; ?>" class="col-md-3 control-label">
+			<?php echo $inputOptions['title']; ?>
+		</label>
 
-<div class="form-group row">
-	<?php
-	$inputOptions = array(
-		'type'                => 'number',
-		'name'                => '[post_exc_size]',
-		'title'               => $this->__( 'Post excerpt size' ),
-		'placeholder'         => $this->__( 'Post excerpt size' ),
-		'id'                  => 'post-exc-size',
-		'attrs'               => '',
-		'classes'             => '',
-		'validation_patterns' => array(
-			array(
-				'name'        => 'post_exc_size',
-				'description' => $this->__( 'Value for this field must be zero or a positive integer' ),
-				'regex'       => '/^[0-9]+$/',
-				'minimum'     => 0,
-			)
-		),
-	);
+		<div class="col-sm-2">
+			<?php
+			echo $callee->fieldMarkup( $options['post_ttl_color'], $inputOptions );
+			?>
+		</div>
+	</div>
+<?php
+}
+if(isset($options['post_exc_size'])) {
 	?>
-	<label for="<?php echo $inputOptions['id']; ?>" class="col-md-3 control-label">
-		<?php echo $inputOptions['title']; ?>
-	</label>
-
-	<div class="col-sm-7">
+	<div class="form-group row">
 		<?php
-		echo $callee->fieldMarkup( $options['post_exc_size'], $inputOptions );
+		$inputOptions = array(
+			'type'                => 'number',
+			'name'                => '[post_exc_size]',
+			'title'               => $this->__( 'Post excerpt size' ),
+			'placeholder'         => $this->__( 'Post excerpt size' ),
+			'id'                  => 'post-exc-size',
+			'attrs'               => '',
+			'classes'             => '',
+			'validation_patterns' => array(
+				array(
+					'name'        => 'post_exc_size',
+					'description' => $this->__( 'Value for this field must be zero or a positive integer' ),
+					'regex'       => '/^[0-9]+$/',
+					'minimum'     => 0,
+				)
+			),
+		);
 		?>
-	</div>
-</div>
+		<label for="<?php echo $inputOptions['id']; ?>" class="col-md-3 control-label">
+			<?php echo $inputOptions['title']; ?>
+		</label>
 
-<div class="form-group row">
-	<?php
-	$inputOptions = array(
-		'type'          => 'color',
-		'name'          => '[post_exc_color]',
-		'title'         => $this->__( 'Post excerpt color' ),
-		'placeholder'   => $this->__( 'Post excerpt color' ),
-		'id'            => 'post-exc-color',
-		'attrs'         => '',
-		'default_value' => '#ffffff',
-		'classes'       => ''
-	);
+		<div class="col-sm-7">
+			<?php
+			echo $callee->fieldMarkup( $options['post_exc_size'], $inputOptions );
+			?>
+		</div>
+	</div>
+<?php
+}
+if(isset($options['post_exc_color'])) {
 	?>
-	<label for="<?php echo $inputOptions['id']; ?>" class="col-md-3 control-label">
-		<?php echo $inputOptions['title']; ?>
-	</label>
-
-	<div class="col-sm-2">
+	<div class="form-group row">
 		<?php
-		echo $callee->fieldMarkup( $options['post_exc_color'], $inputOptions );
+		$inputOptions = array(
+			'type'          => 'color',
+			'name'          => '[post_exc_color]',
+			'title'         => $this->__( 'Post excerpt color' ),
+			'placeholder'   => $this->__( 'Post excerpt color' ),
+			'id'            => 'post-exc-color',
+			'attrs'         => '',
+			'default_value' => '#ffffff',
+			'classes'       => ''
+		);
 		?>
+		<label for="<?php echo $inputOptions['id']; ?>" class="col-md-3 control-label">
+			<?php echo $inputOptions['title']; ?>
+		</label>
+
+		<div class="col-sm-2">
+			<?php
+			echo $callee->fieldMarkup( $options['post_exc_color'], $inputOptions );
+			?>
+		</div>
 	</div>
-</div>
+<?php
+}
+if(isset($options['post_exc_len'])) {
+	?>
+	<div class="form-group row">
+		<?php
+		$inputOptions = array(
+			'type'                => 'number',
+			'name'                => '[post_exc_len]',
+			'title'               => $this->__( 'Post excerpt length (words)' ),
+			'placeholder'         => $this->__( 'Post excerpt length (words)' ),
+			'id'                  => 'post-exc-len',
+			'attrs'               => '',
+			'classes'             => '',
+			'validation_patterns' => array(
+				array(
+					'name'        => 'post_exc_len',
+					'description' => $this->__( 'Value for this field must be zero or a positive integer' ),
+					'regex'       => '/^[0-9]+$/',
+					'minimum'     => 0,
+				)
+			),
+		);
+		?>
+		<label for="<?php echo $inputOptions['id']; ?>" class="col-md-3 control-label">
+			<?php echo $inputOptions['title']; ?>
+		</label>
+
+		<div class="col-sm-7">
+			<?php
+			echo $callee->fieldMarkup( $options['post_exc_len'], $inputOptions );
+			?>
+		</div>
+	</div>
+<?php
+}

@@ -13,6 +13,7 @@ namespace x_related_posts\themes;
 
 
 use x_related_posts\framework;
+use x_related_posts\posts;
 
 class theme extends framework {
 	/**
@@ -44,17 +45,22 @@ class theme extends framework {
 	 */
 	public $slug = '';
 	public $useCommonOptions = false;
-	public $commonOptions = array();
+
+	public $commonOptions = array(
+		'post_ttl_size'  => 0,
+		'post_exc_size'  => 0,
+		'post_ttl_color' => '#ffffff',
+		'post_exc_color' => '#ffffff',
+		'post_exc_len'   => 10,
+	);
 
 	public function __construct( $instance ) {
 		parent::__construct( $instance );
 		$this->slug = $this->©string->with_underscores( get_class( $this ) );
-		$this->commonOptions = array(
-			'post_ttl_size'  => $this->©option->get( 'post_ttl_size' ),
-			'post_exc_size'  => $this->©option->get( 'post_exc_size' ),
-			'post_ttl_color' => $this->©option->get( 'post_ttl_color' ),
-			'post_exc_color' => $this->©option->get( 'post_exc_color' ),
-		);
+
+		foreach ( $this->commonOptions as $k => &$v ) {
+			$v = $this->©option->get( $k );
+		}
 	}
 
 	/**
@@ -196,9 +202,69 @@ class theme extends framework {
 			'post_exc_color' => isset( $newOptions['post_exc_color'] ) && ! empty( $newOptions['post_exc_color'] )
 				? esc_sql( $newOptions['post_exc_color'] )
 				: $this->©option->get( 'post_exc_color' ),
+			'post_exc_len'  => isset( $newOptions ['post_exc_len'] ) && $newOptions ['post_exc_len'] >= 0
+				? (int) esc_sql( $newOptions ['post_exc_len'] )
+				: $this->©option->get( 'post_exc_len' ),
 		);
 
 		return $validated;
+	}
+
+	/**
+	 * @param posts $post
+	 *
+	 * @return string
+	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
+	 * @since TODO ${VERSION}
+	 */
+	public function getPostTitleFormatted(posts $post){
+		$title = wp_strip_all_tags($post->post_title);
+		if(!$this->useCommonOptions){
+			return $title;
+		}
+		$options = $this->getOptions();
+		$size = ((int)$options['post_ttl_size']) > 0 ? (int)$options['post_ttl_size'] : 0;
+		$color = strtolower($options['post_ttl_color']) != '#ffffff' ? $options['post_ttl_color'] : 0;
+		return $this->getFormattedText($title, $size, $color);
+	}
+
+	/**
+	 * @param posts $post
+	 *
+	 * @return string
+	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
+	 * @since TODO ${VERSION}
+	 */
+	public function getPostExcFormatted(posts $post){
+		$exc = $post->getExcerpt($this->©option->get('post_exc_len'), $this->©option->get('read_more'));
+		if(!$this->useCommonOptions){
+			return $exc;
+		}
+		$options = $this->getOptions();
+		$size = ((int)$options['post_exc_size']) > 0 ? (int)$options['post_exc_size'] : 0;
+		$color = strtolower($options['post_exc_color']) != '#ffffff' ? $options['post_exc_color'] : 0;
+		return $this->getFormattedText($exc, $size, $color);
+	}
+
+	/**
+	 * @param        $text
+	 * @param int    $size
+	 * @param string $color
+	 * @param string $sizeUnit
+	 *
+	 * @return string
+	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
+	 * @since TODO ${VERSION}
+	 */
+	public function getFormattedText($text, $size = 0, $color = '', $sizeUnit = 'px'){
+		$out = '';
+		if($size > 0){
+			$out .='font-size: ' . $size . $sizeUnit . ';';
+		}
+		if($color){
+			$out .= ' color: ' . $color . ';';
+		}
+		return empty($out) ? $text : ('<span style="' . $out . '">' . $text . '</span>');
 	}
 
 	/**
@@ -231,18 +297,6 @@ class theme extends framework {
 		$field['name'] = "[{$this->domain}_theme_options][{$this->slug}]{$field['name']}";
 
 		return $this->©menu_pages__settings->option_form_fields->markup( $field_value, $field );
-	}
-
-	/**
-	 * @param $defaults
-	 * @param $validators
-	 *
-	 * @return array
-	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
-	 */
-	public function setUp( $defaults, $validators ) {
-		return parent::setUp( $defaults, $validators );
 	}
 
 	/**

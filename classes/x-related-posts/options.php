@@ -94,7 +94,7 @@ class options extends \xd_v141226_dev\options {
 			 * General Options
 			 ***********************************************/
 			'main_activate'                              => 1,
-			'track_visited'                              => 0,
+			'track_visited'                              => 1,
 			'main_title'                                 => 'X Related Posts',
 			'main_rate_by'                               => 'c',
 			/***********************************************
@@ -113,7 +113,7 @@ class options extends \xd_v141226_dev\options {
 			'main_thumb_height'                          => 200,
 			'main_thumb_width'                           => 300,
 			'default_thumb'                              => '',
-			'read_more'                                  => '...read more',
+			'read_more'                                  => ' [...]',
 			/***********************************************
 			 * themes
 			 ***********************************************/
@@ -121,6 +121,7 @@ class options extends \xd_v141226_dev\options {
 			'post_ttl_color'                             => '#ffffff',
 			'post_exc_size'                              => 0,
 			'post_exc_color'                             => '#ffffff',
+			'post_exc_len'                               => 0,
 			'main_theme'                                 => 'x_related_posts__themes__main__grid',
 			'main_theme_options'                         => array(),
 			/***********************************************
@@ -160,6 +161,7 @@ class options extends \xd_v141226_dev\options {
 			'post_ttl_size'         => array( 'string:numeric >=' => 1 ),
 			'post_ttl_color'        => array( 'string' ),
 			'post_exc_size'         => array( 'string:numeric >=' => 1 ),
+			'post_exc_len'         => array( 'string:numeric >=' => 0 ),
 			'post_exc_color'        => array( 'string' ),
 			'main_theme'            => array( 'string:!empty' ),
 			'main_theme_options'    => array( 'array:!empty' ),
