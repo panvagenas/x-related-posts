@@ -1,0 +1,147 @@
+/**
+ * Gridpak Beta SCSS 
+ *
+ * Generator - http://gridpak.com/
+ * Created by @erskinedesign
+ */
+/* Reusable column setup */
+.col {
+  border: 0px solid transparent;
+  float: left;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -moz-background-clip: padding-box !important;
+  -webkit-background-clip: padding-box !important;
+  background-clip: padding-box !important; }
+
+/* 1. 18 Column Grid 0px - Infinity
+-----------------------------------------------------------------------------
+
+Span 1:    5.08333333333%
+Span 2:    10.6666666667%
+Span 3:    16.25%
+Span 4:    21.8333333333%
+Span 5:    27.4166666667%
+Span 6:    33.0%
+Span 7:    38.5833333333%
+Span 8:    44.1666666667%
+Span 9:    49.75%
+Span 10:    55.3333333333%
+Span 11:    60.9166666667%
+Span 12:    66.5%
+Span 13:    72.0833333333%
+Span 14:    77.6666666667%
+Span 15:    83.25%
+Span 16:    88.8333333333%
+Span 17:    94.4166666667%
+Span 18:    100%
+
+----------------------------------------------------------------------------- */
+@media screen and (min-width: 0px) {
+  .xrp {
+    /* --- Gridpak variables ---*/
+        /*
+        Add your semantic classnames in alongside their corresponding spans here. e.g.
+
+        .xrp-col-3,
+        .my_semantic_class_name {
+            ...
+        }
+
+        */ }
+    .xrp .col {
+      margin-left: 0.5%;
+      padding: 0 0.2%; }
+    .xrp .row .col:first-child {
+      margin-left: 0; }
+    .xrp .xrp-col-1 {
+      width: 5.08333%;
+      border-left-width: 0;
+      padding: 0 0.2%;
+      margin-left: 0.5%; }
+    .xrp .xrp-col-2 {
+      width: 10.66667%;
+      border-left-width: 0;
+      padding: 0 0.2%;
+      margin-left: 0.5%; }
+    .xrp .xrp-col-3 {
+      width: 16.25%;
+      border-left-width: 0;
+      padding: 0 0.2%;
+      margin-left: 0.5%; }
+    .xrp .xrp-col-4 {
+      width: 21.83333%;
+      border-left-width: 0;
+      padding: 0 0.2%;
+      margin-left: 0.5%; }
+    .xrp .xrp-col-5 {
+      width: 27.41667%;
+      border-left-width: 0;
+      padding: 0 0.2%;
+      margin-left: 0.5%; }
+    .xrp .xrp-col-6 {
+      width: 33%;
+      border-left-width: 0;
+      padding: 0 0.2%;
+      margin-left: 0.5%; }
+    .xrp .xrp-col-7 {
+      width: 38.58333%;
+      border-left-width: 0;
+      padding: 0 0.2%;
+      margin-left: 0.5%; }
+    .xrp .xrp-col-8 {
+      width: 44.16667%;
+      border-left-width: 0;
+      padding: 0 0.2%;
+      margin-left: 0.5%; }
+    .xrp .xrp-col-9 {
+      width: 49.75%;
+      border-left-width: 0;
+      padding: 0 0.2%;
+      margin-left: 0.5%; }
+    .xrp .xrp-col-10 {
+      width: 55.33333%;
+      border-left-width: 0;
+      padding: 0 0.2%;
+      margin-left: 0.5%; }
+    .xrp .xrp-col-11 {
+      width: 60.91667%;
+      border-left-width: 0;
+      padding: 0 0.2%;
+      margin-left: 0.5%; }
+    .xrp .xrp-col-12 {
+      width: 66.5%;
+      border-left-width: 0;
+      padding: 0 0.2%;
+      margin-left: 0.5%; }
+    .xrp .xrp-col-13 {
+      width: 72.08333%;
+      border-left-width: 0;
+      padding: 0 0.2%;
+      margin-left: 0.5%; }
+    .xrp .xrp-col-14 {
+      width: 77.66667%;
+      border-left-width: 0;
+      padding: 0 0.2%;
+      margin-left: 0.5%; }
+    .xrp .xrp-col-15 {
+      width: 83.25%;
+      border-left-width: 0;
+      padding: 0 0.2%;
+      margin-left: 0.5%; }
+    .xrp .xrp-col-16 {
+      width: 88.83333%;
+      border-left-width: 0;
+      padding: 0 0.2%;
+      margin-left: 0.5%; }
+    .xrp .xrp-col-17 {
+      width: 94.41667%;
+      border-left-width: 0;
+      padding: 0 0.2%;
+      margin-left: 0.5%; }
+    .xrp .xrp-col-18 {
+      margin-left: 0;
+      width: 100%; } }
+
+/*# sourceMappingURL=gridpak-18.css.map */

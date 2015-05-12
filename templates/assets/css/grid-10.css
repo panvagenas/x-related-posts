@@ -1,0 +1,99 @@
+/**
+ * Gridpak Beta SCSS 
+ *
+ * Generator - http://gridpak.com/
+ * Created by @erskinedesign
+ */
+/* Reusable column setup */
+.col {
+  border: 0px solid transparent;
+  float: left;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -moz-background-clip: padding-box !important;
+  -webkit-background-clip: padding-box !important;
+  background-clip: padding-box !important; }
+
+/* 1. 10 Column Grid 0px - Infinity
+-----------------------------------------------------------------------------
+
+Span 1:    9.55%
+Span 2:    19.6%
+Span 3:    29.65%
+Span 4:    39.7%
+Span 5:    49.75%
+Span 6:    59.8%
+Span 7:    69.85%
+Span 8:    79.9%
+Span 9:    89.95%
+Span 10:    100%
+
+----------------------------------------------------------------------------- */
+@media screen and (min-width: 0px) {
+  .xrp {
+    /* --- Gridpak variables ---*/
+        /*
+        Add your semantic classnames in alongside their corresponding spans here. e.g.
+
+        .xrp-col-3,
+        .my_semantic_class_name {
+            ...
+        }
+
+        */ }
+    .xrp .col {
+      margin-left: 0.5%;
+      padding: 0 0.2%; }
+    .xrp .row .col:first-child {
+      margin-left: 0; }
+    .xrp .xrp-col-1 {
+      width: 9.55%;
+      border-left-width: 0;
+      padding: 0 0.2%;
+      margin-left: 0.5%; }
+    .xrp .xrp-col-2 {
+      width: 19.6%;
+      border-left-width: 0;
+      padding: 0 0.2%;
+      margin-left: 0.5%; }
+    .xrp .xrp-col-3 {
+      width: 29.65%;
+      border-left-width: 0;
+      padding: 0 0.2%;
+      margin-left: 0.5%; }
+    .xrp .xrp-col-4 {
+      width: 39.7%;
+      border-left-width: 0;
+      padding: 0 0.2%;
+      margin-left: 0.5%; }
+    .xrp .xrp-col-5 {
+      width: 49.75%;
+      border-left-width: 0;
+      padding: 0 0.2%;
+      margin-left: 0.5%; }
+    .xrp .xrp-col-6 {
+      width: 59.8%;
+      border-left-width: 0;
+      padding: 0 0.2%;
+      margin-left: 0.5%; }
+    .xrp .xrp-col-7 {
+      width: 69.85%;
+      border-left-width: 0;
+      padding: 0 0.2%;
+      margin-left: 0.5%; }
+    .xrp .xrp-col-8 {
+      width: 79.9%;
+      border-left-width: 0;
+      padding: 0 0.2%;
+      margin-left: 0.5%; }
+    .xrp .xrp-col-9 {
+      width: 89.95%;
+      border-left-width: 0;
+      padding: 0 0.2%;
+      margin-left: 0.5%; }
+    .xrp .xrp-col-10 {
+      margin-left: 0;
+      width: 100%; } }
+
+/*# sourceMappingURL=gridpak-10.css.map */
