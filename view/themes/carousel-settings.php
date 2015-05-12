@@ -26,7 +26,7 @@ if ( ! defined( 'WPINC' ) ) {
 		'title'   => $this->__( 'thumbCaption' ),
 		'id'      => 'thumbCaption',
 		'attrs'   => '',
-		'classes' => 'form-control col-md-10'
+		'classes' => ''
 	);
 	?>
 	<label for="<?php echo $inputOptions['id']; ?>" class="col-md-3 control-label">
@@ -48,7 +48,7 @@ if ( ! defined( 'WPINC' ) ) {
 		'title'   => $this->__( 'carouselPauseHover' ),
 		'id'      => 'carouselPauseHover',
 		'attrs'   => '',
-		'classes' => 'form-control col-md-10'
+		'classes' => ''
 	);
 	?>
 	<label for="<?php echo $inputOptions['id']; ?>" class="col-md-3 control-label">
