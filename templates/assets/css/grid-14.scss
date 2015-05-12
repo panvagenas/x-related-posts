@@ -71,6 +71,10 @@ Span 14:    100%
             @include xrp-col-first;
         }
 
+        .row {
+            clear: both;
+        }
+
         /*
         Add your semantic classnames in alongside their corresponding spans here. e.g.
 
