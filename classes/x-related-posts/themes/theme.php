@@ -209,7 +209,7 @@ class theme extends framework {
 				: $this->©option->get( 'post_exc_len' ),
 		);
 
-		return $validated;
+		return array_intersect_key($validated, $this->commonOptions);
 	}
 
 	/**
