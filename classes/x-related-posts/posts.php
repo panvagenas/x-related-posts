@@ -468,6 +468,13 @@ class posts extends \xd_v141226_dev\posts {
 		return $this->©db_actions->deleteAll( $pid );
 	}
 
+	/**
+	 * @param string $property
+	 *
+	 * @return bool
+	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
+	 * @since TODO ${VERSION}
+	 */
 	public function __isset($property)
 	{
 		$property = (string)$property;
@@ -478,6 +485,13 @@ class posts extends \xd_v141226_dev\posts {
 		return parent::__isset($property); // Default return value.
 	}
 
+	/**
+	 * @param string $property
+	 *
+	 * @return array|mixed
+	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
+	 * @since TODO ${VERSION}
+	 */
 	public function __get($property)
 	{
 		$property = (string)$property; // Typecasting this to a string value.
@@ -488,6 +502,14 @@ class posts extends \xd_v141226_dev\posts {
 		return parent::__get($property); // Default return value.
 	}
 
+	/**
+	 * @param string $method
+	 * @param array  $args
+	 *
+	 * @return mixed
+	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
+	 * @since TODO ${VERSION}
+	 */
 	public function __call($method, $args)
 	{
 		$method = (string)$method;
@@ -499,6 +521,14 @@ class posts extends \xd_v141226_dev\posts {
 		return parent::__call($method, $args); // Default return value.
 	}
 
+	/**
+	 * @param bool $raiseException
+	 *
+	 * @return bool
+	 * @throws \xd_v141226_dev\exception
+	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
+	 * @since TODO ${VERSION}
+	 */
 	private function isLoaded($raiseException = false){
 		$is = $this->post instanceof \WP_Post;
 		if ( $raiseException && ! $is ) {

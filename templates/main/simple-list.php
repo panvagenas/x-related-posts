@@ -18,20 +18,20 @@ if ( ! defined( 'WPINC' ) ) {
 
 if ( ! empty( $related ) ) {
 	$style = '';
-	if ( isset( $options['borderWeight'] ) && $options['borderWeight'] > 0 ) {
-		$style .= ' border: ' . $options['borderWeight'] . 'px solid; ';
+	if ( isset( $this->options['borderWeight'] ) && $this->options['borderWeight'] > 0 ) {
+		$style .= ' border: ' . $this->options['borderWeight'] . 'px solid; ';
 	}
-	if ( isset( $options['borderRadius'] ) && $options['borderRadius'] > 0 ) {
-		$style .= ' border-radius:  ' . $options['borderRadius'] . 'px; ';
+	if ( isset( $this->options['borderRadius'] ) && $this->options['borderRadius'] > 0 ) {
+		$style .= ' border-radius:  ' . $this->options['borderRadius'] . 'px; ';
 	}
-	if ( isset( $options['borderColor'] ) && $options['borderColor'] != '#ffffff' ) {
-		$style .= ' border-color: ' . $options['borderColor'] . '; ';
+	if ( isset( $this->options['borderColor'] ) && $this->options['borderColor'] != '#ffffff' ) {
+		$style .= ' border-color: ' . $this->options['borderColor'] . '; ';
 	}
 	?>
 	<div class="x-related-wrapper"  style="<?php echo $style; ?>">
 		<h2><?php echo $this->©option->get('main_title'); ?></h2>
 		<?php
-		if ($options['orderedList']){
+		if ($this->options['orderedList']){
 			?>
 			<ol>
 			<?php
@@ -50,7 +50,7 @@ if ( ! empty( $related ) ) {
 			</li>
 		<?php
 		}
-		if ($options['orderedList']){
+		if ($this->options['orderedList']){
 			?>
 			</ol>
 			<?php

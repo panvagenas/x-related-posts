@@ -51,34 +51,33 @@ class grid extends theme {
 	 */
 	public function display( Array $related, $echo = true ) {
 		$this->enqueueScripts();
-		$options = $this->getOptions();
-		switch ( $options['numOfPostsPerRow'] ) {
+
+		switch ( $this->options['numOfPostsPerRow'] ) {
 			default:
 			case '1':
 			case '2':
 			case '3':
 			case '4':
 			case '6':
-				$colSpan = 12 / (int) $options['numOfPostsPerRow'];
+				$colSpan = 12 / (int) $this->options['numOfPostsPerRow'];
 				break;
 			case '5':
 			case '10':
-				$colSpan = 10 / (int) $options['numOfPostsPerRow'];
+				$colSpan = 10 / (int) $this->options['numOfPostsPerRow'];
 				break;
 			case '7':
-				$colSpan = 14 / (int) $options['numOfPostsPerRow'];
+				$colSpan = 14 / (int) $this->options['numOfPostsPerRow'];
 				break;
 			case '8':
-				$colSpan = 16 / (int) $options['numOfPostsPerRow'];
+				$colSpan = 16 / (int) $this->options['numOfPostsPerRow'];
 				break;
 			case '9':
-				$colSpan = 18 / (int) $options['numOfPostsPerRow'];
+				$colSpan = 18 / (int) $this->options['numOfPostsPerRow'];
 				break;
 		}
 		$content = $this->view( 'grid.php', array(
 			'related'      => $related,
 			'relPostClass' => 'xrp-col-' . $colSpan,
-			'options'      => $options
 		) );
 		if ( $echo ) {
 			echo $content;
@@ -88,8 +87,7 @@ class grid extends theme {
 	}
 
 	protected function enqueueScripts() {
-		$options = $this->getOptions();
-		switch ( $options['numOfPostsPerRow'] ) {
+		switch ( $this->options['numOfPostsPerRow'] ) {
 			default:
 			case '1':
 			case '2':
@@ -130,8 +128,8 @@ class grid extends theme {
 	 * @since TODO ${VERSION}
 	 */
 	public function settings( $echo = true ) {
-		$content = $this->©view->view( $this, 'themes/themes-common.php', array( 'options' => $this->getOptions() ) );
-		$content .= $this->©view->view( $this, 'themes/grid-settings.php', array( 'options' => $this->getOptions() ) );
+		$content = $this->©view->view( $this, 'themes/themes-common.php', array( 'options' => $this->options ) );
+		$content .= $this->©view->view( $this, 'themes/grid-settings.php', array( 'options' => $this->options ) );
 		if ( $echo ) {
 			echo $content;
 		}

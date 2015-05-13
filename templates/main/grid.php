@@ -15,10 +15,9 @@ if ( ! defined( 'WPINC' ) ) {
 
 /* @var \x_related_posts\themes\theme $this */
 /* @var array $related */
-/* @var array $options */
 /* @var string $relPostClass */
 
-$numOfPostsPerRow = (int) $options['numOfPostsPerRow'];
+$numOfPostsPerRow = (int) $this->options['numOfPostsPerRow'];
 $contentPositions = str_split( $this->©option->get( 'main_content' ) );
 ?>
 <div class="xrp">

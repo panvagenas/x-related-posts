@@ -41,12 +41,24 @@ class carousel extends theme {
 	public $useCommonOptions = true;
 
 	public function display( Array $related, $echo = true ) {
-		$content = $this->view( 'carousel.php' );
+		$this->enqueueScripts();
+		$content = $this->view( 'carousel.php', compact('related') );
 		if ( $echo ) {
 			echo $content;
 		}
 
 		return $content;
+	}
+
+	protected function enqueueScripts() {
+		$scripts = array(
+			$this->instance->ns_with_dashes . '--jssor.slider.mini' => array(
+				'url' => $this->©url->to_plugin_dir_file( '/templates/assets/js/jssor.slider.mini.js' ),
+				'ver' => $this->instance->plugin_version_with_dashes,
+			)
+		);
+		$this->©script->register( $scripts );
+		$this->©script->enqueue( array_keys( $scripts ) );
 	}
 
 	/**
@@ -57,8 +69,8 @@ class carousel extends theme {
 	 * @since TODO ${VERSION}
 	 */
 	public function settings( $echo = true ) {
-		$content = $this->©view->view( $this, 'themes/themes-common.php', array( 'options' => $this->getOptions() ) );
-		$content .= $this->©view->view( $this, 'themes/carousel-settings.php', array( 'options' => $this->getOptions() ) );
+		$content = $this->©view->view( $this, 'themes/themes-common.php', array( 'options' => $this->options ) );
+		$content .= $this->©view->view( $this, 'themes/carousel-settings.php', array( 'options' => $this->options ) );
 		if ( $echo ) {
 			echo $content;
 		}

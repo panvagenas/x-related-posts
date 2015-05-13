@@ -44,6 +44,7 @@ class theme extends framework {
 	 * @var string Dynamically set. Do not overwrite
 	 */
 	public $slug = '';
+	public $options = array();
 	public $useCommonOptions = false;
 
 	public $commonOptions = array(
@@ -61,6 +62,7 @@ class theme extends framework {
 		foreach ( $this->commonOptions as $k => &$v ) {
 			$v = $this->©option->get( $k );
 		}
+		$this->options = $this->getOptions();
 	}
 
 	/**
@@ -104,7 +106,7 @@ class theme extends framework {
 	 */
 	protected function view( $file, Array $viewData = array(), $echo = false ) {
 		( $viewData ) ? extract( $viewData ) : null;
-		$options = $this->getOptions();
+
 		ob_start();
 		require $this->viewPath( $file );
 		$content = ob_get_clean();
@@ -222,9 +224,9 @@ class theme extends framework {
 		if(!$this->useCommonOptions){
 			return $title;
 		}
-		$options = $this->getOptions();
-		$size = ((int)$options['post_ttl_size']) > 0 ? (int)$options['post_ttl_size'] : 0;
-		$color = strtolower($options['post_ttl_color']) != '#ffffff' ? $options['post_ttl_color'] : 0;
+
+		$size = ((int)$this->options['post_ttl_size']) > 0 ? (int)$this->options['post_ttl_size'] : 0;
+		$color = strtolower($this->options['post_ttl_color']) != '#ffffff' ? $this->options['post_ttl_color'] : 0;
 		return $this->getFormattedText($title, $size, $color);
 	}
 
@@ -240,9 +242,9 @@ class theme extends framework {
 		if(!$this->useCommonOptions){
 			return $exc;
 		}
-		$options = $this->getOptions();
-		$size = ((int)$options['post_exc_size']) > 0 ? (int)$options['post_exc_size'] : 0;
-		$color = strtolower($options['post_exc_color']) != '#ffffff' ? $options['post_exc_color'] : 0;
+
+		$size = ((int)$this->options['post_exc_size']) > 0 ? (int)$this->options['post_exc_size'] : 0;
+		$color = strtolower($this->options['post_exc_color']) != '#ffffff' ? $this->options['post_exc_color'] : 0;
 		return $this->getFormattedText($exc, $size, $color);
 	}
 
