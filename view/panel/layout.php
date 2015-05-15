@@ -144,32 +144,4 @@ if ( ! defined( 'WPINC' ) ) {
 		</div>
 	</div>
 
-	<div class="form-group row">
-		<?php
-		$inputOptions = array(
-			'type'           => 'media',
-			'name'           => '[default_thumb]',
-			'title'          => $this->__( 'Default thumbnail' ),
-			'placeholder'    => $this->__( 'Default thumbnail' ),
-			'button_label'   => $this->__('Choose Image'),
-			'alt'            => $this->__('Default thumbnail'),
-			'src'            => '',
-			'use_button_tag' => false,
-			'required'       => true,
-			'id'             => 'default-thumb',
-			'attrs'          => '',
-			'classes'        => ''
-		);
-		?>
-		<label for="<?php echo $inputOptions['id']; ?>" class="col-md-3 control-label">
-			<?php echo $inputOptions['title']; ?>
-		</label>
-
-		<div class="col-sm-7">
-			<?php
-			echo $callee->menu_page->option_form_fields->markup( $this->©option->get( 'default_thumb' ), $inputOptions );
-			?>
-		</div>
-	</div>
-
 </div>
