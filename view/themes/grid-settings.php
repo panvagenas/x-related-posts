@@ -53,12 +53,22 @@ if ( ! defined( 'WPINC' ) ) {
 	<div class="form-group row">
 		<?php
 		$inputOptions = array(
-			'type'        => 'checkbox',
+			'type'        => 'select',
 			'name'        => '[thumbCaption]',
 			'title'       => $this->__( 'thumbCaption' ),
 			'id'          => 'thumbCaption',
 			'attrs'       => '',
-			'classes'     => ''
+			'classes'     => '',
+			'options'     => array(
+				array(
+					'value' => '1',
+					'label' => 'Yes'
+				),
+				array(
+					'value' => '0',
+					'label' => 'No'
+				)
+			)
 		);
 		?>
 		<label for="<?php echo $inputOptions['id']; ?>" class="col-md-3 control-label">

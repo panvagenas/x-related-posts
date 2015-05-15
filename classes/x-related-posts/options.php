@@ -176,13 +176,6 @@ class options extends \xd_v141226_dev\options {
 	}
 
 	public function update( $new_options = array() ) {
-		$bools = array( 'main_activate', 'track_visited', 'main_crop_thumb' );
-		foreach ( $bools as $v ) {
-			if ( ! isset( $new_options[ $v ] ) ) {
-				$new_options[ $v ] = 0;
-			}
-		}
-
 		foreach ( $this->©themes->domains as $domain ) {
 			$domainKey       = "{$domain}_theme";
 			$themeOptionsKey = "{$domainKey}_options";
