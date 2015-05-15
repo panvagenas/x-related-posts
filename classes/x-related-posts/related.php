@@ -80,15 +80,11 @@ class related extends framework{
 
 		$where = ' pid1='.(int)$pid;
 
-		if(in_array($this->rate_by, array('c', 'ct', 'tc'))){
-			$where .= ' AND score_cats > 0 ';
+		if($this->©tracker->isEnabled() && ($visited = $this->©tracker->getVisited())){
+			$where .= ' AND pid2 NOT IN (' . implode(',', $visited) . ') ';
 		}
 
-		if(in_array($this->rate_by, array('t', 'ct', 'tc'))){
-			$where .= ' AND score_tags > 0 ';
-		}
-
-		$sql .= "$where ) AS rel ";
+		$sql .= "$where ) AS rel WHERE rel.rating > 0";
 
 		$sortParts = str_split($this->sort_by);
 		$orderBy = '';

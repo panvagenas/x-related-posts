@@ -206,7 +206,7 @@ class db_actions extends framework {
 		if ( empty( $record ) ) {
 			return 0;
 		}
-		$clicks = (int) $record ['clicks'] + 1;
+		$clicks = (int) $record->clicks + 1;
 		$this->update( $pid1, $pid2, array( 'clicks' => $clicks ) );
 
 		return $clicks;

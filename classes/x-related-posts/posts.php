@@ -371,7 +371,8 @@ class posts extends \xd_v141226_dev\posts {
 	 */
 	public function getThePermalink(){
 		$this->isLoaded(true);
-		return get_the_permalink($this->ID);
+
+		return $this->©tracker->maybeTrackLink(get_the_permalink($this->ID));
 	}
 
 	/**
