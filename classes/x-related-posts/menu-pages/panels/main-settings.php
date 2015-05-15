@@ -14,12 +14,12 @@ namespace x_related_posts\menu_pages\panels;
 
 use xd_v141226_dev\menu_pages\panels\panel;
 
-class content extends panel{
+class main_settings extends panel{
 	/**
 	 * @var string Heading/title for this panel.
 	 * @extenders Should be overridden by class extenders.
 	 */
-	public $heading_title = 'Content settings';
+	public $heading_title = 'Main settings';
 
 	/**
 	 * @var string Content/body for this panel.
@@ -36,9 +36,6 @@ class content extends panel{
 	public function __construct( $instance, $menu_page ) {
 		parent::__construct( $instance, $menu_page );
 
-		/**
-		 * Add the content
-		 */
-		$this->content_body .= $this->©view->view($this, 'panel/content.php');
+		$this->content_body .= $this->©view->view($this, 'panel/main-settings.php', array('options' => $this->©option->options));
 	}
 }

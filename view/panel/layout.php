@@ -21,40 +21,6 @@ if ( ! defined( 'WPINC' ) ) {
 
 	<div class="form-group row">
 		<?php
-		$inputOptions = array(
-			'type'        => 'select',
-			'name'        => '[main_position]',
-			'title'       => $this->__( 'Position' ),
-			'placeholder' => $this->__( 'Position' ),
-			'required'    => true,
-			'id'          => 'main-position',
-			'attrs'       => '',
-			'classes'     => '',
-			'options'     => array(
-				array(
-					'label' => $this->__( 'Top' ),
-					'value' => 'top'
-				),
-				array(
-					'label' => $this->__( 'Bottom' ),
-					'value' => 'bottom'
-				)
-			)
-		);
-		?>
-		<label for="<?php echo $inputOptions['id']; ?>" class="col-md-3 control-label">
-			<?php echo $inputOptions['title']; ?>
-		</label>
-
-		<div class="col-sm-7">
-			<?php
-			echo $callee->menu_page->option_form_fields->markup( $this->©option->get( 'main_position' ), $inputOptions );
-			?>
-		</div>
-	</div>
-
-	<div class="form-group row">
-		<?php
 		$options = array();
 		foreach ( \x_related_posts\options::$contentPositioningOptions as $k => $v ) {
 			$options[] = array(
@@ -202,29 +168,6 @@ if ( ! defined( 'WPINC' ) ) {
 		<div class="col-sm-7">
 			<?php
 			echo $callee->menu_page->option_form_fields->markup( $this->©option->get( 'default_thumb' ), $inputOptions );
-			?>
-		</div>
-	</div>
-
-	<div class="form-group row">
-		<?php
-		$inputOptions = array(
-			'type'        => 'text',
-			'name'        => '[read_more]',
-			'title'       => $this->__( 'Read more text' ),
-			'placeholder' => $this->__( 'Read more text' ),
-			'id'          => 'read-more',
-			'attrs'       => '',
-			'classes'     => ''
-		);
-		?>
-		<label for="<?php echo $inputOptions['id']; ?>" class="col-md-3 control-label">
-			<?php echo $inputOptions['title']; ?>
-		</label>
-
-		<div class="col-sm-7">
-			<?php
-			echo $callee->menu_page->option_form_fields->markup( $this->©option->get( 'read_more' ), $inputOptions );
 			?>
 		</div>
 	</div>

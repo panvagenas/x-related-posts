@@ -36,7 +36,7 @@ class settings extends menu_page{
 	 */
 	public function display_content_panels() {
 		$this->add_content_panel( $this->©menu_pages__panels__general( $this ), true );
-		$this->add_content_panel( $this->©menu_pages__panels__content( $this ), true );
+		$this->add_content_panel( $this->©menu_pages__panels__main_settings( $this ), true );
 		$this->add_content_panel( $this->©menu_pages__panels__layout( $this ), true );
 		$this->add_content_panel( $this->©menu_pages__panels__theme( $this ), true );
 		$this->add_content_panel( $this->©menu_pages__panels__excluded( $this ), true );
