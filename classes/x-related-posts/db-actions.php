@@ -251,6 +251,7 @@ class db_actions extends framework {
 			$where = '';
 			foreach ( $this->delete as $k => $v ) {
 				$where .= ' (pid1 =' . ( (int) $v['pid1'] ) . ' AND pid2=' . ( (int) $v['pid2'] ) . ') OR';
+				unset($this->delete[$k]);
 			}
 			$where = rtrim( $where, ' OR' );
 			if ( ! empty( $where ) ) {
@@ -288,6 +289,7 @@ class db_actions extends framework {
 							( isset( $data['update_time'] ) ? $data['update_time'] : date( 'Y-m-d H:i:s' ) )
 						);
 					}
+					unset($this->insert[$pid1][$pid2]);
 				}
 			}
 			$values = rtrim( $values, ',' );
@@ -318,6 +320,7 @@ class db_actions extends framework {
 				foreach ( $v as $pid2 => $value ) {
 					$this->update($pid1, $pid2, array('displayed' => 'displayed+'.((int)$value)));
 					$incremented++;
+					unset($this->displayed[$pid1][$pid2]);
 				}
 			}
 		}
@@ -368,6 +371,7 @@ class db_actions extends framework {
 						$this->insert($pid1, $pid2, $data);
 						$toInsert = true;
 					}
+					unset($this->update[$pid1][$pid2]);
 				}
 			}
 
