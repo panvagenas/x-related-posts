@@ -108,10 +108,10 @@ class options extends \xd_v141226_dev\options {
 			 * Layout Options
 			 ***********************************************/
 			'main_position'                              => 'bottom',
-			'main_content'                               => 'pt',
-			'main_crop_thumb'                            => 1,
-			'main_thumb_height'                          => 200,
-			'main_thumb_width'                           => 300,
+			'content'                               => 'pt',
+			'crop_thumb'                            => 1,
+			'thumb_height'                          => 200,
+			'thumb_width'                           => 300,
 			'default_thumb'                              => '',
 			'read_more'                                  => ' [...]',
 			/***********************************************
@@ -149,10 +149,10 @@ class options extends \xd_v141226_dev\options {
 			 * Layout Options
 			 ***********************************************/
 			'main_position'         => array( 'string:!empty' ),
-			'main_content'          => array( 'string:!empty' ),
-			'main_crop_thumb'       => array( 'string:numeric >=' => 0, 'string:numeric <=' => 1 ),
-			'main_thumb_height'     => array( 'string:numeric >=' => 0 ),
-			'main_thumb_width'      => array( 'string:numeric >=' => 0 ),
+			'content'          => array( 'string:!empty' ),
+			'crop_thumb'       => array( 'string:numeric >=' => 0, 'string:numeric <=' => 1 ),
+			'thumb_height'     => array( 'string:numeric >=' => 0 ),
+			'thumb_width'      => array( 'string:numeric >=' => 0 ),
 			'default_thumb'         => array( 'string' ),
 			'read_more'             => array( 'string' ),
 			/***********************************************

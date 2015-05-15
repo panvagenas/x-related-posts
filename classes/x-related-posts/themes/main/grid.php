@@ -40,6 +40,17 @@ class grid extends theme {
 		'borderWeight'     => 0,
 	);
 	public $useCommonOptions = true;
+	public $commonOptions = array(
+		'post_ttl_size'  => 0,
+		'post_exc_size'  => 0,
+		'post_ttl_color' => '#ffffff',
+		'post_exc_color' => '#ffffff',
+		'post_exc_len'   => 10,
+		'content'        => 'pt',
+		'crop_thumb'     => 1,
+		'thumb_height'   => 200,
+		'thumb_width'    => 300,
+	);
 
 	/**
 	 * @param array $related

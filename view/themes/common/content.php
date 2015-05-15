@@ -1,10 +1,10 @@
 <?php
 /**
  * Project: x-related-posts
- * File: post_ttl_color.php
+ * File: content.php
  * User: Panagiotis Vagenas <pan.vagenas@gmail.com>
  * Date: 15/5/2015
- * Time: 10:41 μμ
+ * Time: 11:25 μμ
  * Since: TODO ${VERSION}
  * Copyright: 2015 Panagiotis Vagenas
  */
@@ -16,28 +16,35 @@ if ( ! defined( 'WPINC' ) ) {
 /* @var \xd_v141226_dev\views $this */
 /* @var array $options */
 
-if ( isset( $options['post_ttl_color'] ) ) {
+if ( isset( $options['content'] ) ) {
 	?>
 	<div class="form-group row">
 		<?php
+		$options = array();
+		foreach ( \x_related_posts\options::$contentPositioningOptions as $k => $v ) {
+			$options[] = array(
+				'label' => $v,
+				'value' => $k,
+			);
+		}
+
 		$inputOptions = array(
-			'type'          => 'color',
-			'name'          => '[post_ttl_color]',
-			'title'         => $this->__( 'Post title color' ),
-			'placeholder'   => $this->__( 'Post title color' ),
-			'id'            => 'post-ttl-color',
-			'attrs'         => '',
-			'default_value' => '#ffffff',
-			'classes'       => 'form-control col-md-10'
+			'type'    => 'select',
+			'name'    => '[content]',
+			'title'   => $this->__( 'Content' ),
+			'id'      => 'content',
+			'attrs'   => '',
+			'classes' => '',
+			'options' => $options
 		);
 		?>
 		<label for="<?php echo $inputOptions['id']; ?>" class="col-md-3 control-label">
 			<?php echo $inputOptions['title']; ?>
 		</label>
 
-		<div class="col-sm-2">
+		<div class="col-sm-7">
 			<?php
-			echo $callee->fieldMarkup( $options['post_ttl_color'], $inputOptions );
+			echo $callee->fieldMarkup( $options['content'], $inputOptions );
 			?>
 		</div>
 	</div>

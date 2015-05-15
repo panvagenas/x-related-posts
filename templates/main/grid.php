@@ -18,7 +18,7 @@ if ( ! defined( 'WPINC' ) ) {
 /* @var string $relPostClass */
 
 $numOfPostsPerRow = (int) $this->options['numOfPostsPerRow'];
-$contentPositions = str_split( $this->©option->get( 'main_content' ) );
+$contentPositions = str_split( $this->options[ 'content' ] );
 ?>
 <div class="xrp">
 	<h2><?php echo $this->©option->get( 'main_title' ); ?></h2>
@@ -53,6 +53,16 @@ $contentPositions = str_split( $this->©option->get( 'main_content' ) );
 						}
 						?>
 					</a>
+					<?php
+					if($this->©user->is_super_admin()){
+						echo '<p>';
+						echo 'host ID: ' . $rel->pid1;
+						echo '<br>ID: ' . $rel->pid2;
+						echo '<br>Rating: ' . round($rel->rating, 4);
+						echo '<br>Date: ' . $rel->post_date;
+						echo '</p>';
+					}
+					?>
 				</div>
 			<?php
 			}

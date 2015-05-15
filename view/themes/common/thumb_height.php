@@ -1,10 +1,10 @@
 <?php
 /**
  * Project: x-related-posts
- * File: post_ttl_size.php
+ * File: thumb_height.php
  * User: Panagiotis Vagenas <pan.vagenas@gmail.com>
  * Date: 15/5/2015
- * Time: 10:40 μμ
+ * Time: 11:19 μμ
  * Since: TODO ${VERSION}
  * Copyright: 2015 Panagiotis Vagenas
  */
@@ -16,21 +16,21 @@ if ( ! defined( 'WPINC' ) ) {
 /* @var \xd_v141226_dev\views $this */
 /* @var array $options */
 
-if ( isset( $options['post_ttl_size'] ) ) {
+if ( isset( $options['thumb_height'] ) ) {
 	?>
 	<div class="form-group row">
 		<?php
 		$inputOptions = array(
 			'type'                => 'number',
-			'name'                => '[post_ttl_size]',
-			'title'               => $this->__( 'Post title size' ),
-			'placeholder'         => $this->__( 'Post title size' ),
-			'id'                  => 'post-ttl-size',
+			'name'                => '[thumb_height]',
+			'title'               => $this->__( 'Thumbnail height' ),
+			'placeholder'         => $this->__( 'Thumbnail height' ),
+			'id'                  => 'thumb-height',
 			'attrs'               => '',
-			'classes'             => 'form-control col-md-10',
+			'classes'             => '',
 			'validation_patterns' => array(
 				array(
-					'name'        => 'post_ttl_size',
+					'name'        => 'thumb_height',
 					'description' => $this->__( 'Value for this field must be zero or a positive integer' ),
 					'regex'       => '/^[0-9]+$/',
 					'minimum'     => 0,
@@ -44,7 +44,7 @@ if ( isset( $options['post_ttl_size'] ) ) {
 
 		<div class="col-sm-7">
 			<?php
-			echo $callee->fieldMarkup( $options['post_ttl_size'], $inputOptions );
+			echo $callee->fieldMarkup( $options['thumb_height'], $inputOptions );
 			?>
 		</div>
 	</div>

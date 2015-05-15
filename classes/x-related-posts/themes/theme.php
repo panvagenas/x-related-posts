@@ -13,6 +13,7 @@ namespace x_related_posts\themes;
 
 
 use x_related_posts\framework;
+use x_related_posts\options;
 use x_related_posts\posts;
 
 class theme extends framework {
@@ -53,6 +54,10 @@ class theme extends framework {
 		'post_ttl_color' => '#ffffff',
 		'post_exc_color' => '#ffffff',
 		'post_exc_len'   => 10,
+		'content'        => 'pt',
+		'crop_thumb'     => 1,
+		'thumb_height'   => 200,
+		'thumb_width'    => 300,
 	);
 
 	public function __construct( $instance ) {
@@ -173,7 +178,7 @@ class theme extends framework {
 			? $options[ $this->slug ]
 			: $this->defaults;
 
-		return $this->useCommonOptions ? array_merge($this->commonOptions, $opts) : $opts;
+		return $this->useCommonOptions ? array_merge( $this->commonOptions, $opts ) : $opts;
 	}
 
 	/**
@@ -209,12 +214,24 @@ class theme extends framework {
 			'post_exc_color' => isset( $newOptions['post_exc_color'] ) && ! empty( $newOptions['post_exc_color'] )
 				? esc_sql( $newOptions['post_exc_color'] )
 				: $this->©option->get( 'post_exc_color' ),
-			'post_exc_len'  => isset( $newOptions ['post_exc_len'] ) && $newOptions ['post_exc_len'] >= 0
-				? (int) esc_sql( $newOptions ['post_exc_len'] )
+			'post_exc_len'   => isset( $newOptions ['post_exc_len'] ) && $newOptions ['post_exc_len'] >= 0
+				? (int) $newOptions ['post_exc_len']
 				: $this->©option->get( 'post_exc_len' ),
+			'content'        => isset( $newOptions ['content'] ) && in_array( $newOptions['content'], array_keys( options::$fetchByOptions ) )
+				? (string) esc_sql( $newOptions ['content'] )
+				: $this->©option->get( 'content' ),
+			'crop_thumb'     => isset( $newOptions ['crop_thumb'] ) && ( $newOptions ['crop_thumb'] == 0 || $newOptions['crop_thumb'] == 1 )
+				? (int) $newOptions ['crop_thumb']
+				: $this->©option->get( 'crop_thumb' ),
+			'thumb_height'   => isset( $newOptions ['thumb_height'] ) && $newOptions ['thumb_height'] >= 0
+				? (int) $newOptions ['thumb_height']
+				: $this->©option->get( 'thumb_height' ),
+			'thumb_width'    => isset( $newOptions ['thumb_width'] ) && $newOptions ['thumb_width'] >= 0
+				? (int) $newOptions ['thumb_width']
+				: $this->©option->get( 'thumb_width' ),
 		);
 
-		return array_intersect_key($validated, $this->commonOptions);
+		return array_intersect_key( $validated, $this->commonOptions );
 	}
 
 	/**
@@ -224,15 +241,16 @@ class theme extends framework {
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
 	 * @since TODO ${VERSION}
 	 */
-	public function getPostTitleFormatted(posts $post){
-		$title = wp_strip_all_tags($post->post_title);
-		if(!$this->useCommonOptions){
+	public function getPostTitleFormatted( posts $post ) {
+		$title = wp_strip_all_tags( $post->post_title );
+		if ( ! $this->useCommonOptions ) {
 			return $title;
 		}
 
-		$size = ((int)$this->options['post_ttl_size']) > 0 ? (int)$this->options['post_ttl_size'] : 0;
-		$color = strtolower($this->options['post_ttl_color']) != '#ffffff' ? $this->options['post_ttl_color'] : 0;
-		return $this->getFormattedText($title, $size, $color);
+		$size  = ( (int) $this->options['post_ttl_size'] ) > 0 ? (int) $this->options['post_ttl_size'] : 0;
+		$color = strtolower( $this->options['post_ttl_color'] ) != '#ffffff' ? $this->options['post_ttl_color'] : 0;
+
+		return $this->getFormattedText( $title, $size, $color );
 	}
 
 	/**
@@ -242,15 +260,16 @@ class theme extends framework {
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
 	 * @since TODO ${VERSION}
 	 */
-	public function getPostExcFormatted(posts $post){
-		$exc = $post->getExcerpt($this->©option->get('post_exc_len'), $this->©option->get('read_more'));
-		if(!$this->useCommonOptions){
+	public function getPostExcFormatted( posts $post ) {
+		$exc = $post->getExcerpt( $this->©option->get( 'post_exc_len' ), $this->©option->get( 'read_more' ) );
+		if ( ! $this->useCommonOptions ) {
 			return $exc;
 		}
 
-		$size = ((int)$this->options['post_exc_size']) > 0 ? (int)$this->options['post_exc_size'] : 0;
-		$color = strtolower($this->options['post_exc_color']) != '#ffffff' ? $this->options['post_exc_color'] : 0;
-		return $this->getFormattedText($exc, $size, $color);
+		$size  = ( (int) $this->options['post_exc_size'] ) > 0 ? (int) $this->options['post_exc_size'] : 0;
+		$color = strtolower( $this->options['post_exc_color'] ) != '#ffffff' ? $this->options['post_exc_color'] : 0;
+
+		return $this->getFormattedText( $exc, $size, $color );
 	}
 
 	/**
@@ -263,15 +282,16 @@ class theme extends framework {
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
 	 * @since TODO ${VERSION}
 	 */
-	public function getFormattedText($text, $size = 0, $color = '', $sizeUnit = 'px'){
+	public function getFormattedText( $text, $size = 0, $color = '', $sizeUnit = 'px' ) {
 		$out = '';
-		if($size > 0){
-			$out .='font-size: ' . $size . $sizeUnit . ';';
+		if ( $size > 0 ) {
+			$out .= 'font-size: ' . $size . $sizeUnit . ';';
 		}
-		if($color){
+		if ( $color ) {
 			$out .= ' color: ' . $color . ';';
 		}
-		return empty($out) ? $text : ('<span style="' . $out . '">' . $text . '</span>');
+
+		return empty( $out ) ? $text : ( '<span style="' . $out . '">' . $text . '</span>' );
 	}
 
 	/**

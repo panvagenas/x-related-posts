@@ -16,7 +16,7 @@ if ( ! defined( 'WPINC' ) ) {
 /* @var \x_related_posts\themes\theme $this */
 /* @var array $related */
 
-$contentPositions = str_split( $this->©option->get( 'main_content' ) );
+$contentPositions = str_split( $this->options[ 'content' ] );
 ?>
 <div class="xrp">
 	<h2><?php echo $this->©option->get( 'main_title' ); ?></h2>

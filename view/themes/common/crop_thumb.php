@@ -1,10 +1,10 @@
 <?php
 /**
  * Project: x-related-posts
- * File: post_ttl_color.php
+ * File: crop_thumb.php
  * User: Panagiotis Vagenas <pan.vagenas@gmail.com>
  * Date: 15/5/2015
- * Time: 10:41 μμ
+ * Time: 11:24 μμ
  * Since: TODO ${VERSION}
  * Copyright: 2015 Panagiotis Vagenas
  */
@@ -16,28 +16,36 @@ if ( ! defined( 'WPINC' ) ) {
 /* @var \xd_v141226_dev\views $this */
 /* @var array $options */
 
-if ( isset( $options['post_ttl_color'] ) ) {
+if ( isset( $options['crop_thumb'] ) ) {
 	?>
 	<div class="form-group row">
 		<?php
 		$inputOptions = array(
-			'type'          => 'color',
-			'name'          => '[post_ttl_color]',
-			'title'         => $this->__( 'Post title color' ),
-			'placeholder'   => $this->__( 'Post title color' ),
-			'id'            => 'post-ttl-color',
-			'attrs'         => '',
-			'default_value' => '#ffffff',
-			'classes'       => 'form-control col-md-10'
+			'type'    => 'select',
+			'name'    => '[crop_thumb]',
+			'title'   => $this->__( 'Crop thumbnail' ),
+			'id'      => 'crop-thumb',
+			'attrs'   => '',
+			'classes' => '',
+			'options' => array(
+				array(
+					'value' => '1',
+					'label' => 'Yes'
+				),
+				array(
+					'value' => '0',
+					'label' => 'No'
+				)
+			)
 		);
 		?>
 		<label for="<?php echo $inputOptions['id']; ?>" class="col-md-3 control-label">
 			<?php echo $inputOptions['title']; ?>
 		</label>
 
-		<div class="col-sm-2">
+		<div class="col-sm-7">
 			<?php
-			echo $callee->fieldMarkup( $options['post_ttl_color'], $inputOptions );
+			echo $callee->fieldMarkup( $options['crop_thumb'], $inputOptions );
 			?>
 		</div>
 	</div>

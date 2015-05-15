@@ -16,7 +16,7 @@ if ( ! defined( 'WPINC' ) ) {
 /* @var \xd_v141226_dev\views $this */
 /* @var array $options */
 
-if(isset($options['post_exc_size'])) {
+if ( isset( $options['post_exc_size'] ) ) {
 	?>
 	<div class="form-group row">
 		<?php
