@@ -88,11 +88,16 @@ class theme extends framework {
 	 * @since TODO ${VERSION}
 	 */
 	public function settings( $echo = true ) {
-		if ( $echo ) {
-			echo '';
+		$content = '';
+		foreach ( $this->commonOptions as $k => $v ) {
+			$content .= $this->©view->view( $this, "themes/common/$k.php", array( 'options' => $this->options ) );
 		}
 
-		return '';
+		if ( $echo ) {
+			echo $content;
+		}
+
+		return $content;
 	}
 
 	/**

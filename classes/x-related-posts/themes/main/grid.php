@@ -128,7 +128,7 @@ class grid extends theme {
 	 * @since TODO ${VERSION}
 	 */
 	public function settings( $echo = true ) {
-		$content = $this->©view->view( $this, 'themes/themes-common.php', array( 'options' => $this->options ) );
+		$content = parent::settings(false);
 		$content .= $this->©view->view( $this, 'themes/grid-settings.php', array( 'options' => $this->options ) );
 		if ( $echo ) {
 			echo $content;
