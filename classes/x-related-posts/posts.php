@@ -427,7 +427,6 @@ class posts extends \xd_v141226_dev\posts {
 	}
 
 	/**
-	 * fixme this isn't working as it should.. posts don't get cached
 	 * @param $newStatus
 	 * @param $oldStatus
 	 * @param $post
