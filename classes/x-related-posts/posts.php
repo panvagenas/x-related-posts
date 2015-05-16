@@ -282,7 +282,7 @@ class posts extends \xd_v141226_dev\posts {
 			if(!empty($q->posts)){
 				foreach ( $q->posts as $k => $p ) {
 					$related[$p->ID] = $this->©ratings->getRatings($this->©post($pid), $this->©post($p->ID));
-					$related[$p->ID]['post_date'] = get_the_time('Y-m-d', $p->ID);
+					$related[$p->ID]['post_date'] = get_the_time('Y-m-d H:i:s', $p->ID);
 
 					$this->©db_actions->insert($pid, $p->ID, $related[$p->ID]);
 
@@ -305,7 +305,7 @@ class posts extends \xd_v141226_dev\posts {
 						continue;
 					}
 					$related[$p->ID] = $this->©ratings->getRatings($this->©post($pid), $this->©post($p->ID));
-					$related[$p->ID]['post_date'] = get_the_time('Y-m-d', $p->ID);
+					$related[$p->ID]['post_date'] = get_the_time('Y-m-d H:i:s', $p->ID);
 
 					$this->©db_actions->insert($pid, $p->ID, $related[$p->ID]);
 

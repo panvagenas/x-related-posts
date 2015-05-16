@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS `xrp_related` (
   pid1 bigint(20) NOT NULL,
   pid2 bigint(20) NOT NULL,
-  post_date DATE NOT NULL,
+  post_date DATETIME NOT NULL,
   score_cats float NOT NULL,
   score_tags float NOT NULL,
   displayed int(11) DEFAULT 0 NOT NULL,
