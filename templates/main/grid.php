@@ -45,7 +45,7 @@ $contentPositions = str_split( $this->options[ 'content' ] );
 								echo $this->getPostTitleFormatted($post);
 							} elseif ( $c === 'p' ) {
 								// thumbnail
-								echo '<img src="' . $post->getThumbnail() . '">';
+								echo '<img src="' . $this->getThumbnail($post) . '">';
 							} else {
 								// exc
 								echo $this->getPostExcFormatted($post);

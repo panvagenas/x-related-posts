@@ -120,12 +120,12 @@ class theme extends framework {
 		ob_start();
 		require $this->viewPath( $file );
 		$content = ob_get_clean();
-		if ( ! $echo ) {
-			return $content;
-		}
-		echo $content;
 
-		return true;
+		if ( $echo ) {
+			echo $content;
+		}
+
+		return $content;
 	}
 
 	/**
@@ -217,8 +217,8 @@ class theme extends framework {
 			'post_exc_len'   => isset( $newOptions ['post_exc_len'] ) && $newOptions ['post_exc_len'] >= 0
 				? (int) $newOptions ['post_exc_len']
 				: $this->©option->get( 'post_exc_len' ),
-			'content'        => isset( $newOptions ['content'] ) && in_array( $newOptions['content'], array_keys( options::$fetchByOptions ) )
-				? (string) esc_sql( $newOptions ['content'] )
+			'content'        => isset( $newOptions ['content'] ) && in_array( $newOptions['content'], array_keys( options::$contentPositioningOptions ) )
+				?  esc_sql( (string)$newOptions ['content'] )
 				: $this->©option->get( 'content' ),
 			'crop_thumb'     => isset( $newOptions ['crop_thumb'] ) && ( $newOptions ['crop_thumb'] == 0 || $newOptions['crop_thumb'] == 1 )
 				? (int) $newOptions ['crop_thumb']
@@ -292,6 +292,56 @@ class theme extends framework {
 		}
 
 		return empty( $out ) ? $text : ( '<span style="' . $out . '">' . $text . '</span>' );
+	}
+
+	/**
+	 * @param posts $post
+	 * @param null  $max_width
+	 * @param null  $max_height
+	 * @param bool  $crop
+	 *
+	 * @return string
+	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
+	 * @since TODO ${VERSION}
+	 */
+	public function getThumbnail( posts $post, $max_width = null, $max_height = null, $crop = false ) {
+		if ( ! $max_width && isset( $this->options['thumb_width'] ) ) {
+			$max_width = $this->options['thumb_width'];
+		}
+		if ( ! $max_height && isset( $this->options['thumb_height'] ) ) {
+			$max_height = $this->options['thumb_height'];
+		}
+		if ( ! $crop && isset( $this->options['crop_thumb'] ) ) {
+			$crop = (bool)$this->options['crop_thumb'];
+		}
+
+		$thumb = $post->getThumbnail();
+		if ( ! $max_width || strpos( $thumb, get_home_url() ) !== 0 ) {
+			return $thumb;
+		}
+
+		$imgPath = str_replace(get_home_url().'/', '', $thumb);
+
+		$image = wp_get_image_editor( $imgPath );
+		if ( is_wp_error( $image ) ) {
+			return $thumb;
+		}
+
+		if ( $crop ) {
+			$crop = array( 'center', 'center' );
+		}
+		$image->resize( $max_width, $max_height, $crop );
+
+		if(file_exists($filePath = $image->generate_filename())){
+			return get_home_url(null, str_replace(ABSPATH, '', $filePath));
+		}
+
+		$saved = $image->save();
+		if ( ! is_wp_error( $saved ) && isset( $saved['path'] ) ) {
+			return get_home_url(null, str_replace(ABSPATH, '', $saved['path']));
+		}
+
+		return $thumb;
 	}
 
 	/**

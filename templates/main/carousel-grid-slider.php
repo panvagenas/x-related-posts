@@ -14,17 +14,19 @@
 $numOfPostsPerRow = (int) $this->options['numOfPostsPerRow'];
 $contentPositions = str_split( $this->options[ 'content' ] );
 $sliderContainers = array();
+$containerUID = uniqid('xrp-container-');
+$sliderContainerUID = uniqid('xrp-slider-container-');
 ?>
 
 <!-- Jssor Slider Begin -->
 <!-- To move inline styles to css file/block, please specify a class name for each element. -->
-<div class="xrp">
+<div id="<?php echo $containerUID; ?>" class="xrp">
 	<h2><?php echo $this->©option->get( 'main_title' ); ?></h2>
 
-	<div id="xrp-slider-container"
+	<div id="<?php echo $sliderContainerUID; ?>" class="slider-set-max-dims"
 	     style="position: relative; top: 0; left: 0; width: 809px; height: 456px; overflow: hidden; ">
 		<!-- Slides Container -->
-		<div u="slides"
+		<div u="slides" class="slider-set-max-dims"
 		     style="cursor: move; position: absolute; left: 0; top: 0; width: 809px; height: 456px; overflow: hidden;">
 			<?php
 			$i            = 0;
@@ -32,13 +34,13 @@ $sliderContainers = array();
 			while ( $numOfRelLeft > 0 ) {
 				$relRow = array_slice( $related, $i++ * $numOfPostsPerRow, $numOfPostsPerRow );
 				$numOfRelLeft -= count( $relRow );
-				$rowId              = uniqid( 'slider>_' );
+				$rowId              = uniqid( 'slider-' );
 				$sliderContainers[] = $rowId;
 				?>
 				<div>
-					<div id="<?php echo $rowId; ?>" class=""
+					<div id="<?php echo $rowId; ?>" class="slider-set-max-dims"
 					     style="position: relative; top: 0; left: 0; width: 809px; height: 150px;">
-						<div u="slides"
+						<div u="slides" class="slider-set-max-dims"
 						     style="cursor: move; position: absolute; left: 0; top: 0; width: 809px; height: 150px; overflow: hidden;">
 							<?php
 							foreach ( $relRow as $key => $rel ) {
@@ -47,8 +49,8 @@ $sliderContainers = array();
 								$post = $this->©post( $rel->pid2 );
 								?>
 								<div class="">
-									<a u="image" href="<?php echo $post->getThePermalink(); ?>">
-										<img src="<?php echo $post->getThumbnail(); ?>">
+									<a u="" href="<?php echo $post->getThePermalink(); ?>">
+										<img src="<?php echo $this->getThumbnail($post); ?>" style="height: auto;">
 									</a>
 									<div u="caption"
 									     style="position: absolute; font-size: 10px; background-color: rgba(255, 255, 255, 0.8); bottom: 0px; width:100%;">
@@ -91,6 +93,16 @@ $sliderContainers = array();
 	jQuery(document).ready(function ($) {
 
 		var nestedSliders = [];
+		var conUID = '#<?php echo $containerUID; ?>';
+		var $container = $(conUID);
+		var numOfPostsPerRow = parseInt(<?php echo $numOfPostsPerRow; ?>);
+		var relCount = parseInt(<?php echo count($related); ?>);
+
+		var maxWidth = $container.parent().width();
+
+		var showPiecesH = parseInt(<?php echo $this->options['visiblePostsPerRow']; ?>);
+		var SlideSpacingH = showPiecesH-1;
+		var slideWidthH = Math.floor(maxWidth/showPiecesH)-SlideSpacingH;
 
 		$.each(<?php echo $this->©var->to_js($sliderContainers); ?>, function (index, value) {
 
@@ -99,10 +111,10 @@ $sliderContainers = array();
 				$AutoPlaySteps: 4,               //[Optional] Steps to go for each navigation request (this options applys only when slideshow disabled), the default value is 1
 				$SlideDuration: 300,             //[Optional] Specifies default duration (swipe) for slide in milliseconds, default value is 500
 				$MinDragOffsetToSlide: 20,       //[Optional] Minimum drag offset to trigger slide , default value is 20
-				$SlideWidth: 200,                //[Optional] Width of every slide in pixels, default value is width of 'slides' container
+				$SlideWidth: slideWidthH,                //[Optional] Width of every slide in pixels, default value is width of 'slides' container
 				//$SlideHeight: 150,             //[Optional] Height of every slide in pixels, default value is height of 'slides' container
-				$SlideSpacing: 3, 					                //[Optional] Space between each slide in pixels, default value is 0
-				$DisplayPieces: 4,               //[Optional] Number of pieces to display (the slideshow would be disabled if the value is set to greater than 1), the default value is 1
+				$SlideSpacing: SlideSpacingH, 					                //[Optional] Space between each slide in pixels, default value is 0
+				$DisplayPieces: showPiecesH,               //[Optional] Number of pieces to display (the slideshow would be disabled if the value is set to greater than 1), the default value is 1
 				$ParkingPosition: 0,           //[Optional] The offset position to park slide (this options applys only when slideshow disabled), default value is 0.
 				$UISearchMode: 0,                //[Optional] The way (0 parellel, 1 recursive, default value is 1) to search UI components (slides container, loading screen, navigator container, arrow navigator container, thumbnail navigator container etc).
 
@@ -148,7 +160,7 @@ $sliderContainers = array();
 				$Orientation: 2              //[Optional] The orientation of the navigator, 1 horizontal, 2 vertical, default value is 1
 			}
 		};
-		var jssor_slider1 = new $JssorSlider$("xrp-slider-container", options);
+		var jssor_slider1 = new $JssorSlider$("<?php echo $sliderContainerUID; ?>", options);
 
 		//responsive code begin
 		//you can remove responsive code if you don't want the slider scales while window resizes
@@ -157,8 +169,8 @@ $sliderContainers = array();
 			if (parentWidth) {
 				var sliderWidth = parentWidth;
 
-				//keep the slider width no more than 809
-				sliderWidth = Math.min(sliderWidth, 809);
+				//keep the slider width no more than maxWidth
+				sliderWidth = Math.min(sliderWidth, maxWidth);
 
 				jssor_slider1.$ScaleWidth(sliderWidth);
 			}

@@ -20,9 +20,9 @@ if ( isset( $options['content'] ) ) {
 	?>
 	<div class="form-group row">
 		<?php
-		$options = array();
+		$selectOptions = array();
 		foreach ( \x_related_posts\options::$contentPositioningOptions as $k => $v ) {
-			$options[] = array(
+			$selectOptions[] = array(
 				'label' => $v,
 				'value' => $k,
 			);
@@ -35,7 +35,7 @@ if ( isset( $options['content'] ) ) {
 			'id'      => 'content',
 			'attrs'   => '',
 			'classes' => '',
-			'options' => $options
+			'options' => $selectOptions
 		);
 		?>
 		<label for="<?php echo $inputOptions['id']; ?>" class="col-md-3 control-label">

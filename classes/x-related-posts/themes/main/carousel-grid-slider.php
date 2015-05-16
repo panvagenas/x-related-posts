@@ -35,6 +35,7 @@ class carousel_grid_slider extends theme{
 		'thumbCaption'       => true,
 		'numOfPostsPerRow'   => 5,
 		'carouselPauseHover' => true,
+		'visiblePostsPerRow' => 4,
 	);
 	/**
 	 * @var bool
@@ -44,6 +45,7 @@ class carousel_grid_slider extends theme{
 	 * @var array
 	 */
 	public $commonOptions = array(
+		'content' => 'pt',
 		'post_ttl_size'  => 0,
 		'post_ttl_color' => '#ffffff',
 		'crop_thumb'     => 1,
@@ -132,6 +134,10 @@ class carousel_grid_slider extends theme{
 				? (int) $newOptions ['numOfPostsPerRow']
 				: $this->defaults['numOfPostsPerRow'],
 		);
+
+		$validated['visiblePostsPerRow']  = isset( $newOptions ['visiblePostsPerRow'] ) && (int) $newOptions['visiblePostsPerRow'] <= $validated['numOfPostsPerRow']
+			? (int) $newOptions ['visiblePostsPerRow']
+			: $validated['numOfPostsPerRow'];
 
 		return array_merge( $this->validateCommonOptions( $newOptions ), $validated );
 	}
