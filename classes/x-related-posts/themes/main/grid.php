@@ -122,7 +122,7 @@ class grid extends theme {
 				break;
 		}
 		$styles = array(
-			$this->instance->ns_with_dashes . '--grid-theme' => array(
+			$this->instance->ns_with_dashes . '--'.$cssFile => array(
 				'url' => $this->©url->to_plugin_dir_file( '/templates/assets/css/' . $cssFile ),
 				'ver' => $this->instance->plugin_version_with_dashes,
 			)

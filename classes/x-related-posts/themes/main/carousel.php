@@ -70,6 +70,42 @@ class carousel extends theme {
 		);
 		$this->©script->register( $scripts );
 		$this->©script->enqueue( array_keys( $scripts ) );
+
+        switch ( $this->options['carouselMinVisible'] ) {
+            default:
+            case '1':
+            case '2':
+            case '3':
+            case '4':
+            case '6':
+                $cssFile = 'grid-12.min.css';
+                break;
+            case '5':
+            case '10':
+                $cssFile = 'grid-10.min.css';
+                break;
+            case '7':
+                $cssFile = 'grid-14.min.css';
+                break;
+            case '8':
+                $cssFile = 'grid-16.min.css';
+                break;
+            case '9':
+                $cssFile = 'grid-18.min.css';
+                break;
+        }
+        $styles = array(
+            $this->instance->ns_with_dashes . '--'.$cssFile => array(
+                'url' => $this->©url->to_plugin_dir_file( '/templates/assets/css/' . $cssFile ),
+                'ver' => $this->instance->plugin_version_with_dashes,
+            ),
+            $this->instance->ns_with_dashes . '--'.$this->slug => array(
+                'url' => $this->©url->to_plugin_dir_file( '/templates/assets/css/main/carousel.css' ),
+                'ver' => $this->instance->plugin_version_with_dashes,
+            ),
+        );
+        $this->©styles->register( $styles );
+        $this->©styles->enqueue( array_keys( $styles ) );
 	}
 
 	/**
