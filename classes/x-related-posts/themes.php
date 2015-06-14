@@ -5,7 +5,7 @@
  * User: Panagiotis Vagenas <pan.vagenas@gmail.com>
  * Date: 2/5/2015
  * Time: 11:58 μμ
- * Since: TODO ${VERSION}
+ * Since: 150429
  * Copyright: 2015 Panagiotis Vagenas
  */
 
@@ -30,7 +30,7 @@ class themes extends framework{
 	 * @return array
 	 * @throws \xd_v141226_dev\exception
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	public function getThemeNames($domain = 'main'){
 		$this->check_arg_types('string:!empty', func_get_args());
@@ -60,7 +60,7 @@ class themes extends framework{
 	 *
 	 * @return string
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	public function getThemeClass($domain, $name){
 		$name = $this->©string->with_underscores($this->©dir_file->abs_basename($name));
@@ -74,7 +74,7 @@ class themes extends framework{
 	 * @return string
 	 * @throws \xd_v141226_dev\exception
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	public function getThemeClassFromSlug($slug){
 		$this->check_arg_types('string:!empty', func_get_args());
@@ -91,7 +91,7 @@ class themes extends framework{
 	 * @return int|string
 	 * @throws \xd_v141226_dev\exception
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	public function getActiveThemeSlug($domain = 'main'){
 		$this->check_arg_types('string:!empty', func_get_args());
@@ -103,7 +103,7 @@ class themes extends framework{
 	 * // todo move this to plugin activate hooks
 	 * @throws \xd_v141226_dev\exception
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	private function init(){
 		$themeOptionsMain = $this->©option->get('main_theme_options');

@@ -5,7 +5,7 @@
  * User: Panagiotis Vagenas <pan.vagenas@gmail.com>
  * Date: 4/12/2014
  * Time: 8:39 πμ
- * Since: TODO ${VERSION}
+ * Since:
  * Copyright: 2014 Panagiotis Vagenas
  */
 
@@ -26,7 +26,7 @@ namespace xd_v141226_dev;
 		 * @return string
 		 * @throws exception
 		 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-		 * @since TODO ${VERSION}
+		 * @since
 		 */
 		public function view( &$callee, $file, Array $viewData = null, $echo = false ) {
 			( $viewData ) ? extract( $viewData ) : null;
@@ -48,7 +48,7 @@ namespace xd_v141226_dev;
 		 *
 		 * @throws exception
 		 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-		 * @since TODO ${VERSION}
+		 * @since
 		 */
 		protected function enqueueScripts( $viewFile ) {
 			$styleFilePath  = $this->©dirs_files->view_style( $viewFile );

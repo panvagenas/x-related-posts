@@ -5,7 +5,7 @@
  * User: Panagiotis Vagenas <pan.vagenas@gmail.com>
  * Date: 3/5/2015
  * Time: 8:07 πμ
- * Since: TODO ${VERSION}
+ * Since: 150429
  * Copyright: 2015 Panagiotis Vagenas
  */
 
@@ -56,7 +56,7 @@ class simple_list extends theme{
 	 *
 	 * @return string
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	public function settings( $echo = true ) {
 		$content = parent::settings(false);
@@ -73,7 +73,7 @@ class simple_list extends theme{
 	 *
 	 * @return array
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	public function validateOptions( Array $newOptions ) {
 		$validated = array(

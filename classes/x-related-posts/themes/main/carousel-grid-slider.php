@@ -5,7 +5,7 @@
  * User: Panagiotis Vagenas <pan.vagenas@gmail.com>
  * Date: 13/5/2015
  * Time: 4:31 μμ
- * Since: TODO ${VERSION}
+ * Since: 150429
  * Copyright: 2015 Panagiotis Vagenas
  */
 
@@ -59,7 +59,7 @@ class carousel_grid_slider extends theme{
 	 *
 	 * @return bool|string
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}+
+	 * @since 150429+
 	 */
 	public function display( Array $related, $echo = true ) {
 		$this->enqueueScripts();
@@ -74,7 +74,7 @@ class carousel_grid_slider extends theme{
 
 	/**
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	protected function enqueueScripts() {
 		$scripts = array(
@@ -89,7 +89,7 @@ class carousel_grid_slider extends theme{
 
 	/**
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	protected function enqueueStyles() {
 		$styles = array(
@@ -107,7 +107,7 @@ class carousel_grid_slider extends theme{
 	 *
 	 * @return string
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	public function settings( $echo = true ) {
 		$content = parent::settings(false);
@@ -124,7 +124,7 @@ class carousel_grid_slider extends theme{
 	 *
 	 * @return array
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	public function validateOptions( Array $newOptions ) {
 		$validated = array(

@@ -54,7 +54,7 @@ namespace xd_v141226_dev
 		 *
 		 * @return bool
 		 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-		 * @since TODO ${VERSION}
+		 * @since
 		 */
 		public function tableExists( $tableName ) {
 			global $wpdb;

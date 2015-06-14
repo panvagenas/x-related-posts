@@ -186,7 +186,7 @@ namespace xd_v141226_dev {
 		 * @return string
 		 * @throws exception
 		 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-		 * @since TODO ${VERSION}
+		 * @since
 		 */
 		protected function getJson( $code, $data, $message ) {
 			$this->check_arg_types( 'string:!empty', '', 'string:!empty', func_get_args() );
@@ -213,7 +213,7 @@ namespace xd_v141226_dev {
 		 * @param string $message Optional diagnostic message. Defaults to `Diagnostic code: $code`.
 		 *
 		 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-		 * @since TODO ${VERSION}
+		 * @since
 		 */
 		public function forceDBLog( $code, $data, $message ) {
 			$this->check_arg_types( 'string:!empty', '', 'string:!empty', func_get_args() );
@@ -233,7 +233,7 @@ namespace xd_v141226_dev {
 		 * Load log entries that was stored in DB using forceDBLog method
 		 * @throws exception
 		 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-		 * @since TODO ${VERSION}
+		 * @since
 		 */
 		public function loadDBLog() {
 			$data = $this->©option->get( 'log' );

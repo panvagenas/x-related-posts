@@ -5,7 +5,7 @@
  * User: Panagiotis Vagenas <pan.vagenas@gmail.com>
  * Date: 2/5/2015
  * Time: 11:59 μμ
- * Since: TODO ${VERSION}
+ * Since: 150429
  * Copyright: 2015 Panagiotis Vagenas
  */
 
@@ -75,7 +75,7 @@ class theme extends framework {
 	 *
 	 * @return string
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	public function display( Array $related, $echo = true ) {
 		if ( $echo ) {
@@ -90,7 +90,7 @@ class theme extends framework {
 	 *
 	 * @return string
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	public function settings( $echo = true ) {
 		$content = '';
@@ -112,7 +112,7 @@ class theme extends framework {
 	 *
 	 * @return bool|string
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	protected function view( $file, Array $viewData = array(), $echo = false ) {
 		( $viewData ) ? extract( $viewData ) : null;
@@ -131,7 +131,7 @@ class theme extends framework {
 	/**
 	 * @return array
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	protected function whereViewsMayReside() {
 		$dirs = $this->©dirs->where_templates_may_reside();
@@ -149,7 +149,7 @@ class theme extends framework {
 	 * @return string
 	 * @throws \xd_v141226_dev\exception
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	protected function viewPath( $file ) {
 		$this->check_arg_types( 'string:!empty', 'string:!empty', func_get_args() );
@@ -169,7 +169,7 @@ class theme extends framework {
 	 * @return array
 	 * @throws \xd_v141226_dev\exception
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	public function getOptions() {
 		$options = $this->©option->get( "{$this->domain}_theme_options" );
@@ -186,7 +186,7 @@ class theme extends framework {
 	 *
 	 * @return array
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	public function validateOptions( Array $newOptions ) {
 		return $newOptions;
@@ -198,7 +198,7 @@ class theme extends framework {
 	 * @return array
 	 * @throws \xd_v141226_dev\exception
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	public function validateCommonOptions( $newOptions ) {
 		$validated = array(
@@ -239,7 +239,7 @@ class theme extends framework {
 	 *
 	 * @return string
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	public function getPostTitleFormatted( posts $post ) {
 		$title = wp_strip_all_tags( $post->post_title );
@@ -258,7 +258,7 @@ class theme extends framework {
 	 *
 	 * @return string
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	public function getPostExcFormatted( posts $post ) {
 		$exc = $post->getExcerpt( $this->©option->get( 'post_exc_len' ), $this->©option->get( 'read_more' ) );
@@ -280,7 +280,7 @@ class theme extends framework {
 	 *
 	 * @return string
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	public function getFormattedText( $text, $size = 0, $color = '', $sizeUnit = 'px' ) {
 		$out = '';
@@ -302,7 +302,7 @@ class theme extends framework {
 	 *
 	 * @return string
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	public function getThumbnail( posts $post, $max_width = null, $max_height = null, $crop = false ) {
 		if ( ! $max_width && isset( $this->options['thumb_width'] ) ) {
@@ -350,7 +350,7 @@ class theme extends framework {
 	 * @return bool
 	 * @throws \xd_v141226_dev\exception
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	protected function isLoaded( $raiseException = false ) {
 		if ( $raiseException && ! $this->loaded ) {
@@ -368,7 +368,7 @@ class theme extends framework {
 	 *
 	 * @return string
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	public function fieldMarkup( $field_value, $field ) {
 		$field['name'] = "[{$this->domain}_theme_options][{$this->slug}]{$field['name']}";
@@ -379,7 +379,7 @@ class theme extends framework {
 	/**
 	 * @return array|string
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	public function getSlug() {
 		return $this->slug;

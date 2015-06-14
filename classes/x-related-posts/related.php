@@ -52,7 +52,7 @@ class related extends framework{
 	 *
 	 * @return mixed
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	public function getRelated($pid){
 		$sql = $this->formSqlQuery($pid);
@@ -65,7 +65,7 @@ class related extends framework{
 	 *
 	 * @return string
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	public function formSqlQuery($pid){
 		$weights = $this->getWeight($this->rate_by);
@@ -124,7 +124,7 @@ class related extends framework{
 	 *
 	 * @return mixed
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	public function getWeight($spec = 'c', $key = ''){
 		$weights = options::$fetchByOptionsWeights[$spec];

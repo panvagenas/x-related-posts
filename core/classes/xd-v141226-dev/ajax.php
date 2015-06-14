@@ -5,7 +5,7 @@
  * User: Panagiotis Vagenas <pan.vagenas@gmail.com>
  * Date: 4/12/2014
  * Time: 8:39 πμ
- * Since: TODO ${VERSION}
+ * Since:
  * Copyright: 2014 Panagiotis Vagenas
  */
 
@@ -23,7 +23,7 @@ namespace xd_v141226_dev;
 		 *
 		 * @throws exception
 		 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-		 * @since TODO ${VERSION}
+		 * @since
 		 */
 		public function sendJSONResult($response, $responseCode = 200){
 			$this->©header->clean_status_type( $responseCode, 'application/json' );
@@ -39,7 +39,7 @@ namespace xd_v141226_dev;
 		 * @param int $responseCode
 		 *
 		 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-		 * @since TODO ${VERSION}
+		 * @since
 		 */
 		public function sendJSONError($data, $responseCode = 400){
 			$this->sendJSONResult(array('data' => $data, 'success' => false), $responseCode);
@@ -50,7 +50,7 @@ namespace xd_v141226_dev;
 		 * @param int $responseCode
 		 *
 		 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-		 * @since TODO ${VERSION}
+		 * @since
 		 */
 		public function sendJSONSuccess($data, $responseCode = 200){
 			$this->sendJSONResult(array('data' => $data, 'success' => true), $responseCode);

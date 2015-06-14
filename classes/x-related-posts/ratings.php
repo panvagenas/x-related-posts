@@ -52,7 +52,7 @@ class ratings extends framework {
 	 *
 	 * @return array|bool|mixed
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	public function getRatings( posts $hostPost, posts $visPost, $lookInCache = false ) {
 		$ratings = array(
@@ -79,7 +79,7 @@ class ratings extends framework {
 	 *
 	 * @return float
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	protected function rateOnCats( posts $hostPost, posts $visPost ) {
 		$hostCatIds   = array_keys( $hostPost->getCategories() );
@@ -100,7 +100,7 @@ class ratings extends framework {
 	 *
 	 * @return float
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	protected function rateOnTags( posts $hostPost, posts $visPost ) {
 		$hostTagsIds  = array_keys( $hostPost->getTags() );
@@ -121,7 +121,7 @@ class ratings extends framework {
 	 *
 	 * @return float
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	protected function rateOnClicks( posts $hostPost, posts $visPost ) {
 		$row = $this->©db_actions->getRow( $hostPost->ID, $visPost->ID );

@@ -5,7 +5,7 @@
  * User: Panagiotis Vagenas <pan.vagenas@gmail.com>
  * Date: 3/5/2015
  * Time: 8:07 πμ
- * Since: TODO ${VERSION}
+ * Since: 150429
  * Copyright: 2015 Panagiotis Vagenas
  */
 
@@ -58,7 +58,7 @@ class grid extends theme {
 	 *
 	 * @return bool|string
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	public function display( Array $related, $echo = true ) {
 		$this->enqueueScripts();
@@ -136,7 +136,7 @@ class grid extends theme {
 	 *
 	 * @return string
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	public function settings( $echo = true ) {
 		$content = parent::settings(false);
@@ -153,7 +153,7 @@ class grid extends theme {
 	 *
 	 * @return array
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	public function validateOptions( Array $newOptions ) {
 		$validated = array(

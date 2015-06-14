@@ -245,7 +245,7 @@ namespace xd_v141226_dev
          * )
          *
          * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-         * @since TODO ${VERSION}
+         * @since
          */
         public function add_options_page($menu_page, $page_title = '', $menu_title = '', $capability = '' ){
             $page_title = empty($page_title) ? $this->instance->plugin_name . ' Settings' : $page_title;

@@ -36,7 +36,7 @@ class tracker extends framework{
 	 * @return bool
 	 * @throws \xd_v141226_dev\exception
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	public function isEnabled(){
 		return (bool)$this->©option->get('track_visited');
@@ -46,7 +46,7 @@ class tracker extends framework{
 	 * @param $pid
 	 *
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	public function setAsVisited($pid){
 		$visited = $this->getVisited();
@@ -78,7 +78,7 @@ class tracker extends framework{
 	/**
 	 * @return bool
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	private function isBot() {
 		$spiders = array(

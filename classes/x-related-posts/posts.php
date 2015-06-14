@@ -201,7 +201,7 @@ class posts extends \xd_v141226_dev\posts {
 	 *
 	 * @return array
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	public function getTagsSlugs($post = null){
 		$pid      = $post ? $this->getPostId( $post ) : $this->ID;
@@ -262,7 +262,7 @@ class posts extends \xd_v141226_dev\posts {
 	 *
 	 * @return array
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	public function doRating( $post = null ) {
 		$pid = $post ? $this->getPostId( $post ) : $this->ID;
@@ -325,7 +325,7 @@ class posts extends \xd_v141226_dev\posts {
 	 * @return string
 	 * @throws \xd_v141226_dev\exception
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	public function getExcerpt($excLength, $moreText = ''){
 		$this->isLoaded(true);
@@ -355,7 +355,7 @@ class posts extends \xd_v141226_dev\posts {
 	 * @return false|string
 	 * @throws \xd_v141226_dev\exception
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	public function getTheTime($timeFormat = 'Y-m-d H:i:s') {
 		$this->isLoaded(true);
@@ -367,7 +367,7 @@ class posts extends \xd_v141226_dev\posts {
 	 * @return bool|string
 	 * @throws \xd_v141226_dev\exception
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	public function getThePermalink(){
 		$this->isLoaded(true);
@@ -382,7 +382,7 @@ class posts extends \xd_v141226_dev\posts {
 	 * @return array|bool|string
 	 * @throws \xd_v141226_dev\exception
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	public function getThumbnail($defaultThumbnail = '', $size = 'single-post-thumbnail'){
 		$this->isLoaded(true);
@@ -412,7 +412,7 @@ class posts extends \xd_v141226_dev\posts {
 	 * @return bool
 	 * @throws \xd_v141226_dev\exception
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	public function hasThumbnail(){
 		if(isset($this->static[__FUNCTION__])){
@@ -444,10 +444,7 @@ class posts extends \xd_v141226_dev\posts {
 			$pid = $post->ID;
 		}
 
-		if ( $oldStatus == 'publish' && $newStatus != 'publish' ) {
-			// Post is now unpublished, we should remove cache entries
-			return $this->©db_actions->deleteAll( $pid );
-		}
+        $this->©db_actions->deleteAll( $pid );
 		if ( $newStatus == 'publish' ) {
 			if ( ! $this->isExcluded( $pid ) ) {
 				return $this->doRating( $pid );
@@ -473,7 +470,7 @@ class posts extends \xd_v141226_dev\posts {
 	 *
 	 * @return bool
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	public function __isset($property)
 	{
@@ -490,7 +487,7 @@ class posts extends \xd_v141226_dev\posts {
 	 *
 	 * @return array|mixed
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	public function __get($property)
 	{
@@ -508,7 +505,7 @@ class posts extends \xd_v141226_dev\posts {
 	 *
 	 * @return mixed
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	public function __call($method, $args)
 	{
@@ -527,7 +524,7 @@ class posts extends \xd_v141226_dev\posts {
 	 * @return bool
 	 * @throws \xd_v141226_dev\exception
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since TODO ${VERSION}
+	 * @since 150429
 	 */
 	private function isLoaded($raiseException = false){
 		$is = $this->post instanceof \WP_Post;

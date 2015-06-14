@@ -1305,7 +1305,7 @@ namespace xd_v141226_dev
          * Returns possible views location
          * @return mixed
          * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-         * @since TODO ${VERSION}
+         * @since
          */
         public function where_views_may_reside(){
 
@@ -1329,7 +1329,7 @@ namespace xd_v141226_dev
          * Returns possible view styles locations
          * @return mixed
          * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-         * @since TODO ${VERSION}
+         * @since
          */
         public function where_view_styles_may_reside(){
 
@@ -1353,7 +1353,7 @@ namespace xd_v141226_dev
          * Returns possible view scripts locations
          * @return mixed
          * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-         * @since TODO ${VERSION}
+         * @since
          */
         public function where_view_scripts_may_reside(){
 
