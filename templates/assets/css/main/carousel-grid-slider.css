@@ -7,39 +7,33 @@
 .jssorb03 .dn           (mousedown)
 */
 .jssorb03 {
-    position: absolute;
+  position : absolute;
 }
-
 .jssorb03 div, .jssorb03 div:hover, .jssorb03 .av {
-    position: absolute;
-    /* size of bullet elment */
-    width: 21px;
-    height: 21px;
-    text-align: center;
-    line-height: 21px;
-    color: white;
-    font-size: 12px;
-    background: url(../../img/b03.png) no-repeat;
-    overflow: hidden;
-    cursor: pointer;
+  position    : absolute;
+  /* size of bullet elment */
+  width       : 21px;
+  height      : 21px;
+  text-align  : center;
+  line-height : 21px;
+  color       : white;
+  font-size   : 12px;
+  background  : url(../../img/b03.png) no-repeat;
+  overflow    : hidden;
+  cursor      : pointer;
 }
-
 .jssorb03 div {
-    background-position: -5px -4px;
+  background-position : -5px -4px;
 }
-
 .jssorb03 div:hover, .jssorb03 .av:hover {
-    background-position: -35px -4px;
+  background-position : -35px -4px;
 }
-
 .jssorb03 .av {
-    background-position: -65px -4px;
+  background-position : -65px -4px;
 }
-
 .jssorb03 .dn, .jssorb03 .dn:hover {
-    background-position: -95px -4px;
+  background-position : -95px -4px;
 }
-
 /* jssor slider bullet navigator skin 02 css */
 /*
 .jssorb02 div           (normal)
@@ -49,35 +43,30 @@
 .jssorb02 .dn           (mousedown)
 */
 .jssorb02 {
-    position: absolute;
+  position : absolute;
 }
-
 .jssorb02 div, .jssorb02 div:hover, .jssorb02 .av {
-    position: absolute;
-    /* size of bullet elment */
-    width: 21px;
-    height: 21px;
-    text-align: center;
-    line-height: 21px;
-    color: white;
-    font-size: 12px;
-    background: url(../../img/b02.png) no-repeat;
-    overflow: hidden;
-    cursor: pointer;
+  position    : absolute;
+  /* size of bullet elment */
+  width       : 21px;
+  height      : 21px;
+  text-align  : center;
+  line-height : 21px;
+  color       : white;
+  font-size   : 12px;
+  background  : url(../../img/b02.png) no-repeat;
+  overflow    : hidden;
+  cursor      : pointer;
 }
-
 .jssorb02 div {
-    background-position: -5px -5px;
+  background-position : -5px -5px;
 }
-
 .jssorb02 div:hover, .jssorb02 .av:hover {
-    background-position: -35px -5px;
+  background-position : -35px -5px;
 }
-
 .jssorb02 .av {
-    background-position: -65px -5px;
+  background-position : -65px -5px;
 }
-
 .jssorb02 .dn, .jssorb02 .dn:hover {
-    background-position: -95px -5px;
+  background-position : -95px -5px;
 }

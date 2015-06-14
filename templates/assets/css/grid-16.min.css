@@ -1,2 +1,117 @@
-.col{border:0px solid transparent;float:left;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;-moz-background-clip:padding-box !important;-webkit-background-clip:padding-box !important;background-clip:padding-box !important}@media screen and (min-width: 0px){.xrp .col{margin-left:0.5%;padding:0 0.2%}.xrp .row .col:first-child{margin-left:0}.xrp .row{clear:both}.xrp .xrp-col-1{width:5.78125%;border-left-width:0;padding:0 0.2%;margin-left:0.5%}.xrp .xrp-col-2{width:12.0625%;border-left-width:0;padding:0 0.2%;margin-left:0.5%}.xrp .xrp-col-3{width:18.34375%;border-left-width:0;padding:0 0.2%;margin-left:0.5%}.xrp .xrp-col-4{width:24.625%;border-left-width:0;padding:0 0.2%;margin-left:0.5%}.xrp .xrp-col-5{width:30.90625%;border-left-width:0;padding:0 0.2%;margin-left:0.5%}.xrp .xrp-col-6{width:37.1875%;border-left-width:0;padding:0 0.2%;margin-left:0.5%}.xrp .xrp-col-7{width:43.46875%;border-left-width:0;padding:0 0.2%;margin-left:0.5%}.xrp .xrp-col-8{width:49.75%;border-left-width:0;padding:0 0.2%;margin-left:0.5%}.xrp .xrp-col-9{width:56.03125%;border-left-width:0;padding:0 0.2%;margin-left:0.5%}.xrp .xrp-col-10{width:62.3125%;border-left-width:0;padding:0 0.2%;margin-left:0.5%}.xrp .xrp-col-11{width:68.59375%;border-left-width:0;padding:0 0.2%;margin-left:0.5%}.xrp .xrp-col-12{width:74.875%;border-left-width:0;padding:0 0.2%;margin-left:0.5%}.xrp .xrp-col-13{width:81.15625%;border-left-width:0;padding:0 0.2%;margin-left:0.5%}.xrp .xrp-col-14{width:87.4375%;border-left-width:0;padding:0 0.2%;margin-left:0.5%}.xrp .xrp-col-15{width:93.71875%;border-left-width:0;padding:0 0.2%;margin-left:0.5%}.xrp .xrp-col-16{margin-left:0;width:100%}}
+.col {
+  border                  : 0px solid transparent;
+  float                   : left;
+  -webkit-box-sizing      : border-box;
+  -moz-box-sizing         : border-box;
+  box-sizing              : border-box;
+  -moz-background-clip    : padding-box !important;
+  -webkit-background-clip : padding-box !important;
+  background-clip         : padding-box !important
+}
+@media screen and (min-width : 0px) {
+  .xrp .col {
+    margin-left : 0.5%;
+    padding     : 0 0.2%
+  }
+  .xrp .row .col:first-child {
+    margin-left : 0
+  }
+  .xrp .row {
+    clear : both
+  }
+  .xrp .xrp-col-1 {
+    width             : 5.78125%;
+    border-left-width : 0;
+    padding           : 0 0.2%;
+    margin-left       : 0.5%
+  }
+  .xrp .xrp-col-2 {
+    width             : 12.0625%;
+    border-left-width : 0;
+    padding           : 0 0.2%;
+    margin-left       : 0.5%
+  }
+  .xrp .xrp-col-3 {
+    width             : 18.34375%;
+    border-left-width : 0;
+    padding           : 0 0.2%;
+    margin-left       : 0.5%
+  }
+  .xrp .xrp-col-4 {
+    width             : 24.625%;
+    border-left-width : 0;
+    padding           : 0 0.2%;
+    margin-left       : 0.5%
+  }
+  .xrp .xrp-col-5 {
+    width             : 30.90625%;
+    border-left-width : 0;
+    padding           : 0 0.2%;
+    margin-left       : 0.5%
+  }
+  .xrp .xrp-col-6 {
+    width             : 37.1875%;
+    border-left-width : 0;
+    padding           : 0 0.2%;
+    margin-left       : 0.5%
+  }
+  .xrp .xrp-col-7 {
+    width             : 43.46875%;
+    border-left-width : 0;
+    padding           : 0 0.2%;
+    margin-left       : 0.5%
+  }
+  .xrp .xrp-col-8 {
+    width             : 49.75%;
+    border-left-width : 0;
+    padding           : 0 0.2%;
+    margin-left       : 0.5%
+  }
+  .xrp .xrp-col-9 {
+    width             : 56.03125%;
+    border-left-width : 0;
+    padding           : 0 0.2%;
+    margin-left       : 0.5%
+  }
+  .xrp .xrp-col-10 {
+    width             : 62.3125%;
+    border-left-width : 0;
+    padding           : 0 0.2%;
+    margin-left       : 0.5%
+  }
+  .xrp .xrp-col-11 {
+    width             : 68.59375%;
+    border-left-width : 0;
+    padding           : 0 0.2%;
+    margin-left       : 0.5%
+  }
+  .xrp .xrp-col-12 {
+    width             : 74.875%;
+    border-left-width : 0;
+    padding           : 0 0.2%;
+    margin-left       : 0.5%
+  }
+  .xrp .xrp-col-13 {
+    width             : 81.15625%;
+    border-left-width : 0;
+    padding           : 0 0.2%;
+    margin-left       : 0.5%
+  }
+  .xrp .xrp-col-14 {
+    width             : 87.4375%;
+    border-left-width : 0;
+    padding           : 0 0.2%;
+    margin-left       : 0.5%
+  }
+  .xrp .xrp-col-15 {
+    width             : 93.71875%;
+    border-left-width : 0;
+    padding           : 0 0.2%;
+    margin-left       : 0.5%
+  }
+  .xrp .xrp-col-16 {
+    margin-left : 0;
+    width       : 100%
+  }
+}
 /*# sourceMappingURL=grid-16.min.css.map */

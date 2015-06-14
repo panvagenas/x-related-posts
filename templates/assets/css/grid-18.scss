@@ -1,5 +1,5 @@
 /**
- * Gridpak Beta SCSS 
+ * Gridpak Beta SCSS
  *
  * Generator - http://gridpak.com/
  * Created by @erskinedesign
@@ -8,32 +8,28 @@
 /* Reusable column setup */
 
 @mixin col {
-    border: 0px solid rgba(0, 0, 0, 0);
-    float: left;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    -moz-background-clip: padding-box !important;
-    -webkit-background-clip: padding-box !important;
-    background-clip: padding-box !important;
+  border                  : 0px solid rgba(0, 0, 0, 0);
+  float                   : left;
+  -webkit-box-sizing      : border-box;
+  -moz-box-sizing         : border-box;
+  box-sizing              : border-box;
+  -moz-background-clip    : padding-box !important;
+  -webkit-background-clip : padding-box !important;
+  background-clip         : padding-box !important;
 }
-
 .col {
-    @include col;
+  @include col;
 }
-
 @mixin span($num, $gutter_pc, $gutter_px, $padding, $max_columns) {
-    $one_col: (100% - ($gutter_pc * ($max_columns - 1))) / $max_columns;
-    width: ($one_col * $num) + ($gutter_pc * ($num - 1));
-    border-left-width: $gutter_px;
-    padding: $padding;
-    margin-left: $gutter_pc;
+  $one_col : (100% - ($gutter_pc * ($max_columns - 1))) / $max_columns;
+  width             : ($one_col * $num) + ($gutter_pc * ($num - 1));
+  border-left-width : $gutter_px;
+  padding           : $padding;
+  margin-left       : $gutter_pc;
 }
-
 @mixin xrp-col-first {
-    margin-left: 0;
+  margin-left : 0;
 }
-
 /* 1. 18 Column Grid 0px - Infinity
 -----------------------------------------------------------------------------
 
@@ -58,91 +54,91 @@ Span 18:    100%
 
 ----------------------------------------------------------------------------- */
 
-@media screen and (min-width: 0px) {
-    .xrp {
-        .col {
-            margin-left: 0.5%;
-            padding: 0 0.2%;
-        }
-
-        /* --- Gridpak variables ---*/
-        $max_columns: 18;
-        $padding: 0 0.2%;
-        $gutter_px: 0;
-        $gutter_pc: 0.5%;
-
-        .row .col:first-child {
-            @include xrp-col-first;
-        }
-
-        .row {
-            clear: both;
-        }
-
-        /*
-        Add your semantic classnames in alongside their corresponding spans here. e.g.
-
-        .xrp-col-3,
-        .my_semantic_class_name {
-            ...
-        }
-
-        */
-        .xrp-col-1 {
-            @include span(1, $gutter_pc, $gutter_px, $padding, $max_columns);
-        }
-        .xrp-col-2 {
-            @include span(2, $gutter_pc, $gutter_px, $padding, $max_columns);
-        }
-        .xrp-col-3 {
-            @include span(3, $gutter_pc, $gutter_px, $padding, $max_columns);
-        }
-        .xrp-col-4 {
-            @include span(4, $gutter_pc, $gutter_px, $padding, $max_columns);
-        }
-        .xrp-col-5 {
-            @include span(5, $gutter_pc, $gutter_px, $padding, $max_columns);
-        }
-        .xrp-col-6 {
-            @include span(6, $gutter_pc, $gutter_px, $padding, $max_columns);
-        }
-        .xrp-col-7 {
-            @include span(7, $gutter_pc, $gutter_px, $padding, $max_columns);
-        }
-        .xrp-col-8 {
-            @include span(8, $gutter_pc, $gutter_px, $padding, $max_columns);
-        }
-        .xrp-col-9 {
-            @include span(9, $gutter_pc, $gutter_px, $padding, $max_columns);
-        }
-        .xrp-col-10 {
-            @include span(10, $gutter_pc, $gutter_px, $padding, $max_columns);
-        }
-        .xrp-col-11 {
-            @include span(11, $gutter_pc, $gutter_px, $padding, $max_columns);
-        }
-        .xrp-col-12 {
-            @include span(12, $gutter_pc, $gutter_px, $padding, $max_columns);
-        }
-        .xrp-col-13 {
-            @include span(13, $gutter_pc, $gutter_px, $padding, $max_columns);
-        }
-        .xrp-col-14 {
-            @include span(14, $gutter_pc, $gutter_px, $padding, $max_columns);
-        }
-        .xrp-col-15 {
-            @include span(15, $gutter_pc, $gutter_px, $padding, $max_columns);
-        }
-        .xrp-col-16 {
-            @include span(16, $gutter_pc, $gutter_px, $padding, $max_columns);
-        }
-        .xrp-col-17 {
-            @include span(17, $gutter_pc, $gutter_px, $padding, $max_columns);
-        }
-        .xrp-col-18 {
-            @include xrp-col-first;
-            width: 100%;
-        }
+@media screen and (min-width : 0px) {
+  .xrp {
+    .col {
+      margin-left : 0.5%;
+      padding     : 0 0.2%;
     }
+
+    /* --- Gridpak variables ---*/
+    $max_columns : 18;
+    $padding : 0 0.2%;
+    $gutter_px : 0;
+    $gutter_pc : 0.5%;
+
+    .row .col:first-child {
+      @include xrp-col-first;
+    }
+
+    .row {
+      clear : both;
+    }
+
+    /*
+    Add your semantic classnames in alongside their corresponding spans here. e.g.
+
+    .xrp-col-3,
+    .my_semantic_class_name {
+        ...
+    }
+
+    */
+    .xrp-col-1 {
+      @include span(1, $gutter_pc, $gutter_px, $padding, $max_columns);
+    }
+    .xrp-col-2 {
+      @include span(2, $gutter_pc, $gutter_px, $padding, $max_columns);
+    }
+    .xrp-col-3 {
+      @include span(3, $gutter_pc, $gutter_px, $padding, $max_columns);
+    }
+    .xrp-col-4 {
+      @include span(4, $gutter_pc, $gutter_px, $padding, $max_columns);
+    }
+    .xrp-col-5 {
+      @include span(5, $gutter_pc, $gutter_px, $padding, $max_columns);
+    }
+    .xrp-col-6 {
+      @include span(6, $gutter_pc, $gutter_px, $padding, $max_columns);
+    }
+    .xrp-col-7 {
+      @include span(7, $gutter_pc, $gutter_px, $padding, $max_columns);
+    }
+    .xrp-col-8 {
+      @include span(8, $gutter_pc, $gutter_px, $padding, $max_columns);
+    }
+    .xrp-col-9 {
+      @include span(9, $gutter_pc, $gutter_px, $padding, $max_columns);
+    }
+    .xrp-col-10 {
+      @include span(10, $gutter_pc, $gutter_px, $padding, $max_columns);
+    }
+    .xrp-col-11 {
+      @include span(11, $gutter_pc, $gutter_px, $padding, $max_columns);
+    }
+    .xrp-col-12 {
+      @include span(12, $gutter_pc, $gutter_px, $padding, $max_columns);
+    }
+    .xrp-col-13 {
+      @include span(13, $gutter_pc, $gutter_px, $padding, $max_columns);
+    }
+    .xrp-col-14 {
+      @include span(14, $gutter_pc, $gutter_px, $padding, $max_columns);
+    }
+    .xrp-col-15 {
+      @include span(15, $gutter_pc, $gutter_px, $padding, $max_columns);
+    }
+    .xrp-col-16 {
+      @include span(16, $gutter_pc, $gutter_px, $padding, $max_columns);
+    }
+    .xrp-col-17 {
+      @include span(17, $gutter_pc, $gutter_px, $padding, $max_columns);
+    }
+    .xrp-col-18 {
+      @include xrp-col-first;
+      width : 100%;
+    }
+  }
 }
- 
+

@@ -11,26 +11,27 @@
 
 namespace x_related_posts;
 
+class ajax extends \xd_v141226_dev\ajax
+{
+    public function ®ajaxGetThemeOptions($themeSlug)
+    {
+        if (!$this->©user->is_super_admin()) {
+            $this->sendJSONError('Authorization failed', 401);
+            return false;
+        }
 
-class ajax extends \xd_v141226_dev\ajax{
-	public function ®ajaxGetThemeOptions($themeSlug){
-		if ( ! $this->©user->is_super_admin() ) {
-			$this->sendJSONError( 'Authorization failed', 401 );
-			return false;
-		}
+        if (!$themeSlug) {
+            $this->sendJSONError('No theme is specified');
+            return false;
+        }
 
-		if(!$themeSlug){
-			$this->sendJSONError('No theme is specified');
-			return false;
-		}
-
-		$themeClass = $this->©themes->getThemeClassFromSlug($themeSlug);
-		if(!$themeClass){
-			$this->sendJSONError('Theme not found');
-			return false;
-		}
-		$out = $this->$themeClass->settings(false);
-		$this->sendJSONSuccess(array('html' => $out));
-		return true;
-	}
+        $themeClass = $this->©themes->getThemeClassFromSlug($themeSlug);
+        if (!$themeClass) {
+            $this->sendJSONError('Theme not found');
+            return false;
+        }
+        $out = $this->$themeClass->settings(false);
+        $this->sendJSONSuccess(array('html' => $out));
+        return true;
+    }
 }

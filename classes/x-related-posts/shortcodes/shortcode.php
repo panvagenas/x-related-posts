@@ -11,34 +11,39 @@
 
 namespace x_related_posts\shortcodes;
 
+class shortcode extends \xd_v141226_dev\shortcodes\shortcode
+{
+    public $content = '';
 
-class shortcode extends \xd_v141226_dev\shortcodes\shortcode{
-	public $content = '';
-	/**
-	 * Gets default shortcode attributes.
-	 *
-	 * @note This should be overwritten by class extenders.
-	 * @return array Default shortcode attributes.
-	 */
-	public function attr_defaults(){
-		// TODO return default sc options
-	}
-	/**
-	 * Gets all shortcode attribute keys, interpreted as boolean values.
-	 *
-	 * @note This should be overwritten by class extenders.
-	 * @return array Boolean attribute keys.
-	 */
-	public function boolean_attr_keys() {
-		return array();
-	}
+    /**
+     * Gets default shortcode attributes.
+     *
+     * @note This should be overwritten by class extenders.
+     * @return array Default shortcode attributes.
+     */
+    public function attr_defaults()
+    {
+        // TODO return default sc options
+    }
 
-	/**
-	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since 150429
-	 */
-	public function display(){
-		// TODO
-		return $this->content;
-	}
+    /**
+     * Gets all shortcode attribute keys, interpreted as boolean values.
+     *
+     * @note This should be overwritten by class extenders.
+     * @return array Boolean attribute keys.
+     */
+    public function boolean_attr_keys()
+    {
+        return array();
+    }
+
+    /**
+     * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
+     * @since  150429
+     */
+    public function display()
+    {
+        // TODO
+        return $this->content;
+    }
 }

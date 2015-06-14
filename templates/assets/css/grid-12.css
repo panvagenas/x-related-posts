@@ -1,5 +1,5 @@
 /**
- * Gridpak Beta SCSS 
+ * Gridpak Beta SCSS
  *
  * Generator - http://gridpak.com/
  * Created by @erskinedesign
@@ -35,15 +35,15 @@ Span 12:    100%
 @media screen and (min-width: 0px) {
   .xrp {
     /* --- Gridpak variables ---*/
-        /*
-        Add your semantic classnames in alongside their corresponding spans here. e.g.
+    /*
+    Add your semantic classnames in alongside their corresponding spans here. e.g.
 
-        .xrp-col-3,
-        .my_semantic_class_name {
-            ...
-        }
+    .xrp-col-3,
+    .my_semantic_class_name {
+        ...
+    }
 
-        */ }
+    */ }
     .xrp .col {
       margin-left: 0.5%;
       padding: 0 0.2%; }

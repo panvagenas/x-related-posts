@@ -9,6 +9,8 @@
  * Copyright: 2015 Panagiotis Vagenas
  */
 
-namespace x_related_posts{
-	class posts extends \WP_Post{}
+namespace x_related_posts {
+    class posts extends \WP_Post
+    {
+    }
 }

@@ -9,8 +9,8 @@
  * Copyright: 2015 Panagiotis Vagenas
  */
 
-if ( ! defined( 'WPINC' ) ) {
-	exit( 'Do NOT access this file directly: ' . basename( __FILE__ ) );
+if (!defined('WPINC')) {
+    exit('Do NOT access this file directly: '.basename(__FILE__));
 }
 
 /* @var \x_related_posts\menu_pages\panels\theme $callee */
@@ -19,39 +19,39 @@ if ( ! defined( 'WPINC' ) ) {
 ?>
 <div class="form-horizontal" role="form">
 
-	<div class="form-group row">
-		<?php
-		$options = array();
+    <div class="form-group row">
+        <?php
+        $options = array();
 
-		foreach ( $this->©themes->getThemeNames('main') as $k => $v ) {
-			$options[] = array(
-				'label' => $v,
-				'value' => $k
-			);
-		}
+        foreach ($this->©themes->getThemeNames('main') as $k => $v) {
+            $options[] = array(
+              'label' => $v,
+              'value' => $k
+            );
+        }
 
-		$inputOptions = array(
-			'type'        => 'select',
-			'name'        => '[main_theme]',
-			'title'       => $this->__( 'Theme' ),
-			'placeholder' => $this->__( 'Theme' ),
-			'required'    => true,
-			'id'          => 'main-theme',
-			'attrs'       => '',
-			'classes'     => '',
-			'options'     => $options
-		);
-		?>
-		<label for="<?php echo $inputOptions['id']; ?>" class="col-md-3 control-label">
-			<?php echo $inputOptions['title']; ?>
-		</label>
+        $inputOptions = array(
+          'type'        => 'select',
+          'name'        => '[main_theme]',
+          'title'       => $this->__('Theme'),
+          'placeholder' => $this->__('Theme'),
+          'required'    => true,
+          'id'          => 'main-theme',
+          'attrs'       => '',
+          'classes'     => '',
+          'options'     => $options
+        );
+        ?>
+        <label for="<?php echo $inputOptions['id']; ?>" class="col-md-3 control-label">
+            <?php echo $inputOptions['title']; ?>
+        </label>
 
-		<div class="col-sm-7">
-			<?php
-			echo $callee->menu_page->option_form_fields->markup( $this->©option->get('main_theme'), $inputOptions );
-			?>
-		</div>
-	</div>
+        <div class="col-sm-7">
+            <?php
+            echo $callee->menu_page->option_form_fields->markup($this->©option->get('main_theme'), $inputOptions);
+            ?>
+        </div>
+    </div>
 
 </div>
 

@@ -1,20 +1,20 @@
 /**
- * Gridpak Beta SCSS 
+ * Gridpak Beta SCSS
  *
  * Generator - http://gridpak.com/
  * Created by @erskinedesign
  */
 /* Reusable column setup */
 .col {
-  border: 0px solid transparent;
-  float: left;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  -moz-background-clip: padding-box !important;
-  -webkit-background-clip: padding-box !important;
-  background-clip: padding-box !important; }
-
+  border                  : 0px solid transparent;
+  float                   : left;
+  -webkit-box-sizing      : border-box;
+  -moz-box-sizing         : border-box;
+  box-sizing              : border-box;
+  -moz-background-clip    : padding-box !important;
+  -webkit-background-clip : padding-box !important;
+  background-clip         : padding-box !important;
+}
 /* 1. 14 Column Grid 0px - Infinity
 -----------------------------------------------------------------------------
 
@@ -34,92 +34,110 @@ Span 13:    92.8214285714%
 Span 14:    100%
 
 ----------------------------------------------------------------------------- */
-@media screen and (min-width: 0px) {
+@media screen and (min-width : 0px) {
   .xrp {
     /* --- Gridpak variables ---*/
-        /*
-        Add your semantic classnames in alongside their corresponding spans here. e.g.
+    /*
+    Add your semantic classnames in alongside their corresponding spans here. e.g.
 
-        .xrp-col-3,
-        .my_semantic_class_name {
-            ...
-        }
+    .xrp-col-3,
+    .my_semantic_class_name {
+        ...
+    }
 
-        */ }
-    .xrp .col {
-      margin-left: 0.5%;
-      padding: 0 0.2%; }
-    .xrp .row .col:first-child {
-      margin-left: 0; }
-    .xrp .row {
-      clear: both; }
-    .xrp .xrp-col-1 {
-      width: 6.67857%;
-      border-left-width: 0;
-      padding: 0 0.2%;
-      margin-left: 0.5%; }
-    .xrp .xrp-col-2 {
-      width: 13.85714%;
-      border-left-width: 0;
-      padding: 0 0.2%;
-      margin-left: 0.5%; }
-    .xrp .xrp-col-3 {
-      width: 21.03571%;
-      border-left-width: 0;
-      padding: 0 0.2%;
-      margin-left: 0.5%; }
-    .xrp .xrp-col-4 {
-      width: 28.21429%;
-      border-left-width: 0;
-      padding: 0 0.2%;
-      margin-left: 0.5%; }
-    .xrp .xrp-col-5 {
-      width: 35.39286%;
-      border-left-width: 0;
-      padding: 0 0.2%;
-      margin-left: 0.5%; }
-    .xrp .xrp-col-6 {
-      width: 42.57143%;
-      border-left-width: 0;
-      padding: 0 0.2%;
-      margin-left: 0.5%; }
-    .xrp .xrp-col-7 {
-      width: 49.75%;
-      border-left-width: 0;
-      padding: 0 0.2%;
-      margin-left: 0.5%; }
-    .xrp .xrp-col-8 {
-      width: 56.92857%;
-      border-left-width: 0;
-      padding: 0 0.2%;
-      margin-left: 0.5%; }
-    .xrp .xrp-col-9 {
-      width: 64.10714%;
-      border-left-width: 0;
-      padding: 0 0.2%;
-      margin-left: 0.5%; }
-    .xrp .xrp-col-10 {
-      width: 71.28571%;
-      border-left-width: 0;
-      padding: 0 0.2%;
-      margin-left: 0.5%; }
-    .xrp .xrp-col-11 {
-      width: 78.46429%;
-      border-left-width: 0;
-      padding: 0 0.2%;
-      margin-left: 0.5%; }
-    .xrp .xrp-col-12 {
-      width: 85.64286%;
-      border-left-width: 0;
-      padding: 0 0.2%;
-      margin-left: 0.5%; }
-    .xrp .xrp-col-13 {
-      width: 92.82143%;
-      border-left-width: 0;
-      padding: 0 0.2%;
-      margin-left: 0.5%; }
-    .xrp .xrp-col-14 {
-      margin-left: 0;
-      width: 100%; } }
-
+    */
+  }
+  .xrp .col {
+    margin-left : 0.5%;
+    padding     : 0 0.2%;
+  }
+  .xrp .row .col:first-child {
+    margin-left : 0;
+  }
+  .xrp .row {
+    clear : both;
+  }
+  .xrp .xrp-col-1 {
+    width             : 6.67857%;
+    border-left-width : 0;
+    padding           : 0 0.2%;
+    margin-left       : 0.5%;
+  }
+  .xrp .xrp-col-2 {
+    width             : 13.85714%;
+    border-left-width : 0;
+    padding           : 0 0.2%;
+    margin-left       : 0.5%;
+  }
+  .xrp .xrp-col-3 {
+    width             : 21.03571%;
+    border-left-width : 0;
+    padding           : 0 0.2%;
+    margin-left       : 0.5%;
+  }
+  .xrp .xrp-col-4 {
+    width             : 28.21429%;
+    border-left-width : 0;
+    padding           : 0 0.2%;
+    margin-left       : 0.5%;
+  }
+  .xrp .xrp-col-5 {
+    width             : 35.39286%;
+    border-left-width : 0;
+    padding           : 0 0.2%;
+    margin-left       : 0.5%;
+  }
+  .xrp .xrp-col-6 {
+    width             : 42.57143%;
+    border-left-width : 0;
+    padding           : 0 0.2%;
+    margin-left       : 0.5%;
+  }
+  .xrp .xrp-col-7 {
+    width             : 49.75%;
+    border-left-width : 0;
+    padding           : 0 0.2%;
+    margin-left       : 0.5%;
+  }
+  .xrp .xrp-col-8 {
+    width             : 56.92857%;
+    border-left-width : 0;
+    padding           : 0 0.2%;
+    margin-left       : 0.5%;
+  }
+  .xrp .xrp-col-9 {
+    width             : 64.10714%;
+    border-left-width : 0;
+    padding           : 0 0.2%;
+    margin-left       : 0.5%;
+  }
+  .xrp .xrp-col-10 {
+    width             : 71.28571%;
+    border-left-width : 0;
+    padding           : 0 0.2%;
+    margin-left       : 0.5%;
+  }
+  .xrp .xrp-col-11 {
+    width             : 78.46429%;
+    border-left-width : 0;
+    padding           : 0 0.2%;
+    margin-left       : 0.5%;
+  }
+  .xrp .xrp-col-12 {
+    width             : 85.64286%;
+    border-left-width : 0;
+    padding           : 0 0.2%;
+    margin-left       : 0.5%;
+  }
+  .xrp .xrp-col-13 {
+    width             : 92.82143%;
+    border-left-width : 0;
+    padding           : 0 0.2%;
+    margin-left       : 0.5%;
+  }
+  .xrp .xrp-col-14 {
+    margin-left : 0;
+    width       : 100%;
+  }
+}
 /*# sourceMappingURL=grid-14.css.map */

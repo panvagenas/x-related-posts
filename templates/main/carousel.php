@@ -10,14 +10,14 @@
  */
 
 if (!defined('WPINC')) {
-    exit('Do NOT access this file directly: ' . basename(__FILE__));
+    exit('Do NOT access this file directly: '.basename(__FILE__));
 }
 
 /* @var \x_related_posts\themes\theme $this */
 /* @var array $related */
 
-$contentPositions = str_split($this->options['content']);
-$containerUID = uniqid('xrp-container-');
+$contentPositions   = str_split($this->options['content']);
+$containerUID       = uniqid('xrp-container-');
 $sliderContainerUID = uniqid('xrp-slider-container-');
 
 ?>
@@ -29,7 +29,7 @@ $sliderContainerUID = uniqid('xrp-slider-container-');
             <?php
             foreach ($related as $key => $rel) {
                 /* @var \x_related_posts\posts $post */
-                $rel = (object)$rel;
+                $rel  = (object)$rel;
                 $post = $this->©post($rel->pid2);
                 ?>
                 <div class="col car-slider-set-max-dims slider-item">
@@ -41,7 +41,7 @@ $sliderContainerUID = uniqid('xrp-slider-container-');
                                 echo $this->getPostTitleFormatted($post);
                             } elseif ($c === 'p') {
                                 // thumbnail
-                                echo '<img src="' . $this->getThumbnail($post) . '">';
+                                echo '<img src="'.$this->getThumbnail($post).'">';
                             } else {
                                 // exc
                                 echo $this->getPostExcFormatted($post);
@@ -52,10 +52,10 @@ $sliderContainerUID = uniqid('xrp-slider-container-');
                     <?php
                     if ($this->©user->is_super_admin()) {
                         echo '<p>';
-                        echo 'host ID: ' . $rel->pid1;
-                        echo '<br>ID: ' . $rel->pid2;
-                        echo '<br>Rating: ' . round($rel->rating, 4);
-                        echo '<br>Date: ' . $rel->post_date;
+                        echo 'host ID: '.$rel->pid1;
+                        echo '<br>ID: '.$rel->pid2;
+                        echo '<br>Rating: '.round($rel->rating, 4);
+                        echo '<br>Date: '.$rel->post_date;
                         echo '</p>';
                     }
                     ?>
@@ -79,7 +79,8 @@ $sliderContainerUID = uniqid('xrp-slider-container-');
 </div>
 
 <script>
-    jQuery(document).ready(function ($) {
+    jQuery(document).ready(function ($)
+    {
 
         var conUID = '#<?php echo $containerUID; ?>';
         var sliderContainerID = '<?php echo $sliderContainerUID; ?>';
@@ -90,34 +91,34 @@ $sliderContainerUID = uniqid('xrp-slider-container-');
 
         var showPiecesMin = parseInt(<?php echo $this->options['carouselMinVisible']; ?>);
         var SlideSpacing = showPiecesMin;
-        var slideWidth = Math.floor(maxWidth/showPiecesMin)-SlideSpacing;
+        var slideWidth = Math.floor(maxWidth / showPiecesMin) - SlideSpacing;
 
         var sHeight = $container.find('.slider-item').first().height();
         $('.car-slider-set-max-dims').height(sHeight);
-        $('#'+sliderContainerID).children().first().width('100%');
+        $('#' + sliderContainerID).children().first().width('100%');
 
         var options = {
-            $SlideWidth: slideWidth,                //[Optional] Width of every slide in pixels, default value is width of 'slides' container
-            $SlideHeight: sHeight,             //[Optional] Height of every slide in pixels, default value is height of 'slides' container
-            $SlideSpacing: SlideSpacing, 					                //[Optional] Space between each slide in pixels, default value is 0
+            $SlideWidth   : slideWidth,                //[Optional] Width of every slide in pixels, default value is width of 'slides' container
+            $SlideHeight  : sHeight,             //[Optional] Height of every slide in pixels, default value is height of 'slides' container
+            $SlideSpacing : SlideSpacing, 					                //[Optional] Space between each slide in pixels, default value is 0
             $DisplayPieces: showPiecesMin,               //[Optional] Number of pieces to display (the slideshow would be disabled if the value is set to greater than 1), the default value is 1
 
             $BulletNavigatorOptions: {                                //[Optional] Options to specify and enable navigator or not
-                $Class: $JssorBulletNavigator$,                       //[Required] Class to create navigator instance
+                $Class       : $JssorBulletNavigator$,                       //[Required] Class to create navigator instance
                 $ChanceToShow: 2,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
-                $AutoCenter: 0,                                 //[Optional] Auto center navigator in parent container, 0 None, 1 Horizontal, 2 Vertical, 3 Both, default value is 0
-                $Steps: 1,                                      //[Optional] Steps to go for each navigation request, default value is 1
-                $Lanes: 1,                                      //[Optional] Specify lanes to arrange items, default value is 1
-                $SpacingX: 10,                                   //[Optional] Horizontal space between each item in pixel, default value is 0
-                $SpacingY: 10,                                   //[Optional] Vertical space between each item in pixel, default value is 0
-                $Orientation: 1                                 //[Optional] The orientation of the navigator, 1 horizontal, 2 vertical, default value is 1
+                $AutoCenter  : 0,                                 //[Optional] Auto center navigator in parent container, 0 None, 1 Horizontal, 2 Vertical, 3 Both, default value is 0
+                $Steps       : 1,                                      //[Optional] Steps to go for each navigation request, default value is 1
+                $Lanes       : 1,                                      //[Optional] Specify lanes to arrange items, default value is 1
+                $SpacingX    : 10,                                   //[Optional] Horizontal space between each item in pixel, default value is 0
+                $SpacingY    : 10,                                   //[Optional] Vertical space between each item in pixel, default value is 0
+                $Orientation : 1                                 //[Optional] The orientation of the navigator, 1 horizontal, 2 vertical, default value is 1
             },
 
             $ArrowNavigatorOptions: {
-                $Class: $JssorArrowNavigator$,              //[Requried] Class to create arrow navigator instance
+                $Class       : $JssorArrowNavigator$,              //[Requried] Class to create arrow navigator instance
                 $ChanceToShow: 1,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
-                $AutoCenter: 2,                                 //[Optional] Auto center arrows in parent container, 0 No, 1 Horizontal, 2 Vertical, 3 Both, default value is 0
-                $Steps: showPiecesMin                                       //[Optional] Steps to go for each navigation request, default value is 1
+                $AutoCenter  : 2,                                 //[Optional] Auto center arrows in parent container, 0 No, 1 Horizontal, 2 Vertical, 3 Both, default value is 0
+                $Steps       : showPiecesMin                                       //[Optional] Steps to go for each navigation request, default value is 1
             }
         };
         var jssor_slider1 = new $JssorSlider$(sliderContainerID, options);
@@ -125,13 +126,15 @@ $sliderContainerUID = uniqid('xrp-slider-container-');
         //responsive code begin
         //you can remove responsive code if you don't want the slider scales
         //while window resizes
-        function ScaleSlider() {
+        function ScaleSlider()
+        {
             var parentWidth = $('#' + sliderContainerID).parent().width();
             if (parentWidth) {
                 jssor_slider1.$ScaleWidth(parentWidth);
             }
-            else
+            else {
                 window.setTimeout(ScaleSlider, 30);
+            }
         }
 
         //Scale slider after document ready
